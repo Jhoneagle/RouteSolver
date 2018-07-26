@@ -8,6 +8,10 @@
 
 [Vaatimusmäärittely](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/vaatimusmaarittely.md) 
 
+## Viikkoraportit
+
+[Viikkoraportti 1](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/raportit/viikko1.md) 
+
 ## Komentorivitoiminnot
 
 ### Testaus
