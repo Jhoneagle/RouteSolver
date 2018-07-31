@@ -3,4 +3,5 @@
 /.idea
 dependency-reduced-pom.xml
 nbactions.xml
-/csvFiles
+/mapFiles
+/config
