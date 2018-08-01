@@ -3,10 +3,10 @@ package johneagle.routesolve.domain;
 public class Config {
     private int x;
     private int y;
-    private String[] walkable;
-    private String[] unwalkable;
+    private char[] walkable;
+    private char[] unwalkable;
 
-    public Config(int x, int y, String[] walkable, String[] unwalkable) {
+    public Config(int x, int y, char[] walkable, char[] unwalkable) {
         this.x = x;
         this.y = y;
         this.walkable = walkable;
@@ -21,11 +21,11 @@ public class Config {
         return y;
     }
 
-    public String[] getWalkable() {
+    public char[] getWalkable() {
         return walkable;
     }
 
-    public String[] getUnwalkable() {
+    public char[] getUnwalkable() {
         return unwalkable;
     }
 }

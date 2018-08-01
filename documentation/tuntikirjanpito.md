@@ -7,4 +7,6 @@
 30.7 | 4 | jatkuu
 31.7 | 5 | debuggausta ja refactorointia
 31.7 | 3 | jatkuu
+1.8 | 5 | uudelleen tekoa
+2.8 | 2 | debuggausta
 

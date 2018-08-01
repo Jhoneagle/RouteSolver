@@ -1,6 +1,7 @@
 package johneagle.routesolve.ui;
 
 import johneagle.routesolve.algorithm.Finder;
+import johneagle.routesolve.domain.Chell;
 import johneagle.routesolve.domain.Config;
 import johneagle.routesolve.filesystem.Reader;
 
@@ -22,7 +23,7 @@ public class RouteSolver {
         instructions();
 
         while(true) {
-            System.out.println("> ");
+            System.out.print("> ");
             String komento = lukija.nextLine();
 
             if (komento.contains("ohje")) {
@@ -48,26 +49,44 @@ public class RouteSolver {
     }
 
     private static void toSolve(Scanner lukija, Finder solver) {
-        System.out.println("aloitus x-koordinaatti: ");
-        int startX = Integer.parseInt(lukija.nextLine());
+        System.out.print("aloitus x-koordinaatti: ");
+        int startX = Integer.parseInt(lukija.nextLine()) - 1;
 
-        System.out.println("aloitus y-koordinaatti: ");
-        int startY = Integer.parseInt(lukija.nextLine());
+        System.out.print("aloitus y-koordinaatti: ");
+        int startY = Integer.parseInt(lukija.nextLine()) - 1;
 
-        System.out.println("lopetus x-koordinaatti: ");
-        int endX = Integer.parseInt(lukija.nextLine());
+        System.out.print("lopetus x-koordinaatti: ");
+        int endX = Integer.parseInt(lukija.nextLine()) - 1;
 
-        System.out.println("lopetus y-koordinaatti: ");
-        int endY = Integer.parseInt(lukija.nextLine());
+        System.out.print("lopetus y-koordinaatti: ");
+        int endY = Integer.parseInt(lukija.nextLine()) - 1;
 
-        solver.getPath(startX, startY, endX, endY);
+        Chell[] result = solver.getPath(startX, startY, endX, endY);
+
+        if (result != null) {
+            Chell turn = result[solver.Hash(endX, endY)];
+
+            while (true) {
+                if (turn == null) {
+                    break;
+                }
+
+                System.out.println(turn.getX() + "," + turn.getY());
+
+                if (turn.getX() == startX && turn.getY() == startY) {
+                    break;
+                } else {
+                    turn = result[solver.Hash(turn.getX(), turn.getY())];
+                }
+            }
+        }
     }
 
     private static void toAddMap(Scanner lukija, Reader fileReader, Finder solver) {
-        System.out.println("anna kartta tiedoston nimi: ");
+        System.out.print("anna kartta tiedoston nimi: ");
         String fileName = lukija.nextLine();
 
-        String[][] map = fileReader.getMap(fileName);
+        char[][] map = fileReader.getMap(fileName);
 
         if (map == null) {
             System.out.println("yritä uudelleen!");
