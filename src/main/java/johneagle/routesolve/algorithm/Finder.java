@@ -50,10 +50,10 @@ public class Finder {
      * @see Map#hash(int, int)
      * @see Finder#checkNeighbour(Chell, Chell)
      *
-     * @param startX    Begging x-coordinate
-     * @param startY    Begging y-coordinate
-     * @param endX      Destination x-coordinate
-     * @param endY      Destination y-coordinate
+     * @param startX    Begging x-coordinate.
+     * @param startY    Begging y-coordinate.
+     * @param endX      Destination x-coordinate.
+     * @param endY      Destination y-coordinate.
      *
      * @return Pile of Chell objects in Stack object.
      */

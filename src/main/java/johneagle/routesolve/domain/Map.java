@@ -35,7 +35,7 @@ public class Map {
     }
 
     /**
-     * Gives a linear place of coordinate in matrix
+     * Gives a linear place of coordinate in matrix.
      *
      * @param x     x-coordinate
      * @param y     y-coordinate
@@ -55,7 +55,7 @@ public class Map {
     }
 
     /**
-     * Function tells if give coordinates are inside the ascii grid.
+     * Function tells if given coordinates are inside the ascii grid.
      *
      * @param x     x-coordinate
      * @param y     y-coordinate
@@ -79,7 +79,7 @@ public class Map {
 
     /**
      * Tells if the place in the grid is walkable according to configurations.
-     * IF you can bass it return is 1, if you cant it´s -1 and those that can´t be recognize are 0.
+     * IF you can bass it return is 1, if you cant it's -1 and those that can't be recognize are 0.
      *
      * @see Config#getWalkable()
      * @see Config#getUnwalkable()
@@ -129,10 +129,10 @@ public class Map {
      *
      * @see Math#abs(int)
      *
-     * @param fristX    Start points x-coordinate
-     * @param secondX   Start points y-coordinate
-     * @param fristY    End points x-coordinate
-     * @param secondY   End points y-coordinate
+     * @param fristX    Start points x-coordinate.
+     * @param secondX   Start points y-coordinate.
+     * @param fristY    End points x-coordinate.
+     * @param secondY   End points y-coordinate.
      *
      * @return Integer
      */

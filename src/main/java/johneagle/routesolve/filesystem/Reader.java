@@ -42,7 +42,7 @@ public class Reader {
     }
 
     /**
-     * Frist asks the lines from the file and then forms an character matrix of it.
+     * First asks the lines from the file and then forms an character matrix of it.
      *
      * @see Reader#readAll(String)
      *
@@ -74,7 +74,7 @@ public class Reader {
     }
 
     /**
-     * returns Config object of the properties file that is declared by the param.
+     * Returns Config object of the properties file that is declared by the param.
      *
      * @see Config
      *

@@ -15,7 +15,7 @@ import java.util.Stack;
  *
  * Program implements configurations when started so they cant be chanced without closing the program.
  * Instead ascii map can be chanced as long as the basic size of it is same and it uses same ascii symbols in same work.
- * Which can be modified from configurations. Also it´s possible to make multiple A to B search with same map.
+ * Which can be modified from configurations. Also it's possible to make multiple A to B search with same map.
  *
  * @author Johneagle
  */
