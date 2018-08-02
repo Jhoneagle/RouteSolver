@@ -1,182 +1,110 @@
 package johneagle.routesolve.algorithm;
 
-import johneagle.routesolve.domain.Config;
 import johneagle.routesolve.domain.Chell;
+import johneagle.routesolve.domain.Map;
 
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 public class Finder {
-    private char[][] map;
-    private Config properties;
 
-    public Finder() {
-        this.map = null;
-        this.properties = null;
+    private Map asciiMap;
+    private Chell[] path;
+    private PriorityQueue<Chell> queue;
+    private Chell[][] chellMap;
+
+    public Finder(Map map) {
+        this.asciiMap = map;
     }
 
-    public void setMap(char[][] map) {
-        this.map = map;
+    public Map getAsciiMap() {
+        return asciiMap;
     }
 
-    public void setProperties(Config properties) {
-        this.properties = properties;
-    }
-
-    public Chell[] getPath(int startX, int startY, int endX, int endY) {
-        if (this.map == null || this.properties == null) {
-            System.out.println("tarvittavia tietoja ei ole määritelty!");
+    public Stack<Chell> getPath(int startX, int startY, int endX, int endY) {
+        if (this.asciiMap.getMap() == null || this.asciiMap.getProperties() == null) {
             return null;
         }
 
-        Chell[] path = new Chell[this.properties.getX() * this.properties.getY()];
-        PriorityQueue<Chell> queue = new PriorityQueue<>();
-        Chell[][] chellMap = new Chell[this.properties.getY()][this.properties.getX()];
+        int mapHeight = this.asciiMap.getMapHeight();
+        int mapWeight = this.asciiMap.getMapWeight();
 
-        for (int y = 0; y < this.map.length; y++) {
-            for (int x = 0; x < this.map[0].length; x++) {
-                path[Hash(x, y)] = null;
+        this.path = new Chell[mapWeight * mapHeight];
+        this.queue = new PriorityQueue<>();
+        this.chellMap = new Chell[mapHeight][mapWeight];
+
+        for (int y = 0; y < mapHeight; y++) {
+            for (int x = 0; x < mapWeight; x++) {
+                this.path[this.asciiMap.hash(x, y)] = null;
 
                 Chell chell = new Chell(x, y);
                 chell.setDistanceToStart(Integer.MAX_VALUE);
-                chell.setDistanceToEnd(getAproxDistance(x, endX, y, endY));
+                chell.setDistanceToEnd(this.asciiMap.getAproxDistance(x, endX, y, endY));
 
-                chellMap[y][x] = chell;
+                this.chellMap[y][x] = chell;
             }
         }
 
-        chellMap[startY][startX].setDistanceToStart(0);
-        queue.add(chellMap[startY][startX]);
+        this.chellMap[startY][startX].setDistanceToStart(0);
+        this.queue.add(this.chellMap[startY][startX]);
 
-        while (!queue.isEmpty()) {
-            Chell current = queue.poll();
+        while (!this.queue.isEmpty()) {
+            Chell current = this.queue.poll();
             current.setVisited();
-            chellMap[current.getY()][current.getX()] = current;
+            this.chellMap[current.getY()][current.getX()] = current;
 
             if (current.getY() == endY && current.getX() == endX) {
                 break;
             }
 
-            if (isInsideMap(current.getY() + 1, current.getX()) && isWalkable(current.getY() + 1, current.getX()) == 1) {
-                Chell next = chellMap[startY + 1][startX];
+            if (this.asciiMap.isInsideMap(current.getX(), current.getY() + 1) && this.asciiMap.isWalkable(current.getX(), current.getY() + 1) == 1) {
+                Chell next = this.chellMap[current.getY() + 1][current.getX()];
 
-                if (!next.isVisited()) {
-                    int sum = current.getDistanceToStart() + getValue(next.getX(), next.getY());
-
-                    if (next.getDistanceToStart() > sum) {
-                        next.setDistanceToStart(sum);
-                        path[Hash(next.getX(), next.getY())] = current;
-                        chellMap[next.getY()][next.getX()] = next;
-                    }
-
-                    queue.add(next);
-                }
+                checkNeighbour(current, next);
             }
 
-            if (isInsideMap(current.getY() - 1, current.getX()) && isWalkable(current.getY() - 1, current.getX()) == 1) {
-                Chell next = chellMap[startY - 1][startX];
+            if (this.asciiMap.isInsideMap(current.getX(), current.getY() - 1) && this.asciiMap.isWalkable(current.getX(), current.getY() - 1) == 1) {
+                Chell next = this.chellMap[current.getY() - 1][current.getX()];
 
-                if (!next.isVisited()) {
-                    int sum = current.getDistanceToStart() + getValue(next.getX(), next.getY());
-
-                    if (next.getDistanceToStart() > sum) {
-                        next.setDistanceToStart(sum);
-                        path[Hash(next.getX(), next.getY())] = current;
-                        chellMap[next.getY()][next.getX()] = next;
-                    }
-
-                    queue.add(next);
-                }
+                checkNeighbour(current, next);
             }
 
-            if (isInsideMap(current.getY(), current.getX() + 1) && isWalkable(current.getY(), current.getX() + 1) == 1) {
-                Chell next = chellMap[startY][startX + 1];
+            if (this.asciiMap.isInsideMap(current.getX() + 1, current.getY()) && this.asciiMap.isWalkable(current.getX() + 1, current.getY()) == 1) {
+                Chell next = this.chellMap[current.getY()][current.getX() + 1];
 
-                if (!next.isVisited()) {
-                    int sum = current.getDistanceToStart() + getValue(next.getX(), next.getY());
-
-                    if (next.getDistanceToStart() > sum) {
-                        next.setDistanceToStart(sum);
-                        path[Hash(next.getX(), next.getY())] = current;
-                        chellMap[next.getY()][next.getX()] = next;
-                    }
-
-                    queue.add(next);
-                }
+                checkNeighbour(current, next);
             }
 
-            if (isInsideMap(current.getY(), current.getX() - 1) && isWalkable(current.getY(), current.getX() - 1) == 1) {
-                Chell next = chellMap[startY][startX - 1];
+            if (this.asciiMap.isInsideMap(current.getX() - 1, current.getY()) && this.asciiMap.isWalkable(current.getX() - 1, current.getY()) == 1) {
+                Chell next = this.chellMap[current.getY()][current.getX() - 1];
 
-                if (!next.isVisited()) {
-                    int sum = current.getDistanceToStart() + getValue(next.getX(), next.getY());
-
-                    if (next.getDistanceToStart() > sum) {
-                        next.setDistanceToStart(sum);
-                        path[Hash(next.getX(), next.getY())] = current;
-                        chellMap[next.getY()][next.getX()] = next;
-                    }
-
-                    queue.add(next);
-                }
+                checkNeighbour(current, next);
             }
         }
 
-        return path;
+        Stack<Chell> result = new Stack<>();
+        Chell last = this.path[this.asciiMap.hash(endX, endY)];
+
+        while (last != null) {
+            result.push(last);
+            last = this.path[this.asciiMap.hash(last.getX(), last.getY())];
+        }
+
+        return result;
     }
 
-    public int Hash(int x, int y) {
-        return y * this.properties.getX() + x;
-    }
+    private void checkNeighbour(Chell current, Chell next) {
+        if (!next.isVisited()) {
+            int sum = current.getDistanceToStart() + this.asciiMap.getValue(next.getX(), next.getY());
 
-    private boolean isInsideMap(int x, int y) {
-        int mapHeight = this.properties.getY();
-        int mapWeight = this.properties.getX();
-
-        if (x >= 0 && x < mapWeight) {
-            if (y >= 0 && y < mapHeight) {
-                return true;
-            } else {
-                return false;
+            if (next.getDistanceToStart() > sum) {
+                next.setDistanceToStart(sum);
+                this.path[this.asciiMap.hash(next.getX(), next.getY())] = current;
+                this.chellMap[next.getY()][next.getX()] = next;
             }
-        } else {
-            return false;
+
+            this.queue.add(next);
         }
     }
 
-    private Integer isWalkable(int x, int y) {
-        char type = this.map[y][x];
-
-        char[] walkable = this.properties.getWalkable();
-        char[] unwalkable = this.properties.getUnwalkable();
-
-        for (int i = 0; i < walkable.length; i++) {
-            if (type == walkable[i]) {
-                return 1;
-            }
-        }
-
-        for (int i = 0; i < unwalkable.length; i++) {
-            if (type == unwalkable[i]) {
-                return -1;
-            }
-        }
-
-        return 0;
-    }
-
-    private Integer getValue(int x, int y) {
-        char type = this.map[y][x];
-
-        return 1;
-    }
-
-    private Integer getAproxDistance(int fristX, int secondX, int fristY, int secondY) {
-        int aproximate = (fristX - secondX) + (fristY - secondY);
-
-        if (aproximate < 0) {
-            aproximate *= -1;
-        }
-
-        return aproximate;
-    }
 }

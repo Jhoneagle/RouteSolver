@@ -3,9 +3,11 @@ package johneagle.routesolve.ui;
 import johneagle.routesolve.algorithm.Finder;
 import johneagle.routesolve.domain.Chell;
 import johneagle.routesolve.domain.Config;
+import johneagle.routesolve.domain.Map;
 import johneagle.routesolve.filesystem.Reader;
 
 import java.util.Scanner;
+import java.util.Stack;
 
 /**
  *
@@ -15,12 +17,19 @@ public class RouteSolver {
     public static void main(String[] args) {
         Scanner lukija = new Scanner(System.in);
 
-        Finder solver = new Finder();
+        Map asciiMap = new Map();
         Reader fileReader = new Reader();
 
-        Config configs = fileReader.getConfigs();
-        solver.setProperties(configs);
+        Config configs = fileReader.getConfigs("config/config.properties");
+
+        if (configs == null) {
+            System.out.println("väärin määritelty config file!");
+        }
+
+        asciiMap.setProperties(configs);
         instructions();
+
+        Finder solver = new Finder(asciiMap);
 
         while(true) {
             System.out.print("> ");
@@ -61,24 +70,12 @@ public class RouteSolver {
         System.out.print("lopetus y-koordinaatti: ");
         int endY = Integer.parseInt(lukija.nextLine()) - 1;
 
-        Chell[] result = solver.getPath(startX, startY, endX, endY);
+        Stack<Chell> result = solver.getPath(startX, startY, endX, endY);
 
         if (result != null) {
-            Chell turn = result[solver.Hash(endX, endY)];
-
-            while (true) {
-                if (turn == null) {
-                    break;
-                }
-
-                System.out.println(turn.getX() + "," + turn.getY());
-
-                if (turn.getX() == startX && turn.getY() == startY) {
-                    break;
-                } else {
-                    turn = result[solver.Hash(turn.getX(), turn.getY())];
-                }
-            }
+            System.out.println(result.size());
+        } else {
+            System.out.println("tarvittavia tietoja ei ole määritelty!");
         }
     }
 
@@ -86,12 +83,12 @@ public class RouteSolver {
         System.out.print("anna kartta tiedoston nimi: ");
         String fileName = lukija.nextLine();
 
-        char[][] map = fileReader.getMap(fileName);
+        char[][] map = fileReader.getMap("mapFiles/" + fileName);
 
         if (map == null) {
             System.out.println("yritä uudelleen!");
         } else {
-            solver.setMap(map);
+            solver.getAsciiMap().setMap(map);
         }
     }
 }

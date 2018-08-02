@@ -2,9 +2,9 @@ package johneagle.routesolve.filesystem;
 
 import johneagle.routesolve.domain.Config;
 
+import java.io.FileInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -17,7 +17,7 @@ public class Reader {
         ArrayList<String> lines = new ArrayList();
 
         try {
-            Files.lines(Paths.get("mapFiles/" + fileName)).forEach(rivi -> lines.add(rivi));
+            Files.lines(Paths.get(fileName)).forEach(rivi -> lines.add(rivi));
         } catch (Exception e) {
             System.out.println("Virheellinen tiedoston nimi!");
         }
@@ -37,22 +37,22 @@ public class Reader {
         int columns = line.length;
         char[][] map = new char[rows][columns];
 
-        for (int y = 1; y < rows; y++) {
+        for (int y = 0; y < rows; y++) {
+            line = lines.get(y).split(";");
+
             for (int x = 0; x < columns; x++) {
                 map[y][x] = line[x].charAt(0);
             }
-
-            line = lines.get(y).split(";");
         }
 
         return map;
     }
 
-    public Config getConfigs() {
+    public Config getConfigs(String config) {
         Properties properties = new Properties();
 
         try {
-            properties.load(new FileInputStream("config/config.properties"));
+            properties.load(new FileInputStream(config));
 
             int x = Integer.parseInt(properties.getProperty("x"));
             int y = Integer.parseInt(properties.getProperty("y"));
@@ -73,8 +73,7 @@ public class Reader {
 
             Config configs = new Config(x, y, walkable, unwalkable);
             return configs;
-        } catch(Exception e) {
-            System.out.println("väärin määritelty config file!");
+        } catch (Exception e) {
             return null;
         }
     }

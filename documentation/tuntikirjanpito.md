@@ -9,4 +9,5 @@
 31.7 | 3 | jatkuu
 1.8 | 5 | uudelleen tekoa
 2.8 | 2 | debuggausta
+2.8 | 3,5 | testien tekoa
 
