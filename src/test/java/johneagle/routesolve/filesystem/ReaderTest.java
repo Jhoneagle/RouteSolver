@@ -34,11 +34,11 @@ public class ReaderTest {
     @Test
     public void wrongFileName() {
         this.tempMapFile.setWritable(true);
-        String map = "0;0;0;0;0" + "\n" +
-                "0;0;0;0;0" + "\n" +
-                "0;0;0;0;0" + "\n" +
-                "0;0;0;0;0" + "\n" +
-                "0;0;0;0;0";
+        String map = "00000" + "\n" +
+                "00000" + "\n" +
+                "00000" + "\n" +
+                "00000" + "\n" +
+                "00000";
 
         insertMap(map);
         char[][] matrix = this.reader.getMap("test5.csv");
@@ -49,11 +49,11 @@ public class ReaderTest {
     @Test
     public void getData() {
         this.tempMapFile.setWritable(true);
-        String map = "0;0;0;0;0" + "\n" +
-                "0;0;0;0;0" + "\n" +
-                "0;0;0;0;0" + "\n" +
-                "0;0;0;0;0" + "\n" +
-                "0;0;0;0;0";
+        String map = "00000" + "\n" +
+                "00000" + "\n" +
+                "00000" + "\n" +
+                "00000" + "\n" +
+                "00000";
 
         insertMap(map);
         char[][] matrix = this.reader.getMap(this.tempMapFile.getAbsolutePath());
@@ -75,11 +75,11 @@ public class ReaderTest {
     @Test
     public void getData3() {
         this.tempMapFile.setWritable(true);
-        String map = "1;0;0;0;1" + "\n" +
-                "0;1;0;1;0" + "\n" +
-                "0;0;1;0;0" + "\n" +
-                "0;1;0;1;0" + "\n" +
-                "1;0;0;0;1";
+        String map = "10001" + "\n" +
+                "01010" + "\n" +
+                "00100" + "\n" +
+                "01010" + "\n" +
+                "10001";
 
         insertMap(map);
         char[][] matrix = this.reader.getMap(this.tempMapFile.getAbsolutePath());

@@ -10,8 +10,14 @@ import java.util.Scanner;
 import java.util.Stack;
 
 /**
+ * User Interface for the program that uses path finding algorithm to solve best way to get from point A to B in ascii grid.
+ * Interface is textual so graphics are purely terminal based.
  *
- * @author Joni
+ * Program implements configurations when started so they cant be chanced without closing the program.
+ * Instead ascii map can be chanced as long as the basic size of it is same and it uses same ascii symbols in same work.
+ * Which can be modified from configurations. Also it´s possible to make multiple A to B search with same map.
+ *
+ * @author Johneagle
  */
 public class RouteSolver {
     public static void main(String[] args) {

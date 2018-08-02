@@ -8,11 +8,27 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Properties;
 
+/**
+ * Handles all reading from configuration files and files containing ascii map.
+ * Ascii grid has to be pure matrix of characters.
+ * Also configuration file has to be formulated right way.
+ *
+ * @author Johneagle
+ */
 public class Reader {
 
     public Reader() {
     }
 
+    /**
+     * Reads the hole file and returns it as list of text (String) lines.
+     *
+     * @see ArrayList
+     *
+     * @param fileName  Name of the file with folder name first if needed.
+     *
+     * @return List of String/text lines
+     */
     private ArrayList<String> readAll(String fileName) {
         ArrayList<String> lines = new ArrayList();
 
@@ -25,6 +41,15 @@ public class Reader {
         return lines;
     }
 
+    /**
+     * Frist asks the lines from the file and then forms an character matrix of it.
+     *
+     * @see Reader#readAll(String)
+     *
+     * @param mapfile   Map that needs to be formulated to ascii grid.
+     *
+     * @return Character matrix
+     */
     public char[][] getMap(String mapfile) {
         ArrayList<String> lines = readAll(mapfile);
         int rows = lines.size();
@@ -33,26 +58,35 @@ public class Reader {
             return null;
         }
 
-        String[] line = lines.get(0).split(";");
-        int columns = line.length;
+        String line = lines.get(0);
+        int columns = line.length();
         char[][] map = new char[rows][columns];
 
         for (int y = 0; y < rows; y++) {
-            line = lines.get(y).split(";");
+            line = lines.get(y);
 
             for (int x = 0; x < columns; x++) {
-                map[y][x] = line[x].charAt(0);
+                map[y][x] = line.charAt(x);
             }
         }
 
         return map;
     }
 
-    public Config getConfigs(String config) {
+    /**
+     * returns Config object of the properties file that is declared by the param.
+     *
+     * @see Config
+     *
+     * @param configFileName    Name of the configuration/properties file.
+     *
+     * @return Config object
+     */
+    public Config getConfigs(String configFileName) {
         Properties properties = new Properties();
 
         try {
-            properties.load(new FileInputStream(config));
+            properties.load(new FileInputStream(configFileName));
 
             int x = Integer.parseInt(properties.getProperty("x"));
             int y = Integer.parseInt(properties.getProperty("y"));

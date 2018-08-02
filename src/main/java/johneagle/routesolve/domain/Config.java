@@ -1,5 +1,12 @@
 package johneagle.routesolve.domain;
 
+/**
+ * Storage for configuration of the Path finding algorithm.
+ * Tells which types of ascii characters it can move and which not.
+ * Also how tall and width the maps are suppose to be.
+ *
+ * @author Johneagle
+ */
 public class Config {
     private int x;
     private int y;

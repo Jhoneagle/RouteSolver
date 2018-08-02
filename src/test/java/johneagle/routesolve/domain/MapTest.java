@@ -34,11 +34,11 @@ public class MapTest {
 
         this.reader = new Reader();
         this.tempMapFile.setWritable(true);
-        String map = "1;0;0;1;1" + "\n" +
-                "1;1;0;1;0" + "\n" +
-                "0;1;1;1;0" + "\n" +
-                "1;1;0;1;0" + "\n" +
-                "1;0;0;1;1";
+        String map = "10011" + "\n" +
+                "11010" + "\n" +
+                "01110" + "\n" +
+                "11010" + "\n" +
+                "10011";
 
         insertMap(map);
         char[][] matrix = this.reader.getMap(this.tempMapFile.getAbsolutePath());

@@ -6,6 +6,18 @@ import johneagle.routesolve.domain.Map;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
+/**
+ * Main object of the algorithm. Contains the actual method to find shortest path in ascii map/grid.
+ * It needs Map object which is declared in constructor to work which also has to have proper setup make sure algorithm works.
+ * This only contains the Heart of the modificated A* path finding algorithm as lot of necessary stuff is done outside in other objects.
+ * Mainly in Map object but also in PriorityQueue thanks to Chell objects comparability with each others.
+ *
+ * @see Finder#getPath(int, int, int, int)
+ * @see Map
+ * @see PriorityQueue
+ *
+ * @author Johneagle
+ */
 public class Finder {
 
     private Map asciiMap;
@@ -21,6 +33,30 @@ public class Finder {
         return asciiMap;
     }
 
+    /**
+     * Main algorithm to solve the shortest path in the ascii map. Algorithm bases on A* but works as own modification of it.
+     * The best option from valid next visits is always chosen as a first from the queue which is ordered by sum of distance to start and end.
+     * Where Chell object with smallest sum is first and largest as last.
+     *
+     * Method uses Matrix made out of Chell objects and operations from Map object that contains actual ascii grid to proceed.
+     * Both are anyways saved as 2-dimensional table which makes it unhealthy when grid is large.
+     * But is most convenient form to find the shortest path in ascii maps generally.
+     *
+     * @see Stack
+     * @see PriorityQueue#poll()
+     * @see Map#getAproxDistance(int, int, int, int)
+     * @see Map#isInsideMap(int, int)
+     * @see Map#isWalkable(int, int)
+     * @see Map#hash(int, int)
+     * @see Finder#checkNeighbour(Chell, Chell)
+     *
+     * @param startX    Begging x-coordinate
+     * @param startY    Begging y-coordinate
+     * @param endX      Destination x-coordinate
+     * @param endY      Destination y-coordinate
+     *
+     * @return Pile of Chell objects in Stack object.
+     */
     public Stack<Chell> getPath(int startX, int startY, int endX, int endY) {
         if (this.asciiMap.getMap() == null || this.asciiMap.getProperties() == null) {
             return null;
@@ -32,6 +68,8 @@ public class Finder {
         this.path = new Chell[mapWeight * mapHeight];
         this.queue = new PriorityQueue<>();
         this.chellMap = new Chell[mapHeight][mapWeight];
+
+        // Initializes the Chell object version of the ascii grid.
 
         for (int y = 0; y < mapHeight; y++) {
             for (int x = 0; x < mapWeight; x++) {
@@ -47,6 +85,8 @@ public class Finder {
 
         this.chellMap[startY][startX].setDistanceToStart(0);
         this.queue.add(this.chellMap[startY][startX]);
+
+        // Starts from the beginning coordinate and continues until currently checked is destination coordinate or there is no more options to go to.
 
         while (!this.queue.isEmpty()) {
             Chell current = this.queue.poll();
@@ -82,6 +122,8 @@ public class Finder {
             }
         }
 
+        // Puts together from linear line representation of the Chell matrix which places have been used in the shortest path.
+
         Stack<Chell> result = new Stack<>();
         Chell last = this.path[this.asciiMap.hash(endX, endY)];
 
@@ -93,6 +135,17 @@ public class Finder {
         return result;
     }
 
+    /**
+     * Function checks if neighbour has been visited already. If not then it updates íts distance to start point and makes representation of current one in the place neighbour belongs in linear line.
+     * And no matter about the update adds the neighbour to queue of Chell objects.
+     *
+     * @see Map#getValue(int, int)
+     * @see Map#hash(int, int)
+     * @see PriorityQueue#add(Object)
+     *
+     * @param current   Chell object that currently is selected.
+     * @param next      Chell object next to current one.
+     */
     private void checkNeighbour(Chell current, Chell next) {
         if (!next.isVisited()) {
             int sum = current.getDistanceToStart() + this.asciiMap.getValue(next.getX(), next.getY());

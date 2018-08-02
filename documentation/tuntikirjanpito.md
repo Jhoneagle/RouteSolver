@@ -1,4 +1,4 @@
-﻿paiva | aika | mitä tein
+﻿paiva | aika (h) | mitä tein
 ----- | ---- | ---------
 26.7 | 3 | Projektin alustus
 27.7 | 4 | vaatimusmäärittely ja viikkoraportti
@@ -10,4 +10,8 @@
 1.8 | 5 | uudelleen tekoa
 2.8 | 2 | debuggausta
 2.8 | 3,5 | testien tekoa
+2.8 | 1,5 | algoritmin debuggausta
+2.8 | 2,5 | javadocia
+3.8 | 1 | lisää javadocia
+total | 38,5
 
