@@ -35,7 +35,7 @@ public class Map {
     }
 
     /**
-     * Gives a linear place of coordinate in matrix.
+     * Gives a linear place of the coordinate in matrix.
      *
      * @param x     x-coordinate
      * @param y     y-coordinate

@@ -10,7 +10,8 @@
 
 ## Viikkoraportit
 
-[Viikkoraportti 1](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/raportit/viikko1.md) 
+[Viikkoraportti 1](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/raportit/viikko1.md)
+[Viikkoraportti 2](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/raportit/viikko2.md)
 
 ## Komentorivitoiminnot
 

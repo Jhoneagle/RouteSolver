@@ -2,7 +2,7 @@
 ----- | ---- | ---------
 26.7 | 3 | Projektin alustus
 27.7 | 4 | vaatimusmäärittely ja viikkoraportti
-29.7 | 1 | csv tiedoston lukua
+29.7 | 1 | tiedoston lukua
 30.7 | 3 | algoritmin luontia
 30.7 | 4 | jatkuu
 31.7 | 5 | debuggausta ja refactorointia
@@ -13,5 +13,6 @@
 2.8 | 1,5 | algoritmin debuggausta
 2.8 | 2,5 | javadocia
 3.8 | 1 | lisää javadocia
-total | 38,5
+3.8 | 1 | documentaatiota
+total | 39,5
 
