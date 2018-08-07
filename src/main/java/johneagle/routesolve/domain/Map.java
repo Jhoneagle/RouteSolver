@@ -137,6 +137,10 @@ public class Map {
      * @return Integer
      */
     public Integer getAproxDistance(int fristX, int secondX, int fristY, int secondY) {
-        return Math.abs(fristX - secondX) + Math.abs(fristY - secondY);
+        int diffirentX = fristX - secondX;
+        int diffirentY = fristY - secondY;
+        int result = Math.abs(diffirentX) + Math.abs(diffirentY);
+
+        return result;
     }
 }

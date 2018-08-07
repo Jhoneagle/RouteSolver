@@ -83,14 +83,15 @@ public class Finder {
             }
         }
 
-        this.chellMap[startY][startX].setDistanceToStart(0);
-        this.queue.add(this.chellMap[startY][startX]);
+        Chell start = new Chell(startX, startY);
+        start.setDistanceToStart(0);
+        start.setDistanceToEnd(this.asciiMap.getAproxDistance(start.getX(), endX, start.getY(), endY));
+        this.queue.add(start);
 
         // Starts from the beginning coordinate and continues until currently checked is destination coordinate or there is no more options to go to.
 
         while (!this.queue.isEmpty()) {
             Chell current = this.queue.poll();
-            current.setVisited();
             this.chellMap[current.getY()][current.getX()] = current;
 
             if (current.getY() == endY && current.getX() == endX) {
@@ -149,6 +150,7 @@ public class Finder {
     private void checkNeighbour(Chell current, Chell next) {
         if (!next.isVisited()) {
             int sum = current.getDistanceToStart() + this.asciiMap.getValue(next.getX(), next.getY());
+            next.setVisited();
 
             if (next.getDistanceToStart() > sum) {
                 next.setDistanceToStart(sum);
