@@ -49,6 +49,10 @@ public class RouteSolver {
                 toAddMap(lukija, fileReader, solver);
             } else if (komento.contains("ratkaise")) {
                 toSolve(lukija, solver);
+            } else if (komento.contains("timeTest")) {
+                speedTesting(lukija, solver);
+            } else if (komento.contains("memoryTest")) {
+                memoryTesting(lukija, solver);
             } else {
                 System.out.println("tuntematon komento!");
             }
@@ -65,16 +69,16 @@ public class RouteSolver {
 
     private static void toSolve(Scanner lukija, Finder solver) {
         System.out.print("aloitus x-koordinaatti: ");
-        int startX = Integer.parseInt(lukija.nextLine()) - 1;
+        int startX = Integer.parseInt(lukija.nextLine());
 
         System.out.print("aloitus y-koordinaatti: ");
-        int startY = Integer.parseInt(lukija.nextLine()) - 1;
+        int startY = Integer.parseInt(lukija.nextLine());
 
         System.out.print("lopetus x-koordinaatti: ");
-        int endX = Integer.parseInt(lukija.nextLine()) - 1;
+        int endX = Integer.parseInt(lukija.nextLine());
 
         System.out.print("lopetus y-koordinaatti: ");
-        int endY = Integer.parseInt(lukija.nextLine()) - 1;
+        int endY = Integer.parseInt(lukija.nextLine());
 
         Stack<Chell> result = solver.getPath(startX, startY, endX, endY);
 
@@ -96,5 +100,61 @@ public class RouteSolver {
         } else {
             solver.getAsciiMap().setMap(map);
         }
+    }
+
+    /**
+     * Method is for testing time consumption off the path finding algorithm with different parameters.
+     */
+    private static void speedTesting(Scanner lukija, Finder solver) {
+        System.out.print("aloitus x-koordinaatti: ");
+        int startX = Integer.parseInt(lukija.nextLine());
+
+        System.out.print("aloitus y-koordinaatti: ");
+        int startY = Integer.parseInt(lukija.nextLine());
+
+        System.out.print("lopetus x-koordinaatti: ");
+        int endX = Integer.parseInt(lukija.nextLine());
+
+        System.out.print("lopetus y-koordinaatti: ");
+        int endY = Integer.parseInt(lukija.nextLine());
+
+        for (int i = 0; i < 10; i++) {
+            long aikaAlussa = System.currentTimeMillis();
+
+            Stack<Chell> result = solver.getPath(startX, startY, endX, endY);
+
+            long aikaLopussa = System.currentTimeMillis();
+            System.out.println("kierros: " + (i + 1) + ".");
+            System.out.println("Operaatioon kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
+        }
+    }
+
+    /**
+     * Method is for testing memory consumption off the path finding algorithm with different parameters.
+     */
+    private static void memoryTesting(Scanner lukija, Finder solver) {
+        System.out.print("aloitus x-koordinaatti: ");
+        int startX = Integer.parseInt(lukija.nextLine());
+
+        System.out.print("aloitus y-koordinaatti: ");
+        int startY = Integer.parseInt(lukija.nextLine());
+
+        System.out.print("lopetus x-koordinaatti: ");
+        int endX = Integer.parseInt(lukija.nextLine());
+
+        System.out.print("lopetus y-koordinaatti: ");
+        int endY = Integer.parseInt(lukija.nextLine());
+
+        Stack<Chell> result = solver.getPath(startX, startY, endX, endY);
+
+        // Get the Java runtime
+        Runtime runtime = Runtime.getRuntime();
+        // Run the garbage collector
+        runtime.gc();
+        // Calculate the used memory
+
+        long memory = runtime.totalMemory() - runtime.freeMemory();
+        System.out.println("Used memory in bytes: " + memory);
+        System.out.println("Used memory in megabytes: " +  ((double) memory / (1024L * 1024L)));
     }
 }

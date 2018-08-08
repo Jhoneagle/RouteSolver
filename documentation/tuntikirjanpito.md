@@ -14,5 +14,10 @@
 2.8 | 2,5 | javadocia
 3.8 | 1 | lisää javadocia
 3.8 | 1 | documentaatiota
-total | 39,5
+7.8 | 3 | muistin käytön parantelua
+7.8 | 3 | suorituskykytestausta suoritusajan ja muistin käytön osalta.
+7.8 | 1 | omien versioiden teko tietorakenteista aloitettu
+8.8 | 0,5 | tietorakenteiden teko jatkuu
+8.8 | 4 | tietorakenteen viimeistely ja testien teko
+total | 50,5
 
