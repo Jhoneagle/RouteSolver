@@ -1,11 +1,11 @@
 package johneagle.routesolve.filesystem;
 
 import johneagle.routesolve.domain.Config;
+import johneagle.routesolve.library.DataList;
 
 import java.io.FileInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Properties;
 
 /**
@@ -23,14 +23,14 @@ public class Reader {
     /**
      * Reads the hole file and returns it as list of text (String) lines.
      *
-     * @see ArrayList
+     * @see DataList
      *
      * @param fileName  Name of the file with folder name first if needed.
      *
      * @return List of String/text lines
      */
-    private ArrayList<String> readAll(String fileName) {
-        ArrayList<String> lines = new ArrayList();
+    private DataList<String> readAll(String fileName) {
+        DataList<String> lines = new DataList<>();
 
         try {
             Files.lines(Paths.get(fileName)).forEach(rivi -> lines.add(rivi));
@@ -51,7 +51,7 @@ public class Reader {
      * @return Character matrix
      */
     public char[][] getMap(String mapfile) {
-        ArrayList<String> lines = readAll(mapfile);
+        DataList<String> lines = readAll(mapfile);
         int rows = lines.size();
 
         if (rows == 0) {

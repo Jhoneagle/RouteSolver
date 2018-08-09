@@ -14,6 +14,8 @@
 
 [Viikkoraportti 2](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/raportit/viikko2.md)
 
+[Viikkoraportti 3](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/raportit/viikko3.md)
+
 ## Komentorivitoiminnot
 
 ### Testaus
