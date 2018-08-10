@@ -19,5 +19,8 @@
 7.8 | 1 | omien versioiden teko tietorakenteista aloitettu
 8.8 | 0,5 | tietorakenteiden teko jatkuu
 8.8 | 4 | tietorakenteen viimeistely ja testien teko
-total | 50,5
+9.8 | 3 | javadoc ja dokumentaatio
+10.8 | 1 | javadoc
+10.8 | 3 | viikkoraportti 3
+total | 57,5
 

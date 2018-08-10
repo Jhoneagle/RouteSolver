@@ -2,9 +2,9 @@ package johneagle.routesolve.algorithm;
 
 import johneagle.routesolve.domain.Chell;
 import johneagle.routesolve.domain.Map;
+import johneagle.routesolve.library.DataList;
 
 import java.util.PriorityQueue;
-import java.util.Stack;
 
 /**
  * Main object of the algorithm. Contains the actual method to find shortest path in ascii map/grid.
@@ -42,7 +42,7 @@ public class Finder {
      * Both are anyways saved as 2-dimensional table which makes it unhealthy when grid is large.
      * But is most convenient form to find the shortest path in ascii maps generally.
      *
-     * @see Stack
+     * @see DataList
      * @see PriorityQueue#poll()
      * @see Map#getAproxDistance(int, int, int, int)
      * @see Map#isInsideMap(int, int)
@@ -57,7 +57,7 @@ public class Finder {
      *
      * @return Pile of Chell objects in Stack object.
      */
-    public Stack<Chell> getPath(int startX, int startY, int endX, int endY) {
+    public DataList<Chell> getPath(int startX, int startY, int endX, int endY) {
         if (this.asciiMap.getMap() == null || this.asciiMap.getProperties() == null) {
             return null;
         }
@@ -125,11 +125,11 @@ public class Finder {
 
         // Puts together from linear line representation of the Chell matrix which places have been used in the shortest path.
 
-        Stack<Chell> result = new Stack<>();
+        DataList<Chell> result = new DataList<>();
         Chell last = this.path[this.asciiMap.hash(endX, endY)];
 
         while (last != null) {
-            result.push(last);
+            result.add(last);
             last = this.path[this.asciiMap.hash(last.getX(), last.getY())];
         }
 

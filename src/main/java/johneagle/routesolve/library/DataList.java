@@ -2,6 +2,11 @@ package johneagle.routesolve.library;
 
 import java.util.*;
 
+/**
+ * Class that works just like any ArrayList or Stack object. Implements most of basic methods needed for normal use.
+ *
+ * @param <E>   type allowed to have.
+ */
 public class DataList<E> {
 
     private Object[] elementData;
@@ -33,9 +38,7 @@ public class DataList<E> {
     }
 
     /**
-     * Returns the number of elements in this list.  If this list contains
-     * more than {@code Integer.MAX_VALUE} elements, returns
-     * {@code Integer.MAX_VALUE}.
+     * Returns the number of elements in this list.
      *
      * @return the number of elements in this list
      */
@@ -72,7 +75,6 @@ public class DataList<E> {
      * @return an array containing all of the elements in this list in proper
      * sequence
      */
-
     public Object[] toArray() {
         Object[] result = new Object[this.actualSize];
         for (int i = 0; i < this.actualSize; i++) {
@@ -99,6 +101,13 @@ public class DataList<E> {
         return true;
     }
 
+    /**
+     * removes item in the place assigned by param and returns it.
+     *
+     * @param index     The point in array where element needs to be removed.
+     *
+     * @return element that was just removed.
+     */
     public E remove(int index) {
         if (this.actualSize < (this.maxSize / 2)) {
             double half = 1.0 / 2.0;
@@ -208,14 +217,48 @@ public class DataList<E> {
 
     public int indexOf(Object o) {
         if (o == null) {
-            for (int i = 0; i < this.actualSize; i++)
-                if (this.elementData[i] == null)
+            for (int i = 0; i < this.actualSize; i++) {
+                if (this.elementData[i] == null) {
                     return i;
+                }
+            }
         } else {
-            for (int i = 0; i < this.actualSize; i++)
-                if (o.equals(this.elementData[i]))
+            for (int i = 0; i < this.actualSize; i++) {
+                if (o.equals(this.elementData[i])) {
                     return i;
+                }
+            }
         }
         return -1;
+    }
+
+    /**
+     * removes the top/last element if there is any and returns that.
+     *
+     * @see DataList#peek()
+     * @see DataList#remove(int)
+     *
+     * @return gives the top element so last added one or null if empty.
+     */
+    public E pop() {
+        E result = peek();
+        if (result != null) {
+            remove(this.actualSize - 1);
+        }
+
+        return result;
+    }
+
+    /**
+     * Looks the top/last element if not empty.
+     *
+     * @return gives the top element so last added one or null if empty.
+     */
+    public E peek() {
+        if (this.actualSize > 0) {
+            return (E) this.elementData[this.actualSize - 1];
+        } else {
+            return null;
+        }
     }
 }

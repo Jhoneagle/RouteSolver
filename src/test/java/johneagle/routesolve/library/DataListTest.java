@@ -122,4 +122,19 @@ public class DataListTest {
             Assert.assertTrue(objects[i] == list.get(i));
         }
     }
+
+    @Test
+    public void pop() {
+        DataList<Integer> list = new DataList<>();
+
+        list.add(5);
+        list.add(-12);
+
+        Integer poped = list.pop();
+        Integer peeked = list.peek();
+
+        Assert.assertEquals(-12, (long) poped);
+        Assert.assertEquals(5, (long) peeked);
+        Assert.assertFalse(list.isEmpty());
+    }
 }

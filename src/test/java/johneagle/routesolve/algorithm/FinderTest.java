@@ -5,13 +5,13 @@ import johneagle.routesolve.domain.Config;
 import johneagle.routesolve.domain.Map;
 import johneagle.routesolve.filesystem.Reader;
 import johneagle.routesolve.filesystem.ReaderTest;
+import johneagle.routesolve.library.DataList;
 import org.junit.*;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -78,49 +78,49 @@ public class FinderTest {
 
     @Test
     public void testOne() {
-        Stack<Chell> result = this.solver.getPath(1,1,6,1);
+        DataList<Chell> result = this.solver.getPath(1,1,6,1);
         Assert.assertEquals(5, result.size());
     }
 
     @Test
     public void testTwo() {
-        Stack<Chell> result = this.solver.getPath(1,10,13,9);
+        DataList<Chell> result = this.solver.getPath(1,10,13,9);
         Assert.assertEquals(19, result.size());
     }
 
     @Test
     public void testThree() {
-        Stack<Chell> result = this.solver.getPath(9,22,6,22);
+        DataList<Chell> result = this.solver.getPath(9,22,6,22);
         Assert.assertEquals(15, result.size());
     }
 
     @Test
     public void testFourth() {
-        Stack<Chell> result = this.solver.getPath(14,12,20,1);
+        DataList<Chell> result = this.solver.getPath(14,12,20,1);
         Assert.assertEquals(21, result.size());
     }
 
     @Test
     public void testFifth() {
-        Stack<Chell> result = this.solver.getPath(10,10,8,7);
+        DataList<Chell> result = this.solver.getPath(10,10,8,7);
         Assert.assertEquals(5, result.size());
     }
 
     @Test
     public void testSix() {
-        Stack<Chell> result = this.solver.getPath(20,13,20,22);
+        DataList<Chell> result = this.solver.getPath(20,13,20,22);
         Assert.assertEquals(13, result.size());
     }
 
     @Test
     public void testSeven() {
-        Stack<Chell> result = this.solver.getPath(1,22,1,13);
+        DataList<Chell> result = this.solver.getPath(1,22,1,13);
         Assert.assertEquals(21, result.size());
     }
 
     @Test
     public void testEight() {
-        Stack<Chell> result = this.solver.getPath(15,10,15,9);
+        DataList<Chell> result = this.solver.getPath(15,10,15,9);
         Assert.assertEquals(1, result.size());
     }
 

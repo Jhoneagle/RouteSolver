@@ -5,9 +5,9 @@ import johneagle.routesolve.domain.Chell;
 import johneagle.routesolve.domain.Config;
 import johneagle.routesolve.domain.Map;
 import johneagle.routesolve.filesystem.Reader;
+import johneagle.routesolve.library.DataList;
 
 import java.util.Scanner;
-import java.util.Stack;
 
 /**
  * User Interface for the program that uses path finding algorithm to solve best way to get from point A to B in ascii grid.
@@ -80,7 +80,7 @@ public class RouteSolver {
         System.out.print("lopetus y-koordinaatti: ");
         int endY = Integer.parseInt(lukija.nextLine());
 
-        Stack<Chell> result = solver.getPath(startX, startY, endX, endY);
+        DataList<Chell> result = solver.getPath(startX, startY, endX, endY);
 
         if (result != null) {
             System.out.println(result.size());
@@ -121,7 +121,7 @@ public class RouteSolver {
         for (int i = 0; i < 10; i++) {
             long aikaAlussa = System.currentTimeMillis();
 
-            Stack<Chell> result = solver.getPath(startX, startY, endX, endY);
+            DataList<Chell> result = solver.getPath(startX, startY, endX, endY);
 
             long aikaLopussa = System.currentTimeMillis();
             System.out.println("kierros: " + (i + 1) + ".");
@@ -145,7 +145,7 @@ public class RouteSolver {
         System.out.print("lopetus y-koordinaatti: ");
         int endY = Integer.parseInt(lukija.nextLine());
 
-        Stack<Chell> result = solver.getPath(startX, startY, endX, endY);
+        DataList<Chell> result = solver.getPath(startX, startY, endX, endY);
 
         // Get the Java runtime
         Runtime runtime = Runtime.getRuntime();

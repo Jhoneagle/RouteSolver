@@ -22,7 +22,6 @@ Käyttäjä voi muun muassa olla pelin pelaaja, joka haluaa tietää labyrintin 
 * mahdollisuus vaihtaa karttaa kesken kaiken
 * parhaimman reitin hakeminen
 * saadun reitin pituuden kertominen
-* saadun reitin näyttäminen visuaalisesti
 
 ## Jatkokehitysideoita
 
@@ -31,3 +30,4 @@ Käyttäjä voi muun muassa olla pelin pelaaja, joka haluaa tietää labyrintin 
 * ominaisuus vaihtaa konfiguraatioita kesken käytön
 * entistä parempi virhe tilanteiden käsittely
 * varsinainen graafinen käyttöliittymä
+* saadun reitin näyttäminen visuaalisesti
