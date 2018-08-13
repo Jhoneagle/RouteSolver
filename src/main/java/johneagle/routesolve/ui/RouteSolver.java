@@ -83,7 +83,8 @@ public class RouteSolver {
         DataList<Chell> result = solver.getPathAllstar(startX, startY, endX, endY);
 
         if (result != null) {
-            System.out.println(result.size());
+            System.out.println("tarvittavia askelia: " + (result.size() - 1));
+            System.out.println("pituus oktaalilla liikkumisella: " + result.get(0).getDistanceToStart());
         } else {
             System.out.println("tarvittavia tietoja ei ole määritelty!");
         }

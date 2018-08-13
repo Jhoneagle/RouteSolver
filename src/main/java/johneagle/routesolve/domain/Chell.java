@@ -10,8 +10,8 @@ package johneagle.routesolve.domain;
 public class Chell implements Comparable<Chell> {
     private int x;
     private int y;
-    private int distanceToStart;
-    private int distanceToEnd;
+    private double distanceToStart;
+    private double distanceToEnd;
     private boolean visited;
 
     public Chell(int x, int y) {
@@ -28,19 +28,19 @@ public class Chell implements Comparable<Chell> {
         return y;
     }
 
-    public int getDistanceToStart() {
+    public double getDistanceToStart() {
         return distanceToStart;
     }
 
-    public void setDistanceToStart(int distanceToStart) {
+    public void setDistanceToStart(double distanceToStart) {
         this.distanceToStart = distanceToStart;
     }
 
-    public int getDistanceToEnd() {
+    public double getDistanceToEnd() {
         return distanceToEnd;
     }
 
-    public void setDistanceToEnd(int distanceToEnd) {
+    public void setDistanceToEnd(double distanceToEnd) {
         this.distanceToEnd = distanceToEnd;
     }
 
@@ -63,8 +63,8 @@ public class Chell implements Comparable<Chell> {
      */
     @Override
     public int compareTo(Chell o) {
-        int original = getDistanceToStart() + getDistanceToEnd();
-        int compare = o.getDistanceToStart() + o.getDistanceToEnd();
+        double original = getDistanceToStart() + getDistanceToEnd();
+        double compare = o.getDistanceToStart() + o.getDistanceToEnd();
 
         if (original < compare) {
             return -1;

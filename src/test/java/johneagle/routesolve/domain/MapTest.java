@@ -74,9 +74,12 @@ public class MapTest {
     }
 
     @Test
-    public void values() {
-        Assert.assertEquals(1, (long) this.asciiMap.getValue(0,0));
-        Assert.assertEquals(1, (long) this.asciiMap.getValue(2,4));
+    public void valuesOfMovement() {
+        Assert.assertFalse(1 != this.asciiMap.getValueForMovement(0,0, 1, 0));
+        Assert.assertFalse(1 != this.asciiMap.getValueForMovement(2,4, 2, 3));
+        Assert.assertFalse(Math.sqrt(2) != this.asciiMap.getValueForMovement(0,0, 1, -1));
+        Assert.assertFalse(Math.sqrt(2) != this.asciiMap.getValueForMovement(2,4, 3, 3));
+        Assert.assertFalse(0 != this.asciiMap.getValueForMovement(2,4, 0, 0));
     }
 
     @Test
@@ -108,20 +111,20 @@ public class MapTest {
 
     @Test
     public void estimates() {
-        Assert.assertEquals(1, (long) this.asciiMap.getAproxDistance(0, 0, 1, 0));
-        Assert.assertEquals(4, (long) this.asciiMap.getAproxDistance(1, 2, 6, 3));
-        Assert.assertEquals(0, (long) this.asciiMap.getAproxDistance(0, 0, 0, 0));
-        Assert.assertEquals(4, (long) this.asciiMap.getAproxDistance(7, 5, 5, 7));
-        Assert.assertEquals(2, (long) this.asciiMap.getAproxDistance(6, 5, 3, 2));
+        Assert.assertFalse(1 != this.asciiMap.getAproxDistance(0, 0, 1, 0));
+        Assert.assertFalse((3 + (Math.sqrt(2) - 1)) != this.asciiMap.getAproxDistance(1, 2, 6, 3));
+        Assert.assertFalse(0 != this.asciiMap.getAproxDistance(0, 0, 0, 0));
+        Assert.assertFalse((2 + (Math.sqrt(2) - 1) * 2) != this.asciiMap.getAproxDistance(7, 5, 5, 7));
+        Assert.assertFalse((1 + (Math.sqrt(2) - 1)) != this.asciiMap.getAproxDistance(6, 5, 3, 2));
     }
 
     @Test
     public void estimates2() {
-        Assert.assertEquals(10, (long) this.asciiMap.getAproxDistance(3, 12, 8, 9));
-        Assert.assertEquals(23, (long) this.asciiMap.getAproxDistance(5, 20, 1, 9));
-        Assert.assertEquals(8, (long) this.asciiMap.getAproxDistance(5, 8, 3, 8));
-        Assert.assertEquals(24, (long) this.asciiMap.getAproxDistance(7, 0, 17, 0));
-        Assert.assertEquals(11, (long) this.asciiMap.getAproxDistance(4, 13, 19, 17));
+        Assert.assertFalse((9 + (Math.sqrt(2) - 1)) != this.asciiMap.getAproxDistance(3, 12, 8, 9));
+        Assert.assertFalse((15 + (Math.sqrt(2) - 1) * 8) != this.asciiMap.getAproxDistance(5, 20, 1, 9));
+        Assert.assertFalse((5 + (Math.sqrt(2) - 1) * 3) != this.asciiMap.getAproxDistance(5, 8, 3, 8));
+        Assert.assertFalse((17 + (Math.sqrt(2) - 1) * 7) != this.asciiMap.getAproxDistance(7, 0, 17, 0));
+        Assert.assertFalse((9 + (Math.sqrt(2) - 1) * 2) != this.asciiMap.getAproxDistance(4, 13, 19, 17));
     }
 
     @Test

@@ -112,34 +112,56 @@ public class Map {
     /**
      * Current only returns 1 but suppose to give cost what it takes to move to the given coordinates according to its type.
      *
-     * @param x     x-coordinate
-     * @param y     y-coordinate
+     * @param fromX     x-coordinate came
+     * @param fromY     y-coordinate came
+     * @param whereX     x-coordinate go
+     * @param whereY     y-coordinate go
      *
      * @return Integer
      */
-    public Integer getValue(int x, int y) {
-        char type = this.map[y][x];
+    public double getValueForMovement(int fromX, int fromY, int whereX, int whereY) {
+        if (fromX == whereX + 1 && fromY == whereY + 1) {
+            return Math.sqrt(2);
+        } else if (fromX == whereX + 1 && fromY == whereY - 1) {
+            return Math.sqrt(2);
+        } else if (fromX == whereX - 1 && fromY == whereY + 1) {
+            return Math.sqrt(2);
+        } else if (fromX == whereX - 1 && fromY == whereY - 1) {
+            return Math.sqrt(2);
+        }
 
-        return 1;
+        if (fromX == whereX && fromY == whereY + 1) {
+            return 1;
+        } else if (fromX == whereX && fromY == whereY - 1) {
+            return 1;
+        } else if (fromX == whereX - 1 && fromY == whereY) {
+            return 1;
+        } else if (fromX == whereX + 1 && fromY == whereY) {
+            return 1;
+        }
+
+        return 0;
     }
 
     /**
      * Returns manhattan distance between two coordinates in the ascii map.
      * Uses absolute value (abs) from Math to make code more compact.
      *
-     * @see Math#abs(int)
+     * @see Math#max(int, int)
+     * @see Math#min(int, int)
+     * @see Math#sqrt(double)
      *
      * @param fristX    Start points x-coordinate.
      * @param secondX   Start points y-coordinate.
      * @param fristY    End points x-coordinate.
      * @param secondY   End points y-coordinate.
      *
-     * @return Integer
+     * @return double
      */
-    public Integer getAproxDistance(int fristX, int secondX, int fristY, int secondY) {
-        int diffirentX = fristX - secondX;
-        int diffirentY = fristY - secondY;
-        int result = Math.abs(diffirentX) + Math.abs(diffirentY);
+    public double getAproxDistance(int fristX, int secondX, int fristY, int secondY) {
+        int diffirentX = Math.abs(fristX - secondX);
+        int diffirentY = Math.abs(fristY - secondY);
+        double result = (double) Math.max(diffirentX, diffirentY) + (Math.sqrt(2) - 1) * Math.min(diffirentX, diffirentY);
 
         return result;
     }

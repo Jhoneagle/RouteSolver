@@ -6,6 +6,8 @@ import java.util.*;
  * Class that works just like any ArrayList or Stack object. Implements most of basic methods needed for normal use.
  *
  * @param <E>   type allowed to have.
+ *
+ * @author Johneagle
  */
 public class DataList<E> {
 

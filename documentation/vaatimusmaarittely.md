@@ -37,12 +37,12 @@ Käytettäviä tietoranteita ovat priorityqueuea, listaa, taulukkoa ja pinoa. Li
 * mahdollisuus tehdä useampia reittihakuja kerralla
 * mahdollisuus vaihtaa karttaa kesken kaiken
 * parhaimman reitin hakeminen
+* mahdollisuus liikkua kaikkiin kahdeksaan suuntaan reitinhaussa
 * saadun reitin pituuden kertominen
 
 ## Jatkokehitysideoita
 
 * tehokaampi ja tarkempi reitin haku
-* mahdollisuus liikkua kaikkiin kahdeksaan suuntaan reitinhaussa (tällä hetkellä pystyy vain neljään)
 * ominaisuus vaihtaa konfiguraatioita kesken käytön
 * entistä parempi virhe tilanteiden käsittely
 * varsinainen graafinen käyttöliittymä
