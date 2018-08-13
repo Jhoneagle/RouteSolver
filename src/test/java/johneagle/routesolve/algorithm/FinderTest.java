@@ -78,49 +78,49 @@ public class FinderTest {
 
     @Test
     public void testOne() {
-        DataList<Chell> result = this.solver.getPath(1,1,6,1);
+        DataList<Chell> result = this.solver.getPathAllstar(1,1,6,1);
         Assert.assertEquals(5, result.size());
     }
 
     @Test
     public void testTwo() {
-        DataList<Chell> result = this.solver.getPath(1,10,13,9);
+        DataList<Chell> result = this.solver.getPathAllstar(1,10,13,9);
         Assert.assertEquals(19, result.size());
     }
 
     @Test
     public void testThree() {
-        DataList<Chell> result = this.solver.getPath(9,22,6,22);
+        DataList<Chell> result = this.solver.getPathAllstar(9,22,6,22);
         Assert.assertEquals(15, result.size());
     }
 
     @Test
     public void testFourth() {
-        DataList<Chell> result = this.solver.getPath(14,12,20,1);
+        DataList<Chell> result = this.solver.getPathAllstar(14,12,20,1);
         Assert.assertEquals(21, result.size());
     }
 
     @Test
     public void testFifth() {
-        DataList<Chell> result = this.solver.getPath(10,10,8,7);
+        DataList<Chell> result = this.solver.getPathAllstar(10,10,8,7);
         Assert.assertEquals(5, result.size());
     }
 
     @Test
     public void testSix() {
-        DataList<Chell> result = this.solver.getPath(20,13,20,22);
+        DataList<Chell> result = this.solver.getPathAllstar(20,13,20,22);
         Assert.assertEquals(13, result.size());
     }
 
     @Test
     public void testSeven() {
-        DataList<Chell> result = this.solver.getPath(1,22,1,13);
+        DataList<Chell> result = this.solver.getPathAllstar(1,22,1,13);
         Assert.assertEquals(21, result.size());
     }
 
     @Test
     public void testEight() {
-        DataList<Chell> result = this.solver.getPath(15,10,15,9);
+        DataList<Chell> result = this.solver.getPathAllstar(15,10,15,9);
         Assert.assertEquals(1, result.size());
     }
 

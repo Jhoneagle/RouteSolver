@@ -80,7 +80,7 @@ public class RouteSolver {
         System.out.print("lopetus y-koordinaatti: ");
         int endY = Integer.parseInt(lukija.nextLine());
 
-        DataList<Chell> result = solver.getPath(startX, startY, endX, endY);
+        DataList<Chell> result = solver.getPathAllstar(startX, startY, endX, endY);
 
         if (result != null) {
             System.out.println(result.size());
@@ -121,7 +121,7 @@ public class RouteSolver {
         for (int i = 0; i < 10; i++) {
             long aikaAlussa = System.currentTimeMillis();
 
-            DataList<Chell> result = solver.getPath(startX, startY, endX, endY);
+            DataList<Chell> result = solver.getPathAllstar(startX, startY, endX, endY);
 
             long aikaLopussa = System.currentTimeMillis();
             System.out.println("kierros: " + (i + 1) + ".");
@@ -145,7 +145,7 @@ public class RouteSolver {
         System.out.print("lopetus y-koordinaatti: ");
         int endY = Integer.parseInt(lukija.nextLine());
 
-        DataList<Chell> result = solver.getPath(startX, startY, endX, endY);
+        DataList<Chell> result = solver.getPathAllstar(startX, startY, endX, endY);
 
         // Get the Java runtime
         Runtime runtime = Runtime.getRuntime();

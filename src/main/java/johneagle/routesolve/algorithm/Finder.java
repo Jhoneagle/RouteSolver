@@ -12,7 +12,7 @@ import java.util.PriorityQueue;
  * This only contains the Heart of the modificated A* path finding algorithm as lot of necessary stuff is done outside in other objects.
  * Mainly in Map object but also in PriorityQueue thanks to Chell objects comparability with each others.
  *
- * @see Finder#getPath(int, int, int, int)
+ * @see Finder#getPathAllstar(int, int, int, int)
  * @see Map
  * @see PriorityQueue
  *
@@ -34,7 +34,7 @@ public class Finder {
     }
 
     /**
-     * Main algorithm to solve the shortest path in the ascii map. Algorithm bases on A* but works as own modification of it.
+     * Algorithm to solve the shortest path in the ascii map. Algorithm is A* based but works as own modification of it.
      * The best option from valid next visits is always chosen as a first from the queue which is ordered by sum of distance to start and end.
      * Where Chell object with smallest sum is first and largest as last.
      *
@@ -57,7 +57,7 @@ public class Finder {
      *
      * @return Pile of Chell objects in Stack object.
      */
-    public DataList<Chell> getPath(int startX, int startY, int endX, int endY) {
+    public DataList<Chell> getPathAllstar(int startX, int startY, int endX, int endY) {
         if (this.asciiMap.getMap() == null || this.asciiMap.getProperties() == null) {
             return null;
         }
@@ -68,20 +68,6 @@ public class Finder {
         this.path = new Chell[mapWeight * mapHeight];
         this.queue = new PriorityQueue<>();
         this.chellMap = new Chell[mapHeight][mapWeight];
-
-        // Initializes the Chell object version of the ascii grid.
-
-        for (int y = 0; y < mapHeight; y++) {
-            for (int x = 0; x < mapWeight; x++) {
-                this.path[this.asciiMap.hash(x, y)] = null;
-
-                Chell chell = new Chell(x, y);
-                chell.setDistanceToStart(Integer.MAX_VALUE);
-                chell.setDistanceToEnd(this.asciiMap.getAproxDistance(x, endX, y, endY));
-
-                this.chellMap[y][x] = chell;
-            }
-        }
 
         Chell start = new Chell(startX, startY);
         start.setDistanceToStart(0);
@@ -101,11 +87,23 @@ public class Finder {
             if (this.asciiMap.isInsideMap(current.getX(), current.getY() + 1) && this.asciiMap.isWalkable(current.getX(), current.getY() + 1) == 1) {
                 Chell next = this.chellMap[current.getY() + 1][current.getX()];
 
+                if (next == null) {
+                    next = new Chell(current.getX(), current.getY() + 1);
+                    next.setDistanceToStart(Integer.MAX_VALUE);
+                    next.setDistanceToEnd(this.asciiMap.getAproxDistance(next.getX(), endX, next.getY(), endY));
+                }
+
                 checkNeighbour(current, next);
             }
 
             if (this.asciiMap.isInsideMap(current.getX(), current.getY() - 1) && this.asciiMap.isWalkable(current.getX(), current.getY() - 1) == 1) {
                 Chell next = this.chellMap[current.getY() - 1][current.getX()];
+
+                if (next == null) {
+                    next = new Chell(current.getX(), current.getY() - 1);
+                    next.setDistanceToStart(Integer.MAX_VALUE);
+                    next.setDistanceToEnd(this.asciiMap.getAproxDistance(next.getX(), endX, next.getY(), endY));
+                }
 
                 checkNeighbour(current, next);
             }
@@ -113,11 +111,23 @@ public class Finder {
             if (this.asciiMap.isInsideMap(current.getX() + 1, current.getY()) && this.asciiMap.isWalkable(current.getX() + 1, current.getY()) == 1) {
                 Chell next = this.chellMap[current.getY()][current.getX() + 1];
 
+                if (next == null) {
+                    next = new Chell(current.getX() + 1, current.getY());
+                    next.setDistanceToStart(Integer.MAX_VALUE);
+                    next.setDistanceToEnd(this.asciiMap.getAproxDistance(next.getX(), endX, next.getY(), endY));
+                }
+
                 checkNeighbour(current, next);
             }
 
             if (this.asciiMap.isInsideMap(current.getX() - 1, current.getY()) && this.asciiMap.isWalkable(current.getX() - 1, current.getY()) == 1) {
                 Chell next = this.chellMap[current.getY()][current.getX() - 1];
+
+                if (next == null) {
+                    next = new Chell(current.getX() - 1, current.getY());
+                    next.setDistanceToStart(Integer.MAX_VALUE);
+                    next.setDistanceToEnd(this.asciiMap.getAproxDistance(next.getX(), endX, next.getY(), endY));
+                }
 
                 checkNeighbour(current, next);
             }
@@ -134,6 +144,24 @@ public class Finder {
         }
 
         return result;
+    }
+
+    /**
+     * Algorithm to solve the shortest path in the ascii map. Algorithm is based JPS extension of A* but works as own modification of it.
+     *
+     * Method uses Matrix made out of Chell objects and operations from Map object that contains actual ascii grid to proceed.
+     * Both are anyways saved as 2-dimensional table which makes it unhealthy when grid is large.
+     * But is most convenient form to find the shortest path in ascii maps generally.
+     *
+     * @param startX    Begging x-coordinate.
+     * @param startY    Begging y-coordinate.
+     * @param endX      Destination x-coordinate.
+     * @param endY      Destination y-coordinate.
+     *
+     * @return Pile of Chell objects in Stack object.
+     */
+    public DataList<Chell> getPathJPS(int startX, int startY, int endX, int endY) {
+        return null;
     }
 
     /**
@@ -155,11 +183,10 @@ public class Finder {
             if (next.getDistanceToStart() > sum) {
                 next.setDistanceToStart(sum);
                 this.path[this.asciiMap.hash(next.getX(), next.getY())] = current;
-                this.chellMap[next.getY()][next.getX()] = next;
             }
 
+            this.chellMap[next.getY()][next.getX()] = next;
             this.queue.add(next);
         }
     }
-
 }

@@ -22,5 +22,6 @@
 9.8 | 3 | javadoc ja dokumentaatio
 10.8 | 1 | javadoc
 10.8 | 3 | viikkoraportti 3
-total | 57,5
+13.8 | 3,5 | dokumentaatiota ja algoritmin parantelua
+total | 61
 

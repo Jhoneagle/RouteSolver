@@ -14,6 +14,22 @@ Kuka tahansa kuka tarvitsee tietää lyhinmän reitti kartalla kahden pisteen v�
 
 Käyttäjä voi muun muassa olla pelin pelaaja, joka haluaa tietää labyrintin tai pelin tason kartan lyhimmän reitin. Käyttäjä voi myös olla ihminen, joka on kiinnostunut tietämään parhaimman reitin jossakin paikassa pohjapiirroksen perusteella tai mitä tahansa parhaimman reitin hakuun liittyvää kysyvä ihminen. 
 
+## Input ja output
+
+Sovellukselle annetan konfiguraatiot properties-tiedostona, jossa on olemassa tietyt kohdat. Sekä tekstitiedosto, joka sisältää itse kartan merkkien "merenä". Lopuksi ohjelmalle annetaan lähtö ja pääte koordinaatit ja algoritmi ratkaistuaan antaa takaisin lyhimmän reitin koordinaattien pinona. Mistä ohjelma kertoo pituuden eli kuinka pitkä lyhin reitti on.
+
+## Algoritmi
+
+Reitinhakuun käytetään alussa A* reitinhaku algoritmia ja siitä tehdään laajennettu versio, joka on JPS eli jump point search algoritmi. Näitä vertaillaan reitinhaku algoritmeista toisiinsa, sillä ne ovat oletusarvoisesti nopeita. Tämä johtuu siitä, koska ne käyttävät etäisyysarvioita määrittäessään parhaan suunnan jatkaa reitin etsintää. Kuitenkin aina muistaen jokaisen polun, niin pitkälle, kun se on ollut ideaali vaihtoehto. 
+
+Projektin tarkoituksena on verrata niiden suorituskykyjä toisiinsa ja nähdä onko JPS merkittävästi normaalia A* parempi reitinhaussa. Käytettäessä karttoina kaksiulotteisia ascii-taulukoita.
+
+Tavoitteena, että algoritmeista tehokaampi saavuttaisi O-analyysissa aika ja tilavaativuudeksi O(n) missä "n" tarkoittaa polun pituutta. Eli, että ratkaisu löytyisi lineaarisessa ajassa suhteessa ratkaisun pituuteen, sillä tällöin ei käytäisi merkittävissä määrin turhia reittejä läpi vaan kuljettaisiin mahdollisimman oikein heti alussa. 
+
+## Tietorakenteet
+
+Käytettäviä tietoranteita ovat priorityqueuea, listaa, taulukkoa ja pinoa. Listaa tarvitaan lähinnä tiedoston lukemisen ohella, kun tekstitiedostosta tehdään matriisi. Taas pinoa eli järjestettyä jonoa tarvitaan lopullisen polun palauttamisessa. Taas  taulukoita käytetään ascii-kartan esittämiseen, sekä soluissa käynnin ja niiden etäisyys arvioiden tallessa pitoon. Varsinainen reitinhaku taas käyttää priorityqueueta saadakseen tutkittavaksi aina parhaan vaihtoehdon soluista, jotka ovat auki. 
+
 ## Perusversion tarjoama toiminnallisuus
 
 * yleisen karttojen koon määrittely käyttökerralle
