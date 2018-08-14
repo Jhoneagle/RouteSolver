@@ -77,51 +77,99 @@ public class FinderTest {
     }
 
     @Test
-    public void testOne() {
-        DataList<Chell> result = this.solver.getPathAllstar(1,1,6,1);
-        Assert.assertEquals(5, result.size() - 1);
+    public void allStarOne() {
+        DataList<Chell> resultAllStar = this.solver.getPathAllstar(1,1,6,1);
+        Assert.assertEquals(5, resultAllStar.size() - 1);
     }
 
     @Test
-    public void testTwo() {
-        DataList<Chell> result = this.solver.getPathAllstar(1,10,13,9);
-        Assert.assertEquals(19, result.size() - 1);
+    public void allStarTwo() {
+        DataList<Chell> resultAllStar = this.solver.getPathAllstar(1,10,13,9);
+        Assert.assertEquals(19, resultAllStar.size() - 1);
     }
 
     @Test
-    public void testThree() {
-        DataList<Chell> result = this.solver.getPathAllstar(9,22,6,22);
-        Assert.assertEquals(15, result.size() - 1);
+    public void allStarThree() {
+        DataList<Chell> resultAllStar = this.solver.getPathAllstar(9,22,6,22);
+        Assert.assertEquals(15, resultAllStar.size() - 1);
     }
 
     @Test
-    public void testFourth() {
-        DataList<Chell> result = this.solver.getPathAllstar(14,12,20,1);
-        Assert.assertEquals(21, result.size() - 1);
+    public void allStarFourth() {
+        DataList<Chell> resultAllStar = this.solver.getPathAllstar(14,12,20,1);
+        Assert.assertEquals(21, resultAllStar.size() - 1);
     }
 
     @Test
-    public void testFifth() {
-        DataList<Chell> result = this.solver.getPathAllstar(10,10,8,7);
-        Assert.assertEquals(5, result.size() - 1);
+    public void allStarFifth() {
+        DataList<Chell> resultAllStar = this.solver.getPathAllstar(10,10,8,7);
+        Assert.assertEquals(5, resultAllStar.size() - 1);
     }
 
     @Test
-    public void testSix() {
-        DataList<Chell> result = this.solver.getPathAllstar(20,13,20,22);
-        Assert.assertEquals(13, result.size() - 1);
+    public void allStarSix() {
+        DataList<Chell> resultAllStar = this.solver.getPathAllstar(20,13,20,22);
+        Assert.assertEquals(13, resultAllStar.size() - 1);
     }
 
     @Test
-    public void testSeven() {
-        DataList<Chell> result = this.solver.getPathAllstar(1,22,1,13);
-        Assert.assertEquals(21, result.size() - 1);
+    public void allStarSeven() {
+        DataList<Chell> resultAllStar = this.solver.getPathAllstar(1,22,1,13);
+        Assert.assertEquals(21, resultAllStar.size() - 1);
     }
 
     @Test
-    public void testEight() {
-        DataList<Chell> result = this.solver.getPathAllstar(15,10,15,9);
-        Assert.assertEquals(1, result.size() - 1);
+    public void allStarEight() {
+        DataList<Chell> resultAllStar = this.solver.getPathAllstar(15,10,15,9);
+        Assert.assertEquals(1, resultAllStar.size() - 1);
+    }
+
+    @Test
+    public void jPSOne() {
+        DataList<Chell> resultJPS = this.solver.getPathJPS(1,1,6,1);
+        Assert.assertTrue(5 == resultJPS.get(0).getDistanceToStart());
+    }
+
+    @Test
+    public void jPSTwo() {
+        DataList<Chell> resultJPS = this.solver.getPathJPS(1,10,13,9);
+        Assert.assertTrue(19 == resultJPS.get(0).getDistanceToStart());
+    }
+
+    @Test
+    public void jPSThree() {
+        DataList<Chell> resultJPS = this.solver.getPathJPS(9,22,6,22);
+        Assert.assertTrue(15 == resultJPS.get(0).getDistanceToStart());
+    }
+
+    @Test
+    public void jPSFourth() {
+        DataList<Chell> resultJPS = this.solver.getPathJPS(14,12,20,1);
+        Assert.assertTrue(21 == resultJPS.get(0).getDistanceToStart());
+    }
+
+    @Test
+    public void jPSFifth() {
+        DataList<Chell> resultJPS = this.solver.getPathJPS(10,10,8,7);
+        Assert.assertTrue(5 == resultJPS.get(0).getDistanceToStart());
+    }
+
+    @Test
+    public void jPSSix() {
+        DataList<Chell> resultJPS = this.solver.getPathJPS(20,13,20,22);
+        Assert.assertTrue(13 == resultJPS.get(0).getDistanceToStart());
+    }
+
+    @Test
+    public void jPSSeven() {
+        DataList<Chell> resultJPS = this.solver.getPathJPS(1,22,1,13);
+        Assert.assertTrue(21 == resultJPS.get(0).getDistanceToStart());
+    }
+
+    @Test
+    public void jPSEight() {
+        DataList<Chell> resultJPS = this.solver.getPathJPS(15,10,15,9);
+        Assert.assertTrue(1 == resultJPS.get(0).getDistanceToStart());
     }
 
     @After

@@ -25,6 +25,7 @@
 13.8 | 3,5 | dokumentaatiota ja algoritmin parantelua
 13.8 | 3 | 8suuntainen liikkuminen
 13.8 | 1 | debugging
-13.8 | 1,5 | JPS suunnittelua
-total | 66,5
+14.8 | 3,5 | JPS suunnittelua ja koodausta
+14.8 | 4 | debuggausta
+total | 72,5
 

@@ -41,13 +41,13 @@ public class RouteSolver {
             System.out.print("> ");
             String komento = lukija.nextLine();
 
-            if (komento.contains("ohje")) {
+            if (komento.contains("komennot")) {
                 instructions();
-            } else if (komento.contains("lopeta")) {
+            } else if (komento.contains("sammuta")) {
                 break;
-            } else if (komento.contains("lisaa")) {
+            } else if (komento.contains("lisaa kartta")) {
                 toAddMap(lukija, fileReader, solver);
-            } else if (komento.contains("ratkaise")) {
+            } else if (komento.contains("ratkaise reitti")) {
                 toSolve(lukija, solver);
             } else if (komento.contains("timeTest")) {
                 speedTesting(lukija, solver);
@@ -61,10 +61,10 @@ public class RouteSolver {
 
     private static void instructions() {
         System.out.println("komennot: ");
-        System.out.println("'lisaa' - asetaaksesi karttan");
-        System.out.println("'ratkaise' - selvittääksesi reitin");
-        System.out.println("'ohje' - saadaksesi tämän");
-        System.out.println("'lopeta' - sammuttaaksesi ohjelman");
+        System.out.println("'lisaa kartta' - asetaaksesi karttan");
+        System.out.println("'ratkaise reitti' - selvittääksesi reitin");
+        System.out.println("'komennot' - saadaksesi tämän");
+        System.out.println("'sammuta' - sammuttaaksesi ohjelman");
     }
 
     private static void toSolve(Scanner lukija, Finder solver) {
