@@ -30,5 +30,6 @@
 15.8 | 2 | lisää debuggausta JPSn kanssa
 15.8 | 4 | töitä JPSn parissa
 16.8 | 3,5 | JPS ja A* refactorointia
-total | 82,5
+16.8 | 1,5 | dokumentaatiota
+total | 84
 
