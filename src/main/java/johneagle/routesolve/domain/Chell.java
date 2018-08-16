@@ -74,4 +74,25 @@ public class Chell implements Comparable<Chell> {
             return 1;
         }
     }
+
+    /**
+     * Checks if objects are representation of same cordinates in the grid.
+     *
+     * @param o     Another Chell object which is compared to this one
+     * @return  {@code true} if Chell objects contain same coordinates
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Chell chell = (Chell) o;
+
+        return getX() == chell.getX() && getY() == chell.getY();
+    }
 }

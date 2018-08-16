@@ -27,5 +27,8 @@
 13.8 | 1 | debugging
 14.8 | 3,5 | JPS suunnittelua ja koodausta
 14.8 | 4 | debuggausta
-total | 72,5
+15.8 | 2 | lisää debuggausta JPSn kanssa
+15.8 | 4 | töitä JPSn parissa
+16.8 | 3,5 | JPS ja A* refactorointia
+total | 82,5
 

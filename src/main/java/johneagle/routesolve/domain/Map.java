@@ -60,7 +60,7 @@ public class Map {
      * @param x     x-coordinate
      * @param y     y-coordinate
      *
-     * @return boolean
+     * @return {@code true} if cordinates are inside the map
      */
     public boolean isInsideMap(int x, int y) {
         int mapHeight = this.properties.getY();
@@ -110,7 +110,8 @@ public class Map {
     }
 
     /**
-     * Current only returns 1 but suppose to give cost what it takes to move to the given coordinates according to its type.
+     * Method returns cost of moving from one block to another next to it. Currently in straight this means one and in diagonally it means square two.
+     * All other coordinate pairs result in returning zero.
      *
      * @param fromX     x-coordinate came
      * @param fromY     y-coordinate came
@@ -144,11 +145,11 @@ public class Map {
     }
 
     /**
-     * Returns manhattan distance between two coordinates in the ascii map.
-     * Uses absolute value (abs) from Math to make code more compact.
+     * Returns octile distance between two coordinates in the ascii map.
      *
      * @see Math#max(int, int)
      * @see Math#min(int, int)
+     * @see Math#abs(int)
      * @see Math#sqrt(double)
      *
      * @param fristX    Start points x-coordinate.
@@ -156,7 +157,7 @@ public class Map {
      * @param fristY    End points x-coordinate.
      * @param secondY   End points y-coordinate.
      *
-     * @return double
+     * @return Double
      */
     public double getAproxDistance(int fristX, int secondX, int fristY, int secondY) {
         int diffirentX = Math.abs(fristX - secondX);

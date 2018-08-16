@@ -67,6 +67,19 @@ public class RouteSolver {
         System.out.println("'sammuta' - sammuttaaksesi ohjelman");
     }
 
+    private static void toAddMap(Scanner lukija, Reader fileReader, Finder solver) {
+        System.out.print("anna kartta tiedoston nimi: ");
+        String fileName = lukija.nextLine();
+
+        char[][] map = fileReader.getMap("mapFiles/" + fileName);
+
+        if (map == null) {
+            System.out.println("yritä uudelleen!");
+        } else {
+            solver.getAsciiMap().setMap(map);
+        }
+    }
+
     private static void toSolve(Scanner lukija, Finder solver) {
         System.out.print("aloitus x-koordinaatti: ");
         int startX = Integer.parseInt(lukija.nextLine());
@@ -80,26 +93,24 @@ public class RouteSolver {
         System.out.print("lopetus y-koordinaatti: ");
         int endY = Integer.parseInt(lukija.nextLine());
 
-        DataList<Chell> result = solver.getPathAllstar(startX, startY, endX, endY);
+        DataList<Chell> resultAStar = solver.getPathAStar(startX, startY, endX, endY);
 
-        if (result != null) {
-            System.out.println("tarvittavia askelia: " + (result.size() - 1));
-            System.out.println("pituus oktaalilla liikkumisella: " + result.get(0).getDistanceToStart());
+        if (resultAStar != null) {
+            System.out.println("A*");
+            System.out.println("tarvittavia askelia: " + (resultAStar.size() - 1));
+            System.out.println("pituus oktaalilla liikkumisella: " + resultAStar.get(0).getDistanceToStart());
         } else {
             System.out.println("tarvittavia tietoja ei ole määritelty!");
         }
-    }
 
-    private static void toAddMap(Scanner lukija, Reader fileReader, Finder solver) {
-        System.out.print("anna kartta tiedoston nimi: ");
-        String fileName = lukija.nextLine();
+        DataList<Chell> resultJPS = solver.getPathJPS(startX, startY, endX, endY);
 
-        char[][] map = fileReader.getMap("mapFiles/" + fileName);
-
-        if (map == null) {
-            System.out.println("yritä uudelleen!");
+        if (resultJPS != null) {
+            System.out.println("JPS");
+            System.out.println("tarvittavia hyppyjä: " + (resultJPS.size() - 1));
+            System.out.println("pituus oktaalilla liikkumisella: " + resultJPS.get(0).getDistanceToStart());
         } else {
-            solver.getAsciiMap().setMap(map);
+            System.out.println("tarvittavia tietoja ei ole määritelty!");
         }
     }
 
@@ -122,7 +133,7 @@ public class RouteSolver {
         for (int i = 0; i < 10; i++) {
             long aikaAlussa = System.currentTimeMillis();
 
-            DataList<Chell> result = solver.getPathAllstar(startX, startY, endX, endY);
+            DataList<Chell> result = solver.getPathAStar(startX, startY, endX, endY);
 
             long aikaLopussa = System.currentTimeMillis();
             System.out.println("kierros: " + (i + 1) + ".");
@@ -146,7 +157,7 @@ public class RouteSolver {
         System.out.print("lopetus y-koordinaatti: ");
         int endY = Integer.parseInt(lukija.nextLine());
 
-        DataList<Chell> result = solver.getPathAllstar(startX, startY, endX, endY);
+        DataList<Chell> result = solver.getPathAStar(startX, startY, endX, endY);
 
         // Get the Java runtime
         Runtime runtime = Runtime.getRuntime();
