@@ -23,7 +23,7 @@
 10.8 | 1 | javadoc
 10.8 | 3 | viikkoraportti 3
 13.8 | 3,5 | dokumentaatiota ja algoritmin parantelua
-13.8 | 3 | 8suuntainen liikkuminen
+13.8 | 3 | 8 suuntainen liikkuminen
 13.8 | 1 | debugging
 14.8 | 3,5 | JPS suunnittelua ja koodausta
 14.8 | 4 | debuggausta
@@ -31,5 +31,6 @@
 15.8 | 4 | töitä JPSn parissa
 16.8 | 3,5 | JPS ja A* refactorointia
 16.8 | 1,5 | dokumentaatiota
-total | 84
+17.8 | 2,5 | dokumentaatiota
+total | 86,5
 
