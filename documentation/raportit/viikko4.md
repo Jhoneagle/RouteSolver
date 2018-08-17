@@ -6,5 +6,7 @@ Dokumentatio on myös edennyt. Käyttö-ohjeet on kirjoitettu ja seuraavaksi alk
 
 Yksilötestaus junitilla on pääasiallisesti toteutettu myös ja empiiriselle suorituskyky testaukselle on luotu välineet käyttöliittymän yhteyteen. Tulokset ja vertailut vain pitää viellä saada aikaiseksi. 
 
+Paljon kyllä tuli kyllä opittua jump point seachistä lisää.
+
 Tällä viikolla meni n. 28,5h työn tekoon.
 
