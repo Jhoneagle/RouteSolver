@@ -263,9 +263,11 @@ public class Finder {
 
         Chell last = this.path[this.asciiMap.hash(endX, endY)];
 
-        while (last.getX() != startX || last.getY() != startY) {
-            result.add(last);
-            last = this.path[this.asciiMap.hash(last.getX(), last.getY())];
+        if (last != null) {
+            while (last.getX() != startX || last.getY() != startY) {
+                result.add(last);
+                last = this.path[this.asciiMap.hash(last.getX(), last.getY())];
+            }
         }
 
         return result;
