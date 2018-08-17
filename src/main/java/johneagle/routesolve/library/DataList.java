@@ -79,9 +79,11 @@ public class DataList<E> {
      */
     public Object[] toArray() {
         Object[] result = new Object[this.actualSize];
+
         for (int i = 0; i < this.actualSize; i++) {
             result[i] = this.elementData[i];
         }
+
         return result;
     }
 
@@ -146,7 +148,7 @@ public class DataList<E> {
      * @return {@code true} if this list contained the specified element
      */
     public boolean remove(Object o) {
-        if (this.actualSize < (this.maxSize / 2)) {
+        if (this.actualSize < (this.maxSize / 3)) {
             double half = 1 / 2;
             grow(half);
         }

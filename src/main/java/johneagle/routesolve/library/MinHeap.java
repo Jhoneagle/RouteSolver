@@ -12,24 +12,21 @@ import java.util.AbstractQueue;
 public class MinHeap<E>  {
 
     private Object[] elementData;
-    private int maxSize;
     private int actualSize;
 
     public MinHeap() {
-        this.maxSize = 10;
         this.actualSize = 0;
-        this.elementData = new Object[this.maxSize];
+        this.elementData = new Object[10];
     }
 
     /**
      * Resize the array so that all elements can fit.
      */
     private void grow(double with) {
-        int newMax = (int) (this.maxSize * with);
+        int newMax = (int) (this.elementData.length * with);
 
         if (newMax >= 10) {
-            this.maxSize = newMax;
-            Object[] newList = new Object[this.maxSize];
+            Object[] newList = new Object[newMax];
 
             for (int i = 0; i < this.actualSize; i++) {
                 newList[i] = this.elementData[i];
@@ -67,7 +64,77 @@ public class MinHeap<E>  {
      * @return {@code true}
      */
     public boolean add(E e) {
+        if (this.actualSize == 0) {
+            this.elementData[1] = e;
+            this.actualSize++;
+            return true;
+        } else {
+            this.actualSize++;
+            int index = this.actualSize;
+            int parent = index / 2;
+
+            if (this.actualSize >= this.elementData.length) {
+                grow(4);
+            }
+
+            while (index > 1) {
+                Comparable<? super E> whereAt = (Comparable<? super E>) this.elementData[parent];
+
+                if (whereAt.compareTo(e) <= 0) {
+                    break;
+                } else {
+                    this.elementData[index] = whereAt;
+                }
+
+                index = parent;
+                parent = index / 2;
+            }
+
+            this.elementData[index] = e;
+
+            balance(index);
+        }
+
         return true;
+    }
+
+    /**
+     * Balances the binary heap after adding or removing element in the queue.
+     *
+     * @param index     where to start in list.
+     */
+    private void balance(int index) {
+        int leftChild = 2 * index;
+        int rightChild = 2 * index + 1;
+
+        if (rightChild <= this.actualSize) {
+            Comparable<? super E> left = (Comparable<? super E>) this.elementData[leftChild];
+            E right = (E) this.elementData[rightChild];
+            Comparable<? super E> parent = (Comparable<? super E>) this.elementData[index];
+
+            if (left.compareTo(right) < 0) {
+                if (parent.compareTo((E) left) > 0) {
+                    this.elementData[leftChild] = parent;
+                    this.elementData[index] = left;
+                    balance(leftChild);
+                }
+            } else {
+                if (parent.compareTo(right) > 0) {
+                    this.elementData[rightChild] = parent;
+                    this.elementData[index] = right;
+                    balance(rightChild);
+                }
+            }
+        } else if (leftChild == this.actualSize) {
+            Comparable<? super E> left = (Comparable<? super E>) this.elementData[leftChild];
+            Comparable<? super E> parent = (Comparable<? super E>) this.elementData[index];
+
+            if (parent.compareTo((E) left) > 0) {
+                this.elementData[leftChild] = parent;
+                this.elementData[index] = left;
+                balance(leftChild);
+            }
+        }
     }
 
     /**
@@ -80,31 +147,45 @@ public class MinHeap<E>  {
      * @return {@code true} if this queue contains the specified element
      */
     public boolean contains(Object o) {
+        return find(1, (E) o);
+    }
+
+    /**
+     * Recursive part of contains method.
+     */
+    private boolean find(int index, E e) {
+        int leftChild = 2 * index;
+        int rightChild = 2 * index + 1;
+
+        Comparable<? super E> whereAt = (Comparable<? super E>) this.elementData[index];
+        int compare = whereAt.compareTo(e);
+
+        if (compare == 0) {
+            return true;
+        } else if (leftChild < this.actualSize) {
+            return find(leftChild, e);
+        } else if (rightChild < this.actualSize) {
+            return find(rightChild, e);
+        }
+
         return false;
     }
 
     /**
-     * This implementation returns an array containing all the elements
-     * returned by this collection's iterator, in the same order, stored in
-     * consecutive elements of the array, starting with index {@code 0}.
-     * The length of the returned array is equal to the number of elements
-     * returned by the iterator, even if the size of this collection changes
-     * during iteration, as might happen if the collection permits
-     * concurrent modification during iteration.  The {@code size} method is
-     * called only as an optimization hint; the correct result is returned
-     * even if the iterator returns a different number of elements.
+     * Returns an array containing all of the elements in this list in proper
+     * sequence (from first to last element).
      *
-     * <p>This method is equivalent to:
-     *
-     * <pre> {@code
-     * List<E> list = new ArrayList<E>(size());
-     * for (E e : this)
-     *     list.add(e);
-     * return list.toArray();
-     * }</pre>
+     * @return an array containing all of the elements in this list in proper
+     * sequence
      */
     public Object[] toArray() {
-        return null;
+        Object[] result = new Object[this.actualSize];
+
+        for (int i = 0; i < this.actualSize; i++) {
+            result[i] = this.elementData[i];
+        }
+
+        return result;
     }
 
     /**
@@ -114,7 +195,20 @@ public class MinHeap<E>  {
      * @return the head of this queue, or {@code null} if this queue is empty
      */
     public E poll() {
-        return null;
+        E result = peek();
+
+        if (result != null) {
+            this.elementData[1] = this.elementData[this.actualSize];
+            this.actualSize--;
+
+            if ((this.actualSize / 3) < this.elementData.length) {
+                grow(1 / 2);
+            }
+
+            balance(1);
+        }
+
+        return result;
     }
 
     /**
@@ -124,6 +218,10 @@ public class MinHeap<E>  {
      * @return the head of this queue, or {@code null} if this queue is empty
      */
     public E peek() {
-        return null;
+        if (this.actualSize > 0) {
+            return (E) this.elementData[1];
+        } else {
+            return null;
+        }
     }
 }

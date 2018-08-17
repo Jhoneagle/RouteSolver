@@ -32,5 +32,6 @@
 16.8 | 3,5 | JPS ja A* refactorointia
 16.8 | 1,5 | dokumentaatiota
 17.8 | 2,5 | dokumentaatiota
-total | 86,5
+17.8 | 2 | tietorakenteiden tekoa
+total | 88,5
 

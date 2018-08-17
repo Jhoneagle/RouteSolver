@@ -30,6 +30,8 @@ Tavoitteena, että algoritmeista tehokaampi saavuttaisi O-analyysissa aika ja ti
 
 Käytettäviä tietoranteita ovat priorityqueuea, listaa, taulukkoa ja pinoa. Listaa tarvitaan lähinnä tiedoston lukemisen ohella, kun tekstitiedostosta tehdään matriisi. Taas pinoa eli järjestettyä jonoa tarvitaan lopullisen polun palauttamisessa. Taas  taulukoita käytetään ascii-kartan esittämiseen, sekä soluissa käynnin ja niiden etäisyys arvioiden tallessa pitoon. Varsinainen reitinhaku taas käyttää priorityqueueta saadakseen tutkittavaksi aina parhaan vaihtoehdon soluista, jotka ovat auki. 
 
+Tavoitteena on saada tietorakenteiden tukemat operaatiot samalle aikavaativuudelle, kuin javan valmiissa tietorakenteissa olevat vastineensa.
+
 ## Perusversion tarjoama toiminnallisuus
 
 * yleisen karttojen koon määrittely käyttökerralle
