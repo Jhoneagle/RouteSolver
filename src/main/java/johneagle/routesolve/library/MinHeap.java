@@ -1,7 +1,5 @@
 package johneagle.routesolve.library;
 
-import java.util.AbstractQueue;
-
 /**
  * Class that works just like Javas ready made PriorityQueue would work in the algorithm.
  *
@@ -157,18 +155,23 @@ public class MinHeap<E>  {
         int leftChild = 2 * index;
         int rightChild = 2 * index + 1;
 
-        Comparable<? super E> whereAt = (Comparable<? super E>) this.elementData[index];
-        int compare = whereAt.compareTo(e);
+        E whereAt = (E) this.elementData[index];
+        boolean left = false;
+        boolean right = false;
 
-        if (compare == 0) {
+        if (whereAt.equals(e)) {
             return true;
-        } else if (leftChild < this.actualSize) {
-            return find(leftChild, e);
-        } else if (rightChild < this.actualSize) {
-            return find(rightChild, e);
         }
 
-        return false;
+        if (leftChild <= this.actualSize) {
+            left = find(leftChild, e);
+        }
+
+        if (rightChild <= this.actualSize) {
+            right = find(rightChild, e);
+        }
+
+        return left || right;
     }
 
     /**
@@ -179,9 +182,9 @@ public class MinHeap<E>  {
      * sequence
      */
     public Object[] toArray() {
-        Object[] result = new Object[this.actualSize];
+        Object[] result = new Object[this.actualSize + 1];
 
-        for (int i = 0; i < this.actualSize; i++) {
+        for (int i = 0; i < this.actualSize + 1; i++) {
             result[i] = this.elementData[i];
         }
 

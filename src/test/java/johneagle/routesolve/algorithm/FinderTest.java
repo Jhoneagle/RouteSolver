@@ -4,7 +4,6 @@ import johneagle.routesolve.domain.Chell;
 import johneagle.routesolve.domain.Config;
 import johneagle.routesolve.domain.Map;
 import johneagle.routesolve.filesystem.Reader;
-import johneagle.routesolve.filesystem.ReaderTest;
 import johneagle.routesolve.library.DataList;
 import org.junit.*;
 import org.junit.rules.TemporaryFolder;
@@ -32,7 +31,7 @@ public class FinderTest {
             this.tempConfig = tempFolder.newFile("test.properties");
             this.tempMapFile = tempFolder.newFile("test.csv");
         } catch (IOException ex) {
-            Logger.getLogger(ReaderTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FinderTest.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         Reader reader = new Reader();
@@ -188,7 +187,7 @@ public class FinderTest {
                     "unbassable=" + unbass + "");
             writer.close();
         } catch (IOException ex) {
-            Logger.getLogger(ReaderTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FinderTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -199,7 +198,7 @@ public class FinderTest {
             writer.write(data);
             writer.close();
         } catch (IOException ex) {
-            Logger.getLogger(ReaderTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FinderTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

@@ -1,7 +1,5 @@
 package johneagle.routesolve.library;
 
-import java.util.*;
-
 /**
  * Class that works just like any ArrayList or Stack object. Implements most of basic methods needed for normal use.
  *

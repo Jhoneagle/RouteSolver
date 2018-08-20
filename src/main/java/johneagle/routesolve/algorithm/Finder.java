@@ -3,8 +3,7 @@ package johneagle.routesolve.algorithm;
 import johneagle.routesolve.domain.Chell;
 import johneagle.routesolve.domain.Map;
 import johneagle.routesolve.library.DataList;
-
-import java.util.PriorityQueue;
+import johneagle.routesolve.library.MinHeap;
 
 /**
  * Main object of the algorithm. Contains the actual method to find shortest path in ascii map/grid.
@@ -12,7 +11,7 @@ import java.util.PriorityQueue;
  * It contains both regular A* and Jump point search (JPS) path finding algorithms.
  *
  * @see Map
- * @see PriorityQueue
+ * @see MinHeap
  *
  * @author Johneagle
  */
@@ -20,7 +19,7 @@ public class Finder {
 
     private Map asciiMap;
     private Chell[] path;
-    private PriorityQueue<Chell> queue;
+    private MinHeap<Chell> queue;
     private Chell[][] chellMap;
 
     public Finder(Map map) {
@@ -40,7 +39,7 @@ public class Finder {
      * Which is most convenient to find the shortest path in ascii maps generally even tho in large maps it can take some space from memory.
      *
      * @see DataList
-     * @see PriorityQueue#poll()
+     * @see MinHeap#poll()
      * @see Map#getAproxDistance(int, int, int, int)
      * @see Map#isInsideMap(int, int)
      * @see Map#isWalkable(int, int)
@@ -63,7 +62,7 @@ public class Finder {
         int mapWeight = this.asciiMap.getMapWeight();
 
         this.path = new Chell[mapWeight * mapHeight];
-        this.queue = new PriorityQueue<>();
+        this.queue = new MinHeap<>();
         this.chellMap = new Chell[mapHeight][mapWeight];
 
         Chell start = new Chell(startX, startY);
@@ -145,7 +144,7 @@ public class Finder {
      *
      * @see Map#getValueForMovement(int, int, int, int)
      * @see Map#hash(int, int)
-     * @see PriorityQueue#add(Object)
+     * @see MinHeap#add(Object)
      *
      * @param current   Chell object that currently is selected.
      * @param next      Chell object next to current one.
@@ -174,7 +173,8 @@ public class Finder {
      * Which is most convenient to find the shortest path in ascii maps generally even tho in large maps it can take some space from memory.
      *
      * @see DataList
-     * @see PriorityQueue#poll()
+     * @see MinHeap#poll()
+     * @see MinHeap#add(Object)
      * @see Map#getAproxDistance(int, int, int, int)
      * @see Map#isInsideMap(int, int)
      * @see Map#isWalkable(int, int)
@@ -197,7 +197,7 @@ public class Finder {
         int mapWeight = this.asciiMap.getMapWeight();
 
         this.path = new Chell[mapWeight * mapHeight];
-        this.queue = new PriorityQueue<>();
+        this.queue = new MinHeap<>();
         this.chellMap = new Chell[mapHeight][mapWeight];
 
         Chell start = new Chell(startX, startY);

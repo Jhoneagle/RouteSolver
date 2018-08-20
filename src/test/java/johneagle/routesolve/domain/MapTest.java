@@ -1,7 +1,6 @@
 package johneagle.routesolve.domain;
 
 import johneagle.routesolve.filesystem.Reader;
-import johneagle.routesolve.filesystem.ReaderTest;
 import org.junit.*;
 import org.junit.rules.TemporaryFolder;
 
@@ -29,7 +28,7 @@ public class MapTest {
             this.tempConfig = tempFolder.newFile("test.properties");
             this.tempMapFile = tempFolder.newFile("test.csv");
         } catch (IOException ex) {
-            Logger.getLogger(ReaderTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MapTest.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         this.reader = new Reader();
@@ -165,7 +164,7 @@ public class MapTest {
                     "unbassable=" + unbass + "");
             writer.close();
         } catch (IOException ex) {
-            Logger.getLogger(ReaderTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MapTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -176,7 +175,7 @@ public class MapTest {
             writer.write(data);
             writer.close();
         } catch (IOException ex) {
-            Logger.getLogger(ReaderTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MapTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

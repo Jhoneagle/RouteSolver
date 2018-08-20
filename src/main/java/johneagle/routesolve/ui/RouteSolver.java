@@ -6,7 +6,6 @@ import johneagle.routesolve.domain.Config;
 import johneagle.routesolve.domain.Map;
 import johneagle.routesolve.filesystem.Reader;
 import johneagle.routesolve.library.DataList;
-import johneagle.routesolve.library.MinHeap;
 
 import java.util.Scanner;
 
