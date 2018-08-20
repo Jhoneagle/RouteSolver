@@ -306,6 +306,10 @@ public class Finder {
         // Diagonal or vertical/horizontal.
 
         if (dx != 0 && dy != 0) {
+            if (this.chellMap[next.getY() - dy][next.getX()] != null || this.chellMap[next.getY()][next.getX() - dx] != null) {
+                return null; // we went too fast and jumped over better route
+            }
+
             if (this.asciiMap.isInsideMap(next.getX() - dx, next.getY()) && this.asciiMap.isInsideMap(next.getX() - dx, next.getY() + dy)) {
                 if (this.asciiMap.isWalkable(next.getX() - dx, next.getY()) == -1 && this.asciiMap.isWalkable(next.getX() - dx, next.getY() + dy) == 1) {
                     return next;
