@@ -1,4 +1,4 @@
-# Testausdokumentti
+Ôªø# Testausdokumentti
 
 ## Yksikk√∂ testaus
 
@@ -63,5 +63,5 @@ K√§ytetty kartta on seuraavanlainen
 
 Ohjelman toimintaan on sis√§√§nrakennettu komennot suorituskyky testausta varten. Komennot ovat _timeTest_ ja _memoryTest_ mitk√§ toimivat huolimatta suorittaako ohjelman suoraan l√§hdekoodina vai suoritettavan jarrina. 
 
-Suoritusajan testaus on tapahtunut k‰ytt‰m‰ll‰ komentoa _timeTest_, joka suorittaa saman reitin haun 10 kertaa ja tulostaa jokaiseen kierrokseen menneen ajan. Kuitenkin niin, ett‰ jokaisen sarjan j‰lkeen sovellus on k‰ynnistetty uudestaan, jotta v‰ltett‰isiin toistuvuudesta aiheutuva nopeutuminen, mink‰ tietokoneiden v‰limuisti aiheuttaa. 
+Suoritusajan testaus on tapahtunut k√§ytt√§m√§ll√§ komentoa _timeTest_, joka suorittaa saman reitin haun 10 kertaa ja tulostaa jokaiseen kierrokseen menneen ajan. Kuitenkin niin, ett√§ jokaisen sarjan j√§lkeen sovellus on k√§ynnistetty uudestaan, jotta v√§ltett√§isiin toistuvuudesta aiheutuva nopeutuminen, mink√§ tietokoneiden v√§limuisti aiheuttaa. 
 
