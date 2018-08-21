@@ -1,4 +1,4 @@
-# Käyttö-ohje
+﻿# Käyttö-ohje
 
 ## Alkutoimet
 
@@ -45,6 +45,8 @@ Sisältö voi olla esimerkiksi seuraavanlainen, missä _1_ on kuljettavaa ja _0_
 ```
 
 Kaikki kartat kuitenkin sijoitetaan kansioon _mapFiles_, joka sijaitsee jarin kanssa samassa kansiossa.
+
+Jos omia karttoja ei kuitnekaan halua tehdä, niin valmiita löytyy muun muassa [Moving AI](https://www.movingai.com/benchmarks/grids.html) sivuilta. Ennen käyttöä niiden ensimmäiset 4 riviä kuitenkin täytyy poistaa, jotta _.MAP_ tiedostot sisältävät vain kartan tiedoston alusta lähtien.
 
 ## Ohjelman käyttö
 

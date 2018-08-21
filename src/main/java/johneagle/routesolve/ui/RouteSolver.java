@@ -156,9 +156,9 @@ public class RouteSolver {
                 double elapsedTime = timeInEnd - timeInBegin;
                 System.out.println("kierros: " + (i + 1) + ".");
                 if (elapsedTime < 3000000) {
-                    System.out.println("Operaatioon kului aikaa: " + elapsedTime + "nano sekuntia");
+                    System.out.println("Operaatioon kului aikaa: " + elapsedTime + " nano sekuntia");
                 } else {
-                    System.out.println("Operaatioon kului aikaa: " + (elapsedTime / 3000000) + "ms.");
+                    System.out.println("Operaatioon kului aikaa: " + Math.floor(elapsedTime / 1000000) + " ms.");
                 }
             }
         } else {
@@ -171,9 +171,9 @@ public class RouteSolver {
                 double elapsedTime = timeInEnd - timeInBegin;
                 System.out.println("kierros: " + (i + 1) + ".");
                 if (elapsedTime < 3000000) {
-                    System.out.println("Operaatioon kului aikaa: " + elapsedTime + "nano sekuntia");
+                    System.out.println("Operaatioon kului aikaa: " + elapsedTime + " nano sekuntia");
                 } else {
-                    System.out.println("Operaatioon kului aikaa: " + (elapsedTime / 3000000) + "ms.");
+                    System.out.println("Operaatioon kului aikaa: " + Math.floor(elapsedTime / 1000000) + " ms.");
                 }
             }
         }
