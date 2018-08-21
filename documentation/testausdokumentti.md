@@ -63,3 +63,5 @@ Käytetty kartta on seuraavanlainen
 
 Ohjelman toimintaan on sisäänrakennettu komennot suorituskyky testausta varten. Komennot ovat _timeTest_ ja _memoryTest_ mitkä toimivat huolimatta suorittaako ohjelman suoraan lähdekoodina vai suoritettavan jarrina. 
 
+Suoritusajan testaus on tapahtunut käyttämällä komentoa _timeTest_, joka suorittaa saman reitin haun 10 kertaa ja tulostaa jokaiseen kierrokseen menneen ajan. Kuitenkin niin, että jokaisen sarjan jälkeen sovellus on käynnistetty uudestaan, jotta vältettäisiin toistuvuudesta aiheutuva nopeutuminen, minkä tietokoneiden välimuisti aiheuttaa. 
+
