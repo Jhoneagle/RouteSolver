@@ -1,36 +1,36 @@
 # Testausdokumentti
 
-## Yksikkö testaus
+## YksikkÃ¶ testaus
 
 Projektin testien rivikattavuus on 97% ja haarautumakattavuus on 87%. 
 
 ![testikattavuus](kuvat/testikattavuus.jpg)
 
-Haarautumakattavuuden osalta oma tekoiset tietorakenteet ovat heikoin alue projektista 83%. Tämä johtunee siitä, että tietorakenteiden kaikkien metodien vaihtoehtoja ei kannata jokaista testata erikseen eikä tule normaalisti vastaan. Näistä ei testatuista haarautumista monet kuitenkin ovat harvinaisia erityistapauksia, joten ne eivät ole olennaisia. 
+Haarautumakattavuuden osalta oma tekoiset tietorakenteet ovat heikoin alue projektista 83%. TÃ¤mÃ¤ johtunee siitÃ¤, ettÃ¤ tietorakenteiden kaikkien metodien vaihtoehtoja ei kannata jokaista testata erikseen eikÃ¤ tule normaalisti vastaan. NÃ¤istÃ¤ ei testatuista haarautumista monet kuitenkin ovat harvinaisia erityistapauksia, joten ne eivÃ¤t ole olennaisia. 
 
-Yksikkötesteille suoraan testattuja luokkia ovat luokat, joissa meodit tekevät jotakin yksinkertaisuudesta poikeavaa. Kaikki testit ovat toteutettu Junitilla, jolloin näiden toistaminen tapahtuu helposti mavenin avulla suorittamalla: _mvn test_.
+YksikkÃ¶testeillÃ¤ suoraan testattuja luokkia ovat luokat, joissa metodit tekevÃ¤t jotakin yksinkertaisuudesta poikeavaa. Kaikki testit ovat toteutettu Junitilla, jolloin nÃ¤iden toistaminen tapahtuu helposti mavenin avulla suorittamalla: _mvn test_.
 
 ### DataListTest ja MinHeapTest
 
-Testaavat oma tekoisten tietorakenteiden operaatioita pyrkien simuloimaan sen yksinkertaista käyttöä. Kuitenkin varmistaen välttämättömät asiat yksinkertaisilla testeillä. 
+Testaavat oma tekoisten tietorakenteiden operaatioita pyrkien simuloimaan sen yksinkertaista kÃ¤yttÃ¶Ã¤. Kuitenkin varmistaen vÃ¤lttÃ¤mÃ¤ttÃ¶mÃ¤t asiat yksinkertaisilla testeillÃ¤. 
 
-Listaa ja pinoa simuloiva _DataList_ testataan erityisesti sen osalta, että se pitää tietueet alkuperäisessä järjestyksessä. Mistä seuraa, että mikä lisätään vikana voidaan poistaa ekana ja kaikki tietueet löydetään samassa järjestyksessä, kuin lisättiin. 
+Listaa ja pinoa simuloiva _DataList_ testataan erityisesti sen osalta, ettÃ¤ se pitÃ¤Ã¤ tietueet alkuperÃ¤isessÃ¤ jÃ¤rjestyksessÃ¤. MistÃ¤ seuraa, ettÃ¤ mikÃ¤ lisÃ¤tÃ¤Ã¤n vikana voidaan poistaa ekana ja kaikki tietueet lÃ¶ydetÃ¤Ã¤n samassa jÃ¤rjestyksessÃ¤, kuin lisÃ¤ttiin. 
 
-Taas minimikekoa simuloiva _MinHeap_ varmistetaan, että se tarjoaa lisäämisjärjestyksestä huolimatta pyydettäessä ensimmäisen arvon. Minimikeon kohdalla tämä tarkoittaa vertailun perusteella pienintä tietuetta, joka löytyy. 
+Taas minimikekoa simuloiva _MinHeap_ varmistetaan, ettÃ¤ se tarjoaa lisÃ¤Ã¤misjÃ¤rjestyksestÃ¤ huolimatta pyydettÃ¤essÃ¤ ensimmÃ¤isen arvon. Minimikeon kohdalla tÃ¤mÃ¤ tarkoittaa vertailun perusteella pienintÃ¤ tietuetta, joka lÃ¶ytyy. 
 
 ### ReaderTest
 
-On tarkoitus testata ohjelman tiedostonluku toiminnallisuutta varmistaakseen, että tiedosto luetaan oikein. Myös varmistaakseen, että epäonnistuessa virhe käsitellään oikein. 
+On tarkoitus testata ohjelman tiedostonluku toiminnallisuutta varmistaakseen, ettÃ¤ tiedosto luetaan oikein. MyÃ¶s varmistaakseen, ettÃ¤ epÃ¤onnistuessa virhe kÃ¤sitellÃ¤Ã¤n oikein. 
 
 ### MapTest
 
-Testaa luokan mikä sisältää varsinaisen kartan, jonka algoritmi saa. Sekä, joka huolehtii kartaan liittyvistä olennaisista operaatioista. Luokan kattava testaaminen ja toiminnan oikeellisuuden varmistaminen on hyvin olennaista. Sillä kyseisen luokan metodit ovat elintärkeitä algoritmin toimivuudelle. 
+Testaa luokan mikÃ¤ sisÃ¤ltÃ¤Ã¤ varsinaisen kartan, jonka algoritmi saa. SekÃ¤, joka huolehtii kartaan liittyvistÃ¤ olennaisista operaatioista. Luokan kattava testaaminen ja toiminnan oikeellisuuden varmistaminen on hyvin olennaista. SillÃ¤ kyseisen luokan metodit ovat elintÃ¤rkeitÃ¤ algoritmin toimivuudelle. 
 
 ### FinderTest
 
-Testaa itse varsinaiset reitti algoritmit. Tähän se käyttää valmiiksi luotua kartaa, jossa on pyritty simuloimaa valta osa yleisimmistä ongelma tapauksista. Molemmille algoritmeille suoritetaan samalla kartalla 8 reittiä, joiden ideaali tulos on laskettu käsin.
+Testaa itse varsinaiset reitti algoritmit. TÃ¤hÃ¤n se kÃ¤yttÃ¤Ã¤ valmiiksi luotua kartaa, jossa on pyritty simuloimaa valta osa yleisimmistÃ¤ ongelma tapauksista. Molemmille algoritmeille suoritetaan samalla kartalla 8 reittiÃ¤, joiden ideaali tulos on laskettu kÃ¤sin.
 
-Käytetty kartta on seuraavanlainen
+KÃ¤ytetty kartta on seuraavanlainen
 
 ```
 0000000000000000000000
@@ -61,5 +61,5 @@ Käytetty kartta on seuraavanlainen
 
 ## Empiirinen Testaus
 
-Ohjelman toimintaan on sisäänrakennettu komennot suorituskyky testausta varten. Komennot ovat _timeTest_ ja _memoryTest_ mitkä toimivat huolimatta suorittaako ohjelman suoraan lähdekoodina vai suoritettavan jarrina. 
+Ohjelman toimintaan on sisÃ¤Ã¤nrakennettu komennot suorituskyky testausta varten. Komennot ovat _timeTest_ ja _memoryTest_ mitkÃ¤ toimivat huolimatta suorittaako ohjelman suoraan lÃ¤hdekoodina vai suoritettavan jarrina. 
 
