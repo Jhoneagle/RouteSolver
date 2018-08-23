@@ -35,6 +35,6 @@
 17.8 | 2 | tietorakenteiden tekoa
 19.8 | 4 | testien tekoa ja debuggausta
 21.8 | 5 | testausdokumentti
-23.8 | 3 | dokumentaatiota
-total | 100,5
+23.8 | 5,5 | dokumentaatiota
+total | 103
 

@@ -24,7 +24,7 @@ Reitinhakuun käytetään alussa A* reitinhaku algoritmia ja siitä tehdään la
 
 Projektin tarkoituksena on verrata niiden suorituskykyjä toisiinsa ja nähdä onko JPS merkittävästi normaalia A* parempi reitinhaussa. Käytettäessä karttoina kaksiulotteisia ascii-taulukoita.
 
-Tavoitteena, että algoritmeista tehokaampi saavuttaisi O-analyysissa aika ja tilavaativuudeksi O(n) missä "n" tarkoittaa kartan kokoa eli kartan leveyden ja korkeuden tuloa. Eli, että ratkaisu löytyisi lineaarisessa ajassa suhteessa ratkaisun pituuteen, sillä tällöin ei käytäisi merkittävissä määrin turhia reittejä läpi vaan kuljettaisiin mahdollisimman oikein heti alussa. 
+Tavoitteena, että algoritmeista tehokaampi saavuttaisi O-analyysissa aika ja tilavaativuudeksi O(n) missä "n" tarkoittaa kartan kokoa eli kartan leveyden ja korkeuden tuloa. 
 
 ## Tietorakenteet
 
