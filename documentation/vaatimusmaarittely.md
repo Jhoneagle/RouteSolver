@@ -20,7 +20,7 @@ Sovellukselle annetan konfiguraatiot properties-tiedostona, jossa on olemassa ti
 
 ## Algoritmi
 
-Reitinhakuun käytetään alussa A* reitinhaku algoritmia ja siitä tehdään laajennettu versio, joka on JPS eli jump point search algoritmi. Näitä vertaillaan reitinhaku algoritmeista toisiinsa, sillä ne ovat oletusarvoisesti nopeita. Tämä johtuu siitä, koska ne käyttävät etäisyysarvioita määrittäessään parhaan suunnan jatkaa reitin etsintää. Kuitenkin aina muistaen jokaisen polun, niin pitkälle, kun se on ollut ideaali vaihtoehto. 
+Reitinhakuun käytetään alussa A* reitinhaku algoritmia ja siitä tehdään laajennettu versio, joka on JPS eli jump point search algoritmi. Näitä reitinhaku algoritmeja sitten vertaillaan toisiinsa, sillä ne ovat oletusarvoisesti nopeita. Tämä johtuu siitä, koska ne käyttävät etäisyysarvioita määrittäessään parhaan suunnan jatkaa reitin etsintää. Kuitenkin aina muistaen jokaisen polun, niin pitkälle, kun se on ollut ideaali vaihtoehto. 
 
 Projektin tarkoituksena on verrata niiden suorituskykyjä toisiinsa ja nähdä onko JPS merkittävästi normaalia A* parempi reitinhaussa. Käytettäessä karttoina kaksiulotteisia ascii-taulukoita.
 
