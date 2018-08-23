@@ -59,7 +59,7 @@ Käytetty kartta on seuraavanlainen
 0000000000000000000000
 ```
 
-## Empiirinen Testaus
+## Suorituskyky testaus
 
 Ohjelman toimintaan on sisäänrakennettu komennot suorituskyky testausta varten. Komennot ovat _timeTest_ ja _memoryTest_ mitkä toimivat huolimatta suorittaako ohjelman suoraan lähdekoodina vai suoritettavan jarrina. 
 
