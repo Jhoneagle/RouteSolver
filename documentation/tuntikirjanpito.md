@@ -36,5 +36,6 @@
 19.8 | 4 | testien tekoa ja debuggausta
 21.8 | 5 | testausdokumentti
 23.8 | 5,5 | dokumentaatiota
-total | 103
+24.8 | 1 | raportti
+total | 104
 
