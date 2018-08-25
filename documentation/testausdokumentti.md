@@ -26,9 +26,9 @@ On tarkoitus testata ohjelman tiedostonluku toiminnallisuutta varmistaakseen, et
 
 Testaa luokan mikä sisältää varsinaisen kartan, jonka algoritmi saa. Sekä, joka huolehtii kartaan liittyvistä olennaisista operaatioista. Luokan kattava testaaminen ja toiminnan oikeellisuuden varmistaminen on hyvin olennaista. Sillä kyseisen luokan metodit ovat elintärkeitä algoritmin toimivuudelle. 
 
-### FinderTest
+### AstarTest ja JPSTest
 
-Testaa itse varsinaiset reitti algoritmit. Tähän se käyttää valmiiksi luotua kartaa, jossa on pyritty simuloimaa valta osa yleisimmistä ongelma tapauksista. Molemmille algoritmeille suoritetaan samalla kartalla 8 reittiä, joiden ideaali tulos on laskettu käsin.
+Testaavat itse varsinaiset reitti algoritmit. Tähän ne käyttää valmiiksi luotua kartaa, jossa on pyritty simuloimaa valta osa yleisimmistä ongelma tapauksista. Molemmille algoritmeille suoritetaan samalla kartalla 8 reittiä, joiden ideaali tulos on laskettu käsin.
 
 Käytetty kartta on seuraavanlainen
 
@@ -60,8 +60,4 @@ Käytetty kartta on seuraavanlainen
 ```
 
 ## Suorituskyky testaus
-
-Ohjelman toimintaan on sisäänrakennettu komennot suorituskyky testausta varten. Komennot ovat _timeTest_ ja _memoryTest_ mitkä toimivat huolimatta suorittaako ohjelman suoraan lähdekoodina vai suoritettavan jarrina. 
-
-Suoritusajan testaus on tapahtunut käyttämällä komentoa _timeTest_, joka suorittaa saman reitin haun 10 kertaa ja tulostaa jokaiseen kierrokseen menneen ajan. Kuitenkin niin, että jokaisen sarjan jälkeen sovellus on käynnistetty uudestaan, jotta vältettäisiin toistuvuudesta aiheutuva nopeutuminen, minkä tietokoneiden välimuisti aiheuttaa. 
 

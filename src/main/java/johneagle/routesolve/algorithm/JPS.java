@@ -132,6 +132,7 @@ public class JPS extends Finder {
      * @param goal      destination Chell of the path finding
      * @param dx        x-direction
      * @param dy        y-direction
+     *
      * @return null or Chell block that has forcedNeighbour so basically neighbour that makes new route ways
      */
     private Chell checkForJumpPoint(Chell whereAt, Chell goal, int dx, int dy) {
@@ -180,27 +181,35 @@ public class JPS extends Finder {
             }
         } else {
             if (dx != 0) {
-                if (!map.isWalkable(x, y + 1) && map.isWalkable(x + dx, y)) {
-                    if (map.isWalkable(x + dx, y + 1)) {
-                        return next;
+                if (map.isInsideMap(x + dx, y + 1)) {
+                    if (!map.isWalkable(x, y + 1) && map.isWalkable(x + dx, y)) {
+                        if (map.isWalkable(x + dx, y + 1)) {
+                            return next;
+                        }
                     }
                 }
 
-                if (!map.isWalkable(x, y - 1) && map.isWalkable(x + dx, y)) {
-                    if (map.isWalkable(x + dx, y - 1)) {
-                        return next;
+                if (map.isInsideMap(x + dx, y - 1)) {
+                    if (!map.isWalkable(x, y - 1) && map.isWalkable(x + dx, y)) {
+                        if (map.isWalkable(x + dx, y - 1)) {
+                            return next;
+                        }
                     }
                 }
             } else {
-                if (!map.isWalkable(x + 1, y) && map.isWalkable(x, y + dy)) {
-                    if (map.isWalkable(x + 1, y + dy)) {
-                        return next;
+                if (map.isInsideMap(x + 1, y + dy)) {
+                    if (!map.isWalkable(x + 1, y) && map.isWalkable(x, y + dy)) {
+                        if (map.isWalkable(x + 1, y + dy)) {
+                            return next;
+                        }
                     }
                 }
 
-                if (!map.isWalkable(x - 1, y) && map.isWalkable(x, y + dy)) {
-                    if (map.isWalkable(x - 1, y + dy)) {
-                        return next;
+                if (map.isInsideMap(x - 1, y + dy)) {
+                    if (!map.isWalkable(x - 1, y) && map.isWalkable(x, y + dy)) {
+                        if (map.isWalkable(x - 1, y + dy)) {
+                            return next;
+                        }
                     }
                 }
             }
