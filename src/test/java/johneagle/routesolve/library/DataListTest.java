@@ -32,7 +32,7 @@ public class DataListTest {
     }
 
     @Test
-    public void remove() {
+    public void removeBig() {
         DataList<Integer> list = new DataList<>();
 
         list.add(1);
@@ -51,6 +51,21 @@ public class DataListTest {
         Assert.assertEquals(1, (long) list.get(0));
         Assert.assertNull(list.get(3));
         Assert.assertNull(list.get(2));
+    }
+
+    @Test
+    public void removeSmall() {
+        DataList<Integer> list = new DataList<>();
+
+        list.add(1);
+        list.add(12);
+
+        Object delete = 12;
+        list.remove(delete);
+
+        Assert.assertFalse(list.isEmpty());
+        Assert.assertTrue(list.size() == 1);
+        Assert.assertEquals(1, (long) list.peek());
     }
 
     @Test
@@ -122,7 +137,7 @@ public class DataListTest {
     }
 
     @Test
-    public void pop() {
+    public void popOne() {
         DataList<Integer> list = new DataList<>();
 
         list.add(5);
@@ -134,5 +149,21 @@ public class DataListTest {
         Assert.assertEquals(-12, (long) poped);
         Assert.assertEquals(5, (long) peeked);
         Assert.assertFalse(list.isEmpty());
+    }
+
+    @Test
+    public void popTooMuch() {
+        DataList<Integer> list = new DataList<>();
+
+        list.add(5);
+        list.add(-12);
+
+        Integer poped = list.pop();
+        Integer poped2 = list.pop();
+        Integer poped3 = list.pop();
+
+        Assert.assertEquals(-12, (long) poped);
+        Assert.assertEquals(5, (long) poped2);
+        Assert.assertNull(poped3);
     }
 }

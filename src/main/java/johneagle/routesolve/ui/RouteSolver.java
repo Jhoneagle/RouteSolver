@@ -1,7 +1,10 @@
 package johneagle.routesolve.ui;
 
-import johneagle.routesolve.algorithm.*;
-import johneagle.routesolve.domain.*;
+import johneagle.routesolve.algorithm.AStar;
+import johneagle.routesolve.algorithm.Finder;
+import johneagle.routesolve.algorithm.JPS;
+import johneagle.routesolve.domain.Chell;
+import johneagle.routesolve.domain.Map;
 import johneagle.routesolve.filesystem.Reader;
 import johneagle.routesolve.library.DataList;
 
@@ -25,10 +28,33 @@ public class RouteSolver {
 
         asciiMap = new Map();
         Reader fileReader = new Reader();
-
         fileReader.getConfigs("config/config.properties");
-        instructions();
 
+        if (args.length >= 2) {
+            String test = args[0];
+            String mapName = args[1];
+
+            boolean[][] map = fileReader.getMap("mapFiles/" + mapName);
+
+            if (map == null) {
+                System.out.println("Karttaa ei löydetty!");
+                return;
+            } else {
+                asciiMap.setMap(map);
+            }
+
+            if (test.contains("time")) {
+                speedTesting(lukija);
+            } else if (test.contains("memory")) {
+                memoryTesting(lukija);
+            } else {
+                System.out.println("Testin tyyppiä ei tunnistettu!");
+            }
+
+            return;
+        }
+
+        instructions();
         while(true) {
             System.out.print("> ");
             String komento = lukija.nextLine();
@@ -41,10 +67,6 @@ public class RouteSolver {
                 toAddMap(lukija, fileReader);
             } else if (komento.contains("ratkaise reitti")) {
                 toSolve(lukija);
-            } else if (komento.contains("timeTest")) {
-                speedTesting(lukija);
-            } else if (komento.contains("memoryTest")) {
-                memoryTesting(lukija);
             } else {
                 System.out.println("Tuntematon komento!");
             }

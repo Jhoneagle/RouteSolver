@@ -104,6 +104,21 @@ public class ReaderTest {
         }
     }
 
+    @Test
+    public void terrainUnknown() {
+        this.tempMapFile.setWritable(true);
+        String map = "10001" + "\n" +
+                "01010" + "\n" +
+                "00200" + "\n" +
+                "01010" + "\n" +
+                "10003";
+
+        insertMap(map);
+        boolean[][] matrix = this.reader.getMap(this.tempMapFile.getAbsolutePath());
+
+        Assert.assertNull(matrix);
+    }
+
     @After
     public void restore() {
         this.tempConfig.delete();

@@ -2,11 +2,11 @@
 
 ## Yksikkö testaus
 
-Projektin testien rivikattavuus on 96% ja haarautumakattavuus on 85%. 
+Projektin testien rivikattavuus on 97% ja haarautumakattavuus on 87%. 
 
 ![testikattavuus](kuvat/testikattavuus.jpg)
 
-Haarautumakattavuuden osalta domain on heikoin alue projektista 78%. Yaas seuraavaksi alhaisin on omat tietorakenteet 83%. Tämä johtunee siitä, että tietorakenteiden kaikkien metodien vaihtoehtoja ei kannata jokaista testata erikseen eikä tule normaalisti vastaan. Näistä ei testatuista haarautumista monet kuitenkin ovat harvinaisia erityistapauksia, joten ne eivät ole olennaisia. 
+Haarautumakattavuuden osalta domain on heikoin alue projektista 78%. Monet haarautumista joita testeissä ei käydä läpi on hankala testata. Monesti ne ovat vain jokin erikoistapaus tai vähän käytetty toiminto. Näiden testaaminen kuitenkin voisi tulla oleelliseksi siinä tapauksessa, että niiden merkitys kasvaa. Sillä yleisesti ottaen haarautumakattavuus on kuitenkin hyvä olennaisissa osissa.
 
 Yksikkötesteillä suoraan testattuja luokkia ovat luokat, joissa metodit tekevät jotakin yksinkertaisuudesta poikeavaa. Kaikki testit ovat toteutettu Junitilla, jolloin näiden toistaminen tapahtuu helposti mavenin avulla suorittamalla: _mvn test_.
 

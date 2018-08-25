@@ -111,7 +111,7 @@ public class DataList<E> {
      * @return element that was just removed.
      */
     public E remove(int index) {
-        if (actualSize < (maxSize / 2)) {
+        if (actualSize < (maxSize / 3)) {
             double half = 1.0 / 2.0;
             grow(half);
         }

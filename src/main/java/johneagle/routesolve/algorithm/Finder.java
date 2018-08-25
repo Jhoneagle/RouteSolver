@@ -24,6 +24,16 @@ public abstract class Finder {
         this.map = map;
     }
 
+    /**
+     * Abstract method that all subclasses have to provide to make initialization of the path solving easier.
+     *
+     * @param startX    Begging x-coordinate.
+     * @param startY    Begging y-coordinate.
+     * @param endX      Destination x-coordinate.
+     * @param endY      Destination y-coordinate.
+     *
+     * @return path as list of Chell objects.
+     */
     public abstract DataList<Chell> getPath(int startX, int startY, int endX, int endY);
 
     /**

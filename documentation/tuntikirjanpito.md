@@ -38,5 +38,6 @@
 23.8 | 5,5 | dokumentaatiota
 24.8 | 1 | raportti
 25.8 | 5 | refaktorointia katselmointi paulautteen perusteella
-total | 109
+25.8 | 1 | suorituskyky testailun materiaalin valinta
+total | 110
 
