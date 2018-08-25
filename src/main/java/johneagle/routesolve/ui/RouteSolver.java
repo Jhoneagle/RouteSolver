@@ -1,9 +1,7 @@
 package johneagle.routesolve.ui;
 
-import johneagle.routesolve.algorithm.Finder;
-import johneagle.routesolve.domain.Chell;
-import johneagle.routesolve.domain.Config;
-import johneagle.routesolve.domain.Map;
+import johneagle.routesolve.algorithm.*;
+import johneagle.routesolve.domain.*;
 import johneagle.routesolve.filesystem.Reader;
 import johneagle.routesolve.library.DataList;
 
@@ -20,22 +18,16 @@ import java.util.Scanner;
  * @author Johneagle
  */
 public class RouteSolver {
+    private static Map asciiMap;
+
     public static void main(String[] args) {
         Scanner lukija = new Scanner(System.in);
 
-        Map asciiMap = new Map();
+        asciiMap = new Map();
         Reader fileReader = new Reader();
 
-        Config configs = fileReader.getConfigs("config/config.properties");
-
-        if (configs == null) {
-            System.out.println("väärin määritelty config file!");
-        }
-
-        asciiMap.setProperties(configs);
+        fileReader.getConfigs("config/config.properties");
         instructions();
-
-        Finder solver = new Finder(asciiMap);
 
         while(true) {
             System.out.print("> ");
@@ -46,83 +38,98 @@ public class RouteSolver {
             } else if (komento.contains("sammuta")) {
                 break;
             } else if (komento.contains("lisaa kartta")) {
-                toAddMap(lukija, fileReader, solver);
+                toAddMap(lukija, fileReader);
             } else if (komento.contains("ratkaise reitti")) {
-                toSolve(lukija, solver);
+                toSolve(lukija);
             } else if (komento.contains("timeTest")) {
-                speedTesting(lukija, solver);
+                speedTesting(lukija);
             } else if (komento.contains("memoryTest")) {
-                memoryTesting(lukija, solver);
+                memoryTesting(lukija);
             } else {
-                System.out.println("tuntematon komento!");
+                System.out.println("Tuntematon komento!");
             }
         }
     }
 
     private static void instructions() {
-        System.out.println("komennot: ");
-        System.out.println("'lisaa kartta' - asetaaksesi karttan");
-        System.out.println("'ratkaise reitti' - selvittääksesi reitin");
-        System.out.println("'komennot' - saadaksesi tämän");
-        System.out.println("'sammuta' - sammuttaaksesi ohjelman");
+        System.out.println("Komennot: ");
+        System.out.println("'lisaa kartta' - Asetaaksesi kartan");
+        System.out.println("'ratkaise reitti' - Selvittääksesi reitin");
+        System.out.println("'komennot' - Saadaksesi tämän");
+        System.out.println("'sammuta' - Sammuttaaksesi ohjelman");
     }
 
-    private static void toAddMap(Scanner lukija, Reader fileReader, Finder solver) {
-        System.out.print("anna kartta tiedoston nimi: ");
+    private static void toAddMap(Scanner lukija, Reader fileReader) {
+        System.out.print("Anna kartta tiedoston nimi: ");
         String fileName = lukija.nextLine();
 
-        char[][] map = fileReader.getMap("mapFiles/" + fileName);
+        boolean[][] map = fileReader.getMap("mapFiles/" + fileName);
 
         if (map == null) {
-            System.out.println("yritä uudelleen!");
+            System.out.println("Tuntematon merkki löydetty. Yritä uudelleen!");
         } else {
-            solver.getAsciiMap().setMap(map);
+            asciiMap.setMap(map);
+            System.out.println("Kartta lisätty onnistuneesti.");
         }
     }
 
-    private static void toSolve(Scanner lukija, Finder solver) {
+
+    private static int readInt(Scanner lukija, String msg) {
+        int result;
+        System.out.print(msg);
+
+        while (true) {
+            String number = lukija.nextLine();
+
+            try {
+                result = Integer.parseInt(number);
+                return result;
+            } catch (Exception e) {
+                System.out.println("virheellinen arvo!");
+                System.out.print(msg);
+            }
+        }
+    }
+
+    private static void toSolve(Scanner lukija) {
         System.out.print("JPS vai A*? ");
         String which = lukija.nextLine();
+        Finder solver;
 
-        System.out.print("aloitus x-koordinaatti: ");
-        int startX = Integer.parseInt(lukija.nextLine());
-
-        System.out.print("aloitus y-koordinaatti: ");
-        int startY = Integer.parseInt(lukija.nextLine());
-
-        System.out.print("lopetus x-koordinaatti: ");
-        int endX = Integer.parseInt(lukija.nextLine());
-
-        System.out.print("lopetus y-koordinaatti: ");
-        int endY = Integer.parseInt(lukija.nextLine());
+        int startX = readInt(lukija, "Aloitus x-koordinaatti: ");
+        int startY = readInt(lukija, "Aloitus y-koordinaatti: ");
+        int endX = readInt(lukija, "Lopetus x-koordinaatti: ");
+        int endY = readInt(lukija, "Lopetus y-koordinaatti: ");
 
         if (which.toLowerCase().contains("jps")) {
-            DataList<Chell> resultJPS = solver.getPathJPS(startX, startY, endX, endY);
+            solver = new JPS(asciiMap);
+            DataList<Chell> resultJPS = solver.getPath(startX, startY, endX, endY);
 
             if (resultJPS != null) {
                 System.out.println("JPS");
                 if (resultJPS.size() > 1) {
-                    System.out.println("tarvittavia hyppyjä: " + (resultJPS.size() - 1));
-                    System.out.println("pituus oktaalilla liikkumisella: " + resultJPS.get(0).getDistanceToStart());
+                    System.out.println("Tarvittavia hyppyjä: " + (resultJPS.size() - 1));
+                    System.out.println("Pituus oktaalilla liikkumisella: " + resultJPS.get(0).getDistanceToStart());
                 } else {
-                    System.out.println("reittiä ei löydy!");
+                    System.out.println("Reittiä ei löydy!");
                 }
             } else {
-                System.out.println("tarvittavia tietoja ei ole määritelty!");
+                System.out.println("Tarvittavia tietoja ei ole määritelty!");
             }
         } else {
-            DataList<Chell> resultAStar = solver.getPathAStar(startX, startY, endX, endY);
+            solver = new AStar(asciiMap);
+            DataList<Chell> resultAStar = solver.getPath(startX, startY, endX, endY);
 
             if (resultAStar != null) {
                 System.out.println("A*");
                 if (resultAStar.size() > 1) {
-                    System.out.println("tarvittavia askelia: " + (resultAStar.size() - 1));
-                    System.out.println("pituus oktaalilla liikkumisella: " + resultAStar.get(0).getDistanceToStart());
+                    System.out.println("Tarvittavia askelia: " + (resultAStar.size() - 1));
+                    System.out.println("Pituus oktaalilla liikkumisella: " + resultAStar.get(0).getDistanceToStart());
                 } else {
-                    System.out.println("reittiä ei löydy!");
+                    System.out.println("Reittiä ei löydy!");
                 }
             } else {
-                System.out.println("tarvittavia tietoja ei ole määritelty!");
+                System.out.println("Tarvittavia tietoja ei ole määritelty!");
             }
         }
     }
@@ -130,98 +137,68 @@ public class RouteSolver {
     /**
      * Method is for testing time consumption off the path finding algorithm with different parameters.
      */
-    private static void speedTesting(Scanner lukija, Finder solver) {
+    private static void speedTesting(Scanner lukija) {
         System.out.print("JPS vai A*? ");
         String which = lukija.nextLine();
+        Finder solver;
 
-        System.out.print("aloitus x-koordinaatti: ");
-        int startX = Integer.parseInt(lukija.nextLine());
-
-        System.out.print("aloitus y-koordinaatti: ");
-        int startY = Integer.parseInt(lukija.nextLine());
-
-        System.out.print("lopetus x-koordinaatti: ");
-        int endX = Integer.parseInt(lukija.nextLine());
-
-        System.out.print("lopetus y-koordinaatti: ");
-        int endY = Integer.parseInt(lukija.nextLine());
+        int startX = readInt(lukija, "Aloitus x-koordinaatti: ");
+        int startY = readInt(lukija, "Aloitus y-koordinaatti: ");
+        int endX = readInt(lukija, "Lopetus x-koordinaatti: ");
+        int endY = readInt(lukija, "Lopetus y-koordinaatti: ");
 
         if (which.toLowerCase().contains("jps")) {
-            for (int i = 0; i < 10; i++) {
-                long timeInBegin = System.nanoTime();
-
-                DataList<Chell> result = solver.getPathJPS(startX, startY, endX, endY);
-
-                long timeInEnd = System.nanoTime();
-                double elapsedTime = timeInEnd - timeInBegin;
-                System.out.println("kierros: " + (i + 1) + ".");
-                if (elapsedTime < 3000000) {
-                    System.out.println("Operaatioon kului aikaa: " + elapsedTime + " nano sekuntia");
-                } else {
-                    System.out.println("Operaatioon kului aikaa: " + Math.floor(elapsedTime / 1000000) + " ms.");
-                }
-            }
+            solver = new JPS(asciiMap);
         } else {
-            for (int i = 0; i < 10; i++) {
-                long timeInBegin = System.nanoTime();
+            solver = new AStar(asciiMap);
+        }
 
-                DataList<Chell> result = solver.getPathAStar(startX, startY, endX, endY);
+        long timeInBegin = System.nanoTime();
 
-                long timeInEnd = System.nanoTime();
-                double elapsedTime = timeInEnd - timeInBegin;
-                System.out.println("kierros: " + (i + 1) + ".");
-                if (elapsedTime < 3000000) {
-                    System.out.println("Operaatioon kului aikaa: " + elapsedTime + " nano sekuntia");
-                } else {
-                    System.out.println("Operaatioon kului aikaa: " + Math.floor(elapsedTime / 1000000) + " ms.");
-                }
-            }
+        DataList<Chell> result = solver.getPath(startX, startY, endX, endY);
+
+        long timeInEnd = System.nanoTime();
+        double elapsedTime = timeInEnd - timeInBegin;
+
+        if (elapsedTime < 1000000) {
+            System.out.println("Operaatioon kului aikaa: " + elapsedTime + " nano sekuntia");
+        } else if (elapsedTime < 10000000) {
+            System.out.println("Operaatioon kului aikaa: " + (elapsedTime / 1000000) + " ms.");
+        } else {
+            System.out.println("Operaatioon kului aikaa: " + Math.floor(elapsedTime / 1000000) + " ms.");
         }
     }
 
     /**
      * Method is for testing memory consumption off the path finding algorithm with different parameters.
      */
-    private static void memoryTesting(Scanner lukija, Finder solver) {
+    private static void memoryTesting(Scanner lukija) {
         System.out.print("JPS vai A*? ");
         String which = lukija.nextLine();
+        Finder solver;
 
-        System.out.print("aloitus x-koordinaatti: ");
-        int startX = Integer.parseInt(lukija.nextLine());
-
-        System.out.print("aloitus y-koordinaatti: ");
-        int startY = Integer.parseInt(lukija.nextLine());
-
-        System.out.print("lopetus x-koordinaatti: ");
-        int endX = Integer.parseInt(lukija.nextLine());
-
-        System.out.print("lopetus y-koordinaatti: ");
-        int endY = Integer.parseInt(lukija.nextLine());
+        int startX = readInt(lukija, "Aloitus x-koordinaatti: ");
+        int startY = readInt(lukija, "Aloitus y-koordinaatti: ");
+        int endX = readInt(lukija, "Lopetus x-koordinaatti: ");
+        int endY = readInt(lukija, "Lopetus y-koordinaatti: ");
 
         if (which.toLowerCase().contains("jps")) {
-            DataList<Chell> result = solver.getPathJPS(startX, startY, endX, endY);
-
-            // Get the Java runtime
-            Runtime runtime = Runtime.getRuntime();
-            // Run the garbage collector
-            runtime.gc();
-            // Calculate the used memory
-
-            long memory = runtime.totalMemory() - runtime.freeMemory();
-            System.out.println("Used memory in bytes: " + memory);
-            System.out.println("Used memory in megabytes: " +  ((double) memory / (1024L * 1024L)));
+            solver = new JPS(asciiMap);
         } else {
-            DataList<Chell> result = solver.getPathAStar(startX, startY, endX, endY);
-
-            // Get the Java runtime
-            Runtime runtime = Runtime.getRuntime();
-            // Run the garbage collector
-            runtime.gc();
-            // Calculate the used memory
-
-            long memory = runtime.totalMemory() - runtime.freeMemory();
-            System.out.println("Used memory in bytes: " + memory);
-            System.out.println("Used memory in megabytes: " +  ((double) memory / (1024L * 1024L)));
+            solver = new AStar(asciiMap);
         }
+
+        DataList<Chell> result = solver.getPath(startX, startY, endX, endY);
+
+        // Get the Java runtime
+        Runtime runtime = Runtime.getRuntime();
+
+        // Run the garbage collector
+        runtime.gc();
+
+        // Calculate the used memory
+        long memory = runtime.totalMemory() - runtime.freeMemory();
+        System.out.println("Used memory in bytes: " + memory);
+        System.out.println("Used memory in megabytes: " +  ((double) memory / (1024L * 1024L)));
     }
 }

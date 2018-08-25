@@ -13,24 +13,24 @@ public class MinHeap<E>  {
     private int actualSize;
 
     public MinHeap() {
-        this.actualSize = 0;
-        this.elementData = new Object[10];
+        actualSize = 0;
+        elementData = new Object[10];
     }
 
     /**
      * Resize the array so that all elements can fit.
      */
     private void grow(double with) {
-        int newMax = (int) (this.elementData.length * with);
+        int newMax = (int) (elementData.length * with);
 
         if (newMax >= 10) {
             Object[] newList = new Object[newMax];
 
-            for (int i = 0; i < this.actualSize; i++) {
-                newList[i] = this.elementData[i];
+            for (int i = 0; i < actualSize; i++) {
+                newList[i] = elementData[i];
             }
 
-            this.elementData = newList;
+            elementData = newList;
         }
     }
 
@@ -40,7 +40,7 @@ public class MinHeap<E>  {
      * @return the number of elements in this queue.
      */
     public int size() {
-        return this.actualSize;
+        return actualSize;
     }
 
     /**
@@ -49,7 +49,7 @@ public class MinHeap<E>  {
      * @return {@code true} if this queue contains no elements
      */
     public boolean isEmpty() {
-        return this.actualSize == 0;
+        return actualSize == 0;
     }
 
     /**
@@ -62,33 +62,33 @@ public class MinHeap<E>  {
      * @return {@code true}
      */
     public boolean add(E e) {
-        if (this.actualSize == 0) {
-            this.elementData[1] = e;
-            this.actualSize++;
+        if (actualSize == 0) {
+            elementData[1] = e;
+            actualSize++;
             return true;
         } else {
-            this.actualSize++;
-            int index = this.actualSize;
+            actualSize++;
+            int index = actualSize;
             int parent = index / 2;
 
-            if (this.actualSize >= this.elementData.length) {
+            if (actualSize >= elementData.length) {
                 grow(4);
             }
 
             while (index > 1) {
-                Comparable<? super E> whereAt = (Comparable<? super E>) this.elementData[parent];
+                Comparable<? super E> whereAt = (Comparable<? super E>) elementData[parent];
 
                 if (whereAt.compareTo(e) <= 0) {
                     break;
                 } else {
-                    this.elementData[index] = whereAt;
+                    elementData[index] = whereAt;
                 }
 
                 index = parent;
                 parent = index / 2;
             }
 
-            this.elementData[index] = e;
+            elementData[index] = e;
 
             balance(index);
         }
@@ -105,31 +105,31 @@ public class MinHeap<E>  {
         int leftChild = 2 * index;
         int rightChild = 2 * index + 1;
 
-        if (rightChild <= this.actualSize) {
-            Comparable<? super E> left = (Comparable<? super E>) this.elementData[leftChild];
-            E right = (E) this.elementData[rightChild];
-            Comparable<? super E> parent = (Comparable<? super E>) this.elementData[index];
+        if (rightChild <= actualSize) {
+            Comparable<? super E> left = (Comparable<? super E>) elementData[leftChild];
+            E right = (E) elementData[rightChild];
+            Comparable<? super E> parent = (Comparable<? super E>) elementData[index];
 
             if (left.compareTo(right) < 0) {
                 if (parent.compareTo((E) left) > 0) {
-                    this.elementData[leftChild] = parent;
-                    this.elementData[index] = left;
+                    elementData[leftChild] = parent;
+                    elementData[index] = left;
                     balance(leftChild);
                 }
             } else {
                 if (parent.compareTo(right) > 0) {
-                    this.elementData[rightChild] = parent;
-                    this.elementData[index] = right;
+                    elementData[rightChild] = parent;
+                    elementData[index] = right;
                     balance(rightChild);
                 }
             }
-        } else if (leftChild == this.actualSize) {
-            Comparable<? super E> left = (Comparable<? super E>) this.elementData[leftChild];
-            Comparable<? super E> parent = (Comparable<? super E>) this.elementData[index];
+        } else if (leftChild == actualSize) {
+            Comparable<? super E> left = (Comparable<? super E>) elementData[leftChild];
+            Comparable<? super E> parent = (Comparable<? super E>) elementData[index];
 
             if (parent.compareTo((E) left) > 0) {
-                this.elementData[leftChild] = parent;
-                this.elementData[index] = left;
+                elementData[leftChild] = parent;
+                elementData[index] = left;
                 balance(leftChild);
             }
         }
@@ -155,7 +155,7 @@ public class MinHeap<E>  {
         int leftChild = 2 * index;
         int rightChild = 2 * index + 1;
 
-        E whereAt = (E) this.elementData[index];
+        E whereAt = (E) elementData[index];
         boolean left = false;
         boolean right = false;
 
@@ -163,11 +163,11 @@ public class MinHeap<E>  {
             return true;
         }
 
-        if (leftChild <= this.actualSize) {
+        if (leftChild <= actualSize) {
             left = find(leftChild, e);
         }
 
-        if (rightChild <= this.actualSize) {
+        if (rightChild <= actualSize) {
             right = find(rightChild, e);
         }
 
@@ -182,10 +182,10 @@ public class MinHeap<E>  {
      * sequence
      */
     public Object[] toArray() {
-        Object[] result = new Object[this.actualSize + 1];
+        Object[] result = new Object[actualSize + 1];
 
-        for (int i = 0; i < this.actualSize + 1; i++) {
-            result[i] = this.elementData[i];
+        for (int i = 0; i < actualSize + 1; i++) {
+            result[i] = elementData[i];
         }
 
         return result;
@@ -201,10 +201,10 @@ public class MinHeap<E>  {
         E result = peek();
 
         if (result != null) {
-            this.elementData[1] = this.elementData[this.actualSize];
-            this.actualSize--;
+            elementData[1] = elementData[actualSize];
+            actualSize--;
 
-            if ((this.actualSize / 3) < this.elementData.length) {
+            if ((actualSize / 3) < elementData.length) {
                 grow(1 / 2);
             }
 
@@ -221,8 +221,8 @@ public class MinHeap<E>  {
      * @return the head of this queue, or {@code null} if this queue is empty
      */
     public E peek() {
-        if (this.actualSize > 0) {
-            return (E) this.elementData[1];
+        if (actualSize > 0) {
+            return (E) elementData[1];
         } else {
             return null;
         }

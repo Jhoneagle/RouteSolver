@@ -40,20 +40,16 @@ public class MapTest {
                 "10011";
 
         insertMap(map);
-        char[][] matrix = this.reader.getMap(this.tempMapFile.getAbsolutePath());
-
         this.tempConfig.setWritable(true);
-        insertConfig("5", "5", "1", "0");
+        insertConfig("1", "0");
+        this.reader.getConfigs(this.tempConfig.getAbsolutePath());
 
-        Config configs = this.reader.getConfigs(this.tempConfig.getAbsolutePath());
-
-        this.asciiMap.setProperties(configs);
+        boolean[][] matrix = this.reader.getMap(this.tempMapFile.getAbsolutePath());
         this.asciiMap.setMap(matrix);
     }
 
     @Test
     public void dataOk() {
-        Assert.assertNotNull(this.asciiMap.getProperties());
         Assert.assertNotNull(this.asciiMap.getMap());
 
         Assert.assertEquals(5, this.asciiMap.getMapHeight());
@@ -126,41 +122,17 @@ public class MapTest {
         Assert.assertFalse((9 + (Math.sqrt(2) - 1) * 2) != this.asciiMap.getAproxDistance(4, 13, 19, 17));
     }
 
-    @Test
-    public void terrain() {
-        char[][] map = this.asciiMap.getMap();
-        map[1][2] = 'x';
-        map[4][4] = 'y';
-        this.asciiMap.setMap(map);
-
-        for (int y = 0; y < 5; y++) {
-            for (int x = 0; x < 5; x++) {
-                char current = map[y][x];
-
-                if (current == '1') {
-                    Assert.assertEquals(1, (long) this.asciiMap.isWalkable(x, y));
-                } else if (current == '0') {
-                    Assert.assertEquals(-1, (long) this.asciiMap.isWalkable(x, y));
-                } else {
-                    Assert.assertEquals(0, (long) this.asciiMap.isWalkable(x, y));
-                }
-            }
-        }
-    }
-
     @After
     public void restore() {
         this.tempConfig.delete();
         this.tempMapFile.delete();
     }
 
-    private void insertConfig(String x, String y, String bass, String unbass) {
+    private void insertConfig(String bass, String unbass) {
         FileWriter writer;
         try {
             writer = new FileWriter(this.tempConfig);
-            writer.write("x=" + x + "\n" +
-                    "y=" + y + "\n" +
-                    "bassable=" + bass + "\n" +
+            writer.write("bassable=" + bass + "\n" +
                     "unbassable=" + unbass + "");
             writer.close();
         } catch (IOException ex) {

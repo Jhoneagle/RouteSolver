@@ -1,6 +1,5 @@
 package johneagle.routesolve.filesystem;
 
-import johneagle.routesolve.domain.Config;
 import johneagle.routesolve.library.DataList;
 
 import java.io.FileInputStream;
@@ -17,7 +16,12 @@ import java.util.Properties;
  */
 public class Reader {
 
+    private char[] walkable;
+    private char[] unwalkable;
+
     public Reader() {
+        walkable = new char[0];
+        unwalkable = new char[0];
     }
 
     /**
@@ -42,15 +46,17 @@ public class Reader {
     }
 
     /**
-     * First asks the lines from the file and then forms an character matrix of it.
+     * First asks the lines from the file and then forms an boolean matrix of it by using the info from config file.
+     * If found ascii symbol that it doesn't know then returns null.
      *
      * @see Reader#readAll(String)
+     * @see Reader#typeValue(char)
      *
      * @param mapfile   Map that needs to be formulated to ascii grid.
      *
-     * @return Character matrix
+     * @return boolean matrix
      */
-    public char[][] getMap(String mapfile) {
+    public boolean[][] getMap(String mapfile) {
         DataList<String> lines = readAll(mapfile);
         int rows = lines.size();
 
@@ -60,13 +66,22 @@ public class Reader {
 
         String line = lines.get(0);
         int columns = line.length();
-        char[][] map = new char[rows][columns];
+        boolean[][] map = new boolean[rows][columns];
 
         for (int y = 0; y < rows; y++) {
             line = lines.get(y);
 
             for (int x = 0; x < columns; x++) {
-                map[y][x] = line.charAt(x);
+                char current = line.charAt(x);
+                int value = typeValue(current);
+
+                if (value < 0) {
+                    map[y][x] = false;
+                } else if (value > 0) {
+                    map[y][x] = true;
+                } else {
+                    return null;
+                }
             }
         }
 
@@ -74,28 +89,44 @@ public class Reader {
     }
 
     /**
-     * Returns Config object of the properties file that is declared by the param.
+     * If walkable returns 1 and if not bassable then -1. Otherwise 0 because symbol is not in the known ones.
      *
-     * @see Config
+     * @param type  ascii symbol
+     *
+     * @return Integer
+     */
+    private int typeValue(char type) {
+        for (int i = 0; i < walkable.length; i++) {
+            if (type == walkable[i]) {
+                return 1;
+            }
+        }
+
+        for (int i = 0; i < unwalkable.length; i++) {
+            if (type == unwalkable[i]) {
+                return -1;
+            }
+        }
+
+        return 0;
+    }
+
+    /**
+     * Reads properties file that is declared by the param and stores the info for use.
      *
      * @param configFileName    Name of the configuration/properties file.
-     *
-     * @return Config object
      */
-    public Config getConfigs(String configFileName) {
+    public void getConfigs(String configFileName) {
         Properties properties = new Properties();
 
         try {
             properties.load(new FileInputStream(configFileName));
 
-            int x = Integer.parseInt(properties.getProperty("x"));
-            int y = Integer.parseInt(properties.getProperty("y"));
-
             String[] walk = properties.getProperty("bassable").split(",");
             String[] unwalk = properties.getProperty("unbassable").split(",");
 
-            char[] walkable = new char[walk.length];
-            char[] unwalkable = new char[unwalk.length];
+            walkable = new char[walk.length];
+            unwalkable = new char[unwalk.length];
 
             for (int i = 0; i < walk.length; i++) {
                 walkable[i] = walk[i].charAt(0);
@@ -104,11 +135,8 @@ public class Reader {
             for (int i = 0; i < unwalk.length; i++) {
                 unwalkable[i] = unwalk[i].charAt(0);
             }
-
-            Config configs = new Config(x, y, walkable, unwalkable);
-            return configs;
         } catch (Exception e) {
-            return null;
+            System.out.println("väärin määritelty config file!");
         }
     }
 }

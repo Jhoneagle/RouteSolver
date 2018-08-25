@@ -5,33 +5,21 @@ package johneagle.routesolve.domain;
  * Uses configurations given to it to know about ascii types purposes.
  * Also gives manhattan distance estimation between coordinates and simple has to represent matrix as a line.
  *
- * @see Config
- *
  * @author Johneagle
  */
 public class Map {
-    private char[][] map;
-    private Config properties;
+    private boolean[][] map;
 
     public Map() {
-        this.map = null;
-        this.properties = null;
+        map = null;
     }
 
-    public char[][] getMap() {
+    public boolean[][] getMap() {
         return map;
     }
 
-    public Config getProperties() {
-        return properties;
-    }
-
-    public void setMap(char[][] map) {
+    public void setMap(boolean[][] map) {
         this.map = map;
-    }
-
-    public void setProperties(Config properties) {
-        this.properties = properties;
     }
 
     /**
@@ -43,15 +31,23 @@ public class Map {
      * @return Integer
      */
     public int hash(int x, int y) {
-        return y * this.properties.getX() + x;
+        return y * map[0].length + x;
     }
 
     public int getMapHeight() {
-        return this.properties.getY();
+        if (map != null) {
+            return map.length;
+        } else {
+            return 0;
+        }
     }
 
     public int getMapWeight() {
-        return this.properties.getX();
+        if (map != null) {
+            return map[0].length;
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -60,11 +56,11 @@ public class Map {
      * @param x     x-coordinate
      * @param y     y-coordinate
      *
-     * @return {@code true} if cordinates are inside the map
+     * @return {@code true} if coordinates are inside the map
      */
     public boolean isInsideMap(int x, int y) {
-        int mapHeight = this.properties.getY();
-        int mapWeight = this.properties.getX();
+        int mapHeight = getMapHeight();
+        int mapWeight = getMapWeight();
 
         if (x >= 0 && x < mapWeight) {
             if (y >= 0 && y < mapHeight) {
@@ -78,35 +74,15 @@ public class Map {
     }
 
     /**
-     * Tells if the place in the grid is walkable according to configurations.
-     * IF you can bass it return is 1, if you cant it's -1 and those that can't be recognize are 0.
-     *
-     * @see Config#getWalkable()
-     * @see Config#getUnwalkable()
+     * Tells if the place in the grid is walkable.
      *
      * @param x     x-coordinate
      * @param y     y-coordinate
      *
-     * @return Integer
+     * @return {@code true} if place is walkable
      */
-    public Integer isWalkable(int x, int y) {
-        char type = this.map[y][x];
-        char[] walkable = this.properties.getWalkable();
-        char[] unwalkable = this.properties.getUnwalkable();
-
-        for (int i = 0; i < walkable.length; i++) {
-            if (type == walkable[i]) {
-                return 1;
-            }
-        }
-
-        for (int i = 0; i < unwalkable.length; i++) {
-            if (type == unwalkable[i]) {
-                return -1;
-            }
-        }
-
-        return 0;
+    public boolean isWalkable(int x, int y) {
+        return map[y][x];
     }
 
     /**
@@ -121,24 +97,17 @@ public class Map {
      * @return Integer
      */
     public double getValueForMovement(int fromX, int fromY, int whereX, int whereY) {
-        if (fromX == whereX + 1 && fromY == whereY + 1) {
-            return Math.sqrt(2);
-        } else if (fromX == whereX + 1 && fromY == whereY - 1) {
-            return Math.sqrt(2);
-        } else if (fromX == whereX - 1 && fromY == whereY + 1) {
-            return Math.sqrt(2);
-        } else if (fromX == whereX - 1 && fromY == whereY - 1) {
-            return Math.sqrt(2);
-        }
+        int dx = fromX - whereX;
+        int dy = fromY - whereY;
 
-        if (fromX == whereX && fromY == whereY + 1) {
-            return 1;
-        } else if (fromX == whereX && fromY == whereY - 1) {
-            return 1;
-        } else if (fromX == whereX - 1 && fromY == whereY) {
-            return 1;
-        } else if (fromX == whereX + 1 && fromY == whereY) {
-            return 1;
+        if (dx <= 1 && dx >= -1 && dy <= 1 && dy >= -1) {
+            if (dx != 0 && dy != 0) {
+                return Math.sqrt(2);
+            }
+
+            if (dx != 0 || dy != 0) {
+                return 1;
+            }
         }
 
         return 0;

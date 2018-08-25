@@ -37,5 +37,6 @@
 21.8 | 5 | testausdokumentti
 23.8 | 5,5 | dokumentaatiota
 24.8 | 1 | raportti
-total | 104
+25.8 | 5 | refaktorointia katselmointi paulautteen perusteella
+total | 109
 

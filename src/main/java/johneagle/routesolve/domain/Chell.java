@@ -17,7 +17,7 @@ public class Chell implements Comparable<Chell> {
     public Chell(int x, int y) {
         this.x = x;
         this.y = y;
-        this.visited = false;
+        visited = false;
     }
 
     public int getX() {
@@ -45,7 +45,7 @@ public class Chell implements Comparable<Chell> {
     }
 
     public void setVisited() {
-        this.visited = true;
+        visited = true;
     }
 
     public boolean isVisited() {

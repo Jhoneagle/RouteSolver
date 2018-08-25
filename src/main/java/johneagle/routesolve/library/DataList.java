@@ -14,26 +14,26 @@ public class DataList<E> {
     private int actualSize;
 
     public DataList() {
-        this.maxSize = 10;
-        this.actualSize = 0;
-        this.elementData = new Object[this.maxSize];
+        maxSize = 10;
+        actualSize = 0;
+        elementData = new Object[maxSize];
     }
 
     /**
      * Resize the array so that all elements can fit.
      */
     private void grow(double with) {
-        int newMax = (int) (this.maxSize * with);
+        int newMax = (int) (maxSize * with);
 
         if (newMax >= 10) {
-            this.maxSize = newMax;
-            Object[] newList = new Object[this.maxSize];
+            maxSize = newMax;
+            Object[] newList = new Object[maxSize];
 
-            for (int i = 0; i < this.actualSize; i++) {
-                newList[i] = this.elementData[i];
+            for (int i = 0; i < actualSize; i++) {
+                newList[i] = elementData[i];
             }
 
-            this.elementData = newList;
+            elementData = newList;
         }
     }
 
@@ -43,7 +43,7 @@ public class DataList<E> {
      * @return the number of elements in this list
      */
     public int size() {
-        return this.actualSize;
+        return actualSize;
     }
 
     /**
@@ -52,7 +52,7 @@ public class DataList<E> {
      * @return {@code true} if this list contains no elements
      */
     public boolean isEmpty() {
-        return this.actualSize == 0;
+        return actualSize == 0;
     }
 
     /**
@@ -76,10 +76,10 @@ public class DataList<E> {
      * sequence
      */
     public Object[] toArray() {
-        Object[] result = new Object[this.actualSize];
+        Object[] result = new Object[actualSize];
 
-        for (int i = 0; i < this.actualSize; i++) {
-            result[i] = this.elementData[i];
+        for (int i = 0; i < actualSize; i++) {
+            result[i] = elementData[i];
         }
 
         return result;
@@ -93,12 +93,12 @@ public class DataList<E> {
      * @return {@code true}
      */
     public boolean add(E e) {
-        if (this.actualSize >= this.maxSize) {
+        if (actualSize >= maxSize) {
             grow(2);
         }
 
-        this.elementData[this.actualSize] = e;
-        this.actualSize++;
+        elementData[actualSize] = e;
+        actualSize++;
 
         return true;
     }
@@ -111,22 +111,22 @@ public class DataList<E> {
      * @return element that was just removed.
      */
     public E remove(int index) {
-        if (this.actualSize < (this.maxSize / 2)) {
+        if (actualSize < (maxSize / 2)) {
             double half = 1.0 / 2.0;
             grow(half);
         }
 
         E found = null;
 
-        if (index >= 0 && index < this.actualSize) {
-            found = (E) this.elementData[index];
-            this.actualSize--;
+        if (index >= 0 && index < actualSize) {
+            found = (E) elementData[index];
+            actualSize--;
 
-            for (int i = index; i < this.actualSize; i++) {
-                this.elementData[i] = this.elementData[i + 1];
+            for (int i = index; i < actualSize; i++) {
+                elementData[i] = elementData[i + 1];
             }
 
-            this.elementData[this.actualSize + 1] = null;
+            elementData[actualSize + 1] = null;
         }
 
         return found;
@@ -146,13 +146,13 @@ public class DataList<E> {
      * @return {@code true} if this list contained the specified element
      */
     public boolean remove(Object o) {
-        if (this.actualSize < (this.maxSize / 3)) {
+        if (actualSize < (maxSize / 3)) {
             double half = 1 / 2;
             grow(half);
         }
 
-        for (int i = 0; i < this.actualSize; i++) {
-            Object current = this.elementData[i];
+        for (int i = 0; i < actualSize; i++) {
+            Object current = elementData[i];
             if (o.equals(current)) {
                 remove(i);
                 return true;
@@ -167,9 +167,9 @@ public class DataList<E> {
      * The list will be empty after this call returns.
      */
     public void clear() {
-        this.actualSize = 0;
-        this.maxSize = 10;
-        this.elementData = new Object[this.maxSize];
+        actualSize = 0;
+        maxSize = 10;
+        elementData = new Object[maxSize];
     }
 
     /**
@@ -179,8 +179,8 @@ public class DataList<E> {
      * @return the element at the specified position in this list
      */
     public E get(int index) {
-        if (index >= 0 && index < this.actualSize) {
-            return (E) this.elementData[index];
+        if (index >= 0 && index < actualSize) {
+            return (E) elementData[index];
         } else {
             return null;
         }
@@ -195,9 +195,9 @@ public class DataList<E> {
      * @return the element previously at the specified position
      */
     public E set(int index, E element) {
-        if (index >= 0 && index < this.actualSize) {
-            E result = (E) this.elementData[index];
-            this.elementData[index] = element;
+        if (index >= 0 && index < actualSize) {
+            E result = (E) elementData[index];
+            elementData[index] = element;
 
             return result;
         } else {
@@ -219,14 +219,14 @@ public class DataList<E> {
 
     public int indexOf(Object o) {
         if (o == null) {
-            for (int i = 0; i < this.actualSize; i++) {
-                if (this.elementData[i] == null) {
+            for (int i = 0; i < actualSize; i++) {
+                if (elementData[i] == null) {
                     return i;
                 }
             }
         } else {
-            for (int i = 0; i < this.actualSize; i++) {
-                if (o.equals(this.elementData[i])) {
+            for (int i = 0; i < actualSize; i++) {
+                if (o.equals(elementData[i])) {
                     return i;
                 }
             }
@@ -245,7 +245,7 @@ public class DataList<E> {
     public E pop() {
         E result = peek();
         if (result != null) {
-            remove(this.actualSize - 1);
+            remove(actualSize - 1);
         }
 
         return result;
@@ -257,8 +257,8 @@ public class DataList<E> {
      * @return gives the top element so last added one or null if empty.
      */
     public E peek() {
-        if (this.actualSize > 0) {
-            return (E) this.elementData[this.actualSize - 1];
+        if (actualSize > 0) {
+            return (E) elementData[actualSize - 1];
         } else {
             return null;
         }
