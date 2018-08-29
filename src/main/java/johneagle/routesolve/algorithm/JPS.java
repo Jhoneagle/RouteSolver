@@ -16,6 +16,7 @@ import johneagle.routesolve.library.MinHeap;
  * @author Johneagle
  */
 public class JPS extends Finder {
+
     public JPS(Map map) {
         super(map);
     }

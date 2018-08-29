@@ -15,6 +15,7 @@ import johneagle.routesolve.library.MinHeap;
  * @author Johneagle
  */
 public class AStar extends Finder {
+
     public AStar(Map map) {
         super(map);
     }

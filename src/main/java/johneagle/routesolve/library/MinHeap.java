@@ -89,8 +89,6 @@ public class MinHeap<E>  {
             }
 
             elementData[index] = e;
-
-            balance(index);
         }
 
         return true;

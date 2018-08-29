@@ -1,22 +1,17 @@
 package johneagle.routesolve.filesystem;
 
-import org.junit.*;
-import org.junit.rules.TemporaryFolder;
+import johneagle.routesolve.TempFile;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ReaderTest {
+public class ReaderTest extends TempFile {
 
-    private File tempConfig;
-    private File tempMapFile;
     private Reader reader;
-
-    @Rule
-    public TemporaryFolder tempFolder = new TemporaryFolder();
 
     @Before
     public void setUp() {
@@ -117,34 +112,5 @@ public class ReaderTest {
         boolean[][] matrix = this.reader.getMap(this.tempMapFile.getAbsolutePath());
 
         Assert.assertNull(matrix);
-    }
-
-    @After
-    public void restore() {
-        this.tempConfig.delete();
-        this.tempMapFile.delete();
-    }
-
-    private void insertConfig(String bass, String unbass) {
-        FileWriter writer;
-        try {
-            writer = new FileWriter(this.tempConfig);
-            writer.write("bassable=" + bass + "\n" +
-                    "unbassable=" + unbass + "");
-            writer.close();
-        } catch (IOException ex) {
-            Logger.getLogger(ReaderTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private void insertMap(String data) {
-        FileWriter writer;
-        try {
-            writer = new FileWriter(this.tempMapFile);
-            writer.write(data);
-            writer.close();
-        } catch (IOException ex) {
-            Logger.getLogger(ReaderTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 }

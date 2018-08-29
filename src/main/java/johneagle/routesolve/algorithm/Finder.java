@@ -25,7 +25,7 @@ public abstract class Finder {
     }
 
     /**
-     * Abstract method that all subclasses have to provide to make initialization of the path solving easier.
+     * Method that for pathfinding algorithm.
      *
      * @param startX    Begging x-coordinate.
      * @param startY    Begging y-coordinate.
@@ -37,7 +37,7 @@ public abstract class Finder {
     public abstract DataList<Chell> getPath(int startX, int startY, int endX, int endY);
 
     /**
-     * Does the preparations for pathfinding algorithms that they need before starting.
+     * Does the preparations for pathfinding algorithm.
      *
      * @param startX    Begging x-coordinate.
      * @param startY    Begging y-coordinate.
@@ -50,7 +50,7 @@ public abstract class Finder {
         if (map.getMap() == null) {
             return null;
         }
-
+        
         int mapHeight = map.getMapHeight();
         int mapWeight = map.getMapWeight();
 

@@ -1,24 +1,19 @@
 package johneagle.routesolve.domain;
 
+import johneagle.routesolve.TempFile;
 import johneagle.routesolve.filesystem.Reader;
-import org.junit.*;
-import org.junit.rules.TemporaryFolder;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MapTest {
+public class MapTest extends TempFile {
 
     private Map asciiMap;
-    private File tempConfig;
-    private File tempMapFile;
     private Reader reader;
-
-    @Rule
-    public TemporaryFolder tempFolder = new TemporaryFolder();
 
     @Before
     public void setUp() throws Exception {
@@ -120,34 +115,5 @@ public class MapTest {
         Assert.assertFalse((5 + (Math.sqrt(2) - 1) * 3) != this.asciiMap.getAproxDistance(5, 8, 3, 8));
         Assert.assertFalse((17 + (Math.sqrt(2) - 1) * 7) != this.asciiMap.getAproxDistance(7, 0, 17, 0));
         Assert.assertFalse((9 + (Math.sqrt(2) - 1) * 2) != this.asciiMap.getAproxDistance(4, 13, 19, 17));
-    }
-
-    @After
-    public void restore() {
-        this.tempConfig.delete();
-        this.tempMapFile.delete();
-    }
-
-    private void insertConfig(String bass, String unbass) {
-        FileWriter writer;
-        try {
-            writer = new FileWriter(this.tempConfig);
-            writer.write("bassable=" + bass + "\n" +
-                    "unbassable=" + unbass + "");
-            writer.close();
-        } catch (IOException ex) {
-            Logger.getLogger(MapTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private void insertMap(String data) {
-        FileWriter writer;
-        try {
-            writer = new FileWriter(this.tempMapFile);
-            writer.write(data);
-            writer.close();
-        } catch (IOException ex) {
-            Logger.getLogger(MapTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 }
