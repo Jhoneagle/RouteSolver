@@ -16,17 +16,17 @@ Lyhimmän reitin ascii-kartalla etsivä ohjelma, joka käyttää sekä A*, että
 
 ## Viikkoraportit
 
-[Viikkoraportti 1](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/raportit/viikko1.md)
+[Viikkoraportti 1](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/reports/viikko1.md)
 
-[Viikkoraportti 2](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/raportit/viikko2.md)
+[Viikkoraportti 2](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/reports/viikko2.md)
 
-[Viikkoraportti 3](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/raportit/viikko3.md)
+[Viikkoraportti 3](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/reports/viikko3.md)
 
-[Viikkoraportti 4](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/raportit/viikko4.md)
+[Viikkoraportti 4](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/reports/viikko4.md)
 
-[Viikkoraportti 5](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/raportit/viikko5.md)
+[Viikkoraportti 5](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/reports/viikko5.md)
 
-[Viikkoraportti 6](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/raportit/viikko6.md)
+[Viikkoraportti 6](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/reports/viikko6.md)
 
 ## Komentorivitoiminnot
 

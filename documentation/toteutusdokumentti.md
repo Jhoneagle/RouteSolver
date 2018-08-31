@@ -1,4 +1,4 @@
-# Toteutusdokumentti
+﻿# Toteutusdokumentti
 
 Projekti koostuu käyttöliittymästä, kahdesta reitinhaku algoritmista, tiedoston lukemisesta sekä luoduista tietorakenteista. 
 
@@ -32,7 +32,7 @@ Keskiverto ja parhaimmassa tapauksessa A*:lla ja JPS:llä kuitenkin ero muuttuu 
 
 ### Suorituskyky vertailu
 
-Toteutusten varsinaisen suorituskyky testailun tulokset löytyvät [Täältä](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/testausdokumentti.md#suorituskyky-testaus).
+Toteutusten varsinaisen suorituskyky testailun tulokset löytyvät [täältä](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/testausdokumentti.md#suorituskyky-testaus).
 
 Tuloksista näkee 
 

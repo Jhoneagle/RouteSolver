@@ -4,7 +4,7 @@
 
 Projektin testien rivikattavuus on 97% ja haarautumakattavuus on 87%. 
 
-![testikattavuus](kuvat/testikattavuus.jpg)
+![testikattavuus](images/testikattavuus.jpg)
 
 Haarautumakattavuuden osalta domain on heikoin alue projektista 78%. Monet haarautumista joita testeissä ei käydä läpi on hankala testata. Monesti ne ovat vain jokin erikoistapaus tai vähän käytetty toiminto. Näiden testaaminen kuitenkin voisi tulla oleelliseksi siinä tapauksessa, että niiden merkitys kasvaa. Sillä yleisesti ottaen haarautumakattavuus on kuitenkin hyvä olennaisissa osissa.
 
@@ -60,4 +60,29 @@ Käytetty kartta on seuraavanlainen
 ```
 
 ## Suorituskyky testaus
+
+### Tausta
+
+Suorituskyky testaus on toteutettu sisäänrakennetusti ohjelmaan. Näihin pääsee käsiksi ohjelmaa suorittaessa antamalla oikeat parametrit suorituskäskyn perään. Tarvittavat 4 parametria ovat
+
+```
+java -jar *jar-tiedoston nimi* *kartta* *reitit* *testin tyyppi* *algoritmi*
+```
+
+Missä "jar tiedoston nimi" on oletus arvoisesti _RouteSolver-1.0-SNAPSHOT.jar_, jos se on generoitu projekti koodista. Taas "kartta" tarkoittaa tiedoston nimeä, jossa ascii kartta on. "reitit" sen sijaan edustaa tiedostoa, jossa kaikki kartan testattavat reitit löytyvät. "testin tyyppi" on joko _time_ tai _memory_ ja "algoritmi" on joko _a*_ tai _jps_. Jos parametrit eivät ole valideja, niin ohjelma vain antaa ilmoituksen virheestä tai ei tee mitään. Reitti teidoston formaatti on seuraavanlainen
+
+```
+*neljä sanaa/numeroa* *lähtö x* *lähtö y* *maali x* *maali y*
+*neljä sanaa/numeroa* *lähtö x* *lähtö y* *maali x* *maali y*
+*neljä sanaa/numeroa* *lähtö x* *lähtö y* *maali x* *maali y*
+*neljä sanaa/numeroa* *lähtö x* *lähtö y* *maali x* *maali y*
+```
+
+Alussa pitää olla neljä vapaa valintaista 'sanaa/numeroa' ja välilyöntien tilalla pitää olla tabi. Sillä tällöin, jos käyttää esim. MovingAILabin valmiita scenaario tiedostoja ja karttoja, niin scenaario tiedostoille ei tarvitse tehdä mitään.
+
+### Testaus
+
+Suorituskyky testaus muistin ja suoritusajan osalta A* ja JPS tehtiin viiden kartan kohdalla lukuisilla reiteillä. Kartat löytyvät [täältä](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/performanceMaps) ja scenaariot eli reitit löytyvät niihin [täältä](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/performanceRoutes).
+
+
 

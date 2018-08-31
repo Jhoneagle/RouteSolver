@@ -1,4 +1,4 @@
-package johneagle.routesolve.ui;
+﻿package johneagle.routesolve.ui;
 
 import johneagle.routesolve.algorithm.AStar;
 import johneagle.routesolve.algorithm.Finder;
@@ -30,6 +30,7 @@ public class RouteSolver {
         Reader fileReader = new Reader();
         fileReader.getConfigs("config/config.properties");
 
+	// if want performance testing
         if (args.length >= 4) {
             String test = args[2];
             String mapName = args[0];
@@ -49,6 +50,8 @@ public class RouteSolver {
             return;
         }
 
+	//otherwise normal run
+	
         instructions();
         while(true) {
             System.out.print("> ");
