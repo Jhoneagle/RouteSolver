@@ -82,7 +82,9 @@ Alussa pitää olla neljä vapaa valintaista 'sanaa/numeroa' ja välilyöntien t
 
 ### Toteutus
 
-Suorituskyky testaus muistin ja suoritusajan osalta A* ja JPS tehtiin viiden kartan kohdalla lukuisilla reiteillä. Kartat löytyvät [täältä](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/performanceMaps) ja scenaariot eli reitit löytyvät niihin [täältä](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/performanceRoutes).
+Suorituskyky testaus muistin ja suoritusajan osalta A* ja JPS tehtiin viiden kartan kohdalla lukuisilla reiteillä. Kartat löytyvät [täältä](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/performanceMaps) ja scenaariot eli reitit löytyvät niihin [täältä](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/performanceRoutes). 
+
+Kuvaajia varten dataa jouduttiin kuitenkin supistamaan ennen piirtoa. Aluksi kaikki järjestettiin reitin pituuden mukaan pienimmästä suurinpaan. Tämän jälkeen kahdessa pienemmässä kartassa: aina kuuden peräkäisen ajan keston/käytetyn muistin sekä reitin pituuden arvoista laskettiin keskiarvo. Taas y512x512 tehtiin samoin, mutta aina kymmenen peräkäisen kohdalla ja kahdessa viimeisessä sen sijaan 20 välein. Näin saatiin klusteroitua läheisten pituuksien suorituskyky tuloksia yhteen ja samalla tasoitettua merkittävimpiä poikeamia pois. Kuvaajissa y-akselina on joko suoritusaika tai käytetty muisti ja x-akseli on polun pituus. y-akselin yksikkö on _millisekunneissa_ suoritusajassa ja _megatavuja_ muistin käytössä. 
 
 ### Tulokset
 
