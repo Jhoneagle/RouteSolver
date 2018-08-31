@@ -47,7 +47,7 @@ public class RouteSolver {
 
             testPerformance(test, scenarios, args[3]);
 
-            return;
+            return; // close program after test
         }
 
 	//otherwise normal run
@@ -93,7 +93,9 @@ public class RouteSolver {
         }
     }
 
-
+    /**
+     * Makes sure user gives number.
+     */
     private static int readInt(Scanner lukija, String msg) {
         int result;
         System.out.print(msg);

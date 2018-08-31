@@ -26,6 +26,8 @@ bassable=1
 unbassable=@,0,.,E
 ```
 
+Esimerkki tiedosto löytyy [täältä](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/example/config.properties).
+
 #### Kartta
 
 Karttojen tiedosto muodolla ei itsessään ole väliä kunhan tiedosto on tyylitön tekstitiedosto. Hyviä muotoja on esimerkiksi _.map_, _.txt_ ja _.md_. Sisällöksi tiedostolle asetetaan pelkästään ascii-merkiestä luotu matriisi, joka vastaa kooltaan konfiguraation koko tietoja.
