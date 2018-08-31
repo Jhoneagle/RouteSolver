@@ -26,6 +26,8 @@ Lyhimmän reitin ascii-kartalla etsivä ohjelma, joka käyttää sekä A*, että
 
 [Viikkoraportti 5](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/raportit/viikko5.md)
 
+[Viikkoraportti 6](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/raportit/viikko6.md)
+
 ## Komentorivitoiminnot
 
 ### Testaus

@@ -30,11 +30,12 @@ public class RouteSolver {
         Reader fileReader = new Reader();
         fileReader.getConfigs("config/config.properties");
 
-        if (args.length >= 2) {
-            String test = args[0];
-            String mapName = args[1];
+        if (args.length >= 4) {
+            String test = args[2];
+            String mapName = args[0];
 
             boolean[][] map = fileReader.getMap("mapFiles/" + mapName);
+            DataList<String> scenarios = fileReader.readAll(args[1]);
 
             if (map == null) {
                 System.out.println("Karttaa ei löydetty!");
@@ -43,13 +44,7 @@ public class RouteSolver {
                 asciiMap.setMap(map);
             }
 
-            if (test.contains("time")) {
-                speedTesting(lukija);
-            } else if (test.contains("memory")) {
-                memoryTesting(lukija);
-            } else {
-                System.out.println("Testin tyyppiä ei tunnistettu!");
-            }
+            testPerformance(test, scenarios, args[3]);
 
             return;
         }
@@ -107,7 +102,7 @@ public class RouteSolver {
                 result = Integer.parseInt(number);
                 return result;
             } catch (Exception e) {
-                System.out.println("virheellinen arvo!");
+                System.out.println("Virheellinen arvo!");
                 System.out.print(msg);
             }
         }
@@ -157,17 +152,10 @@ public class RouteSolver {
     }
 
     /**
-     * Method is for testing time consumption off the path finding algorithm with different parameters.
+     * Testing performance from now on.
      */
-    private static void speedTesting(Scanner lukija) {
-        System.out.print("JPS vai A*? ");
-        String which = lukija.nextLine();
+    private static void testPerformance(String test, DataList<String> scenarios, String which) {
         Finder solver;
-
-        int startX = readInt(lukija, "Aloitus x-koordinaatti: ");
-        int startY = readInt(lukija, "Aloitus y-koordinaatti: ");
-        int endX = readInt(lukija, "Lopetus x-koordinaatti: ");
-        int endY = readInt(lukija, "Lopetus y-koordinaatti: ");
 
         if (which.toLowerCase().contains("jps")) {
             solver = new JPS(asciiMap);
@@ -175,52 +163,80 @@ public class RouteSolver {
             solver = new AStar(asciiMap);
         }
 
-        long timeInBegin = System.nanoTime();
-
-        DataList<Chell> result = solver.getPath(startX, startY, endX, endY);
-
-        long timeInEnd = System.nanoTime();
-        double elapsedTime = timeInEnd - timeInBegin;
-
-        if (elapsedTime < 1000000) {
-            System.out.println("Operaatioon kului aikaa: " + elapsedTime + " nano sekuntia");
-        } else if (elapsedTime < 10000000) {
-            System.out.println("Operaatioon kului aikaa: " + (elapsedTime / 1000000) + " ms.");
+        if (test.contains("time")) {
+            speedTesting(scenarios, solver);
+        } else if (test.contains("memory")) {
+            memoryTesting(scenarios, solver);
         } else {
-            System.out.println("Operaatioon kului aikaa: " + Math.floor(elapsedTime / 1000000) + " ms.");
+            System.out.println("Testin tyyppiä ei tunnistettu!");
+        }
+    }
+
+    /**
+     * Method is for testing time consumption off the path finding algorithm with different parameters.
+     */
+    private static void speedTesting(DataList<String> scenarios, Finder solver) {
+        for (int i = 0; i < scenarios.size(); i++) {
+            String[] line = scenarios.get(i).split("\t");
+
+            int startX = Integer.parseInt(line[4]);
+            int startY = Integer.parseInt(line[5]);
+            int endX = Integer.parseInt(line[6]);
+            int endY = Integer.parseInt(line[7]);
+
+            double sum = 0;
+            DataList<Chell> result = solver.getPath(startX, startY, endX, endY);
+
+            for (int index = 0; index < 10; index++) {
+                long timeInBegin = System.nanoTime();
+
+                solver.getPath(startX, startY, endX, endY);
+
+                long timeInEnd = System.nanoTime();
+                double elapsedTime = timeInEnd - timeInBegin;
+
+                sum += elapsedTime;
+            }
+
+            sum /= 10;
+            System.out.println(result.get(0).getDistanceToStart() + " - " + (sum / 1000000) + " ms");
         }
     }
 
     /**
      * Method is for testing memory consumption off the path finding algorithm with different parameters.
      */
-    private static void memoryTesting(Scanner lukija) {
-        System.out.print("JPS vai A*? ");
-        String which = lukija.nextLine();
-        Finder solver;
+    private static void memoryTesting(DataList<String> scenarios, Finder solver) {
+        for (int i = 0; i < scenarios.size(); i++) {
+            String[] line = scenarios.get(i).split("\t");
 
-        int startX = readInt(lukija, "Aloitus x-koordinaatti: ");
-        int startY = readInt(lukija, "Aloitus y-koordinaatti: ");
-        int endX = readInt(lukija, "Lopetus x-koordinaatti: ");
-        int endY = readInt(lukija, "Lopetus y-koordinaatti: ");
+            int startX = Integer.parseInt(line[4]);
+            int startY = Integer.parseInt(line[5]);
+            int endX = Integer.parseInt(line[6]);
+            int endY = Integer.parseInt(line[7]);
 
-        if (which.toLowerCase().contains("jps")) {
-            solver = new JPS(asciiMap);
-        } else {
-            solver = new AStar(asciiMap);
+            double sum = 0;
+            DataList<Chell> result = solver.getPath(startX, startY, endX, endY);
+
+            // Get the Java runtime
+            Runtime runtime = Runtime.getRuntime();
+
+            // Run the garbage collector before starting
+            runtime.gc();
+
+            for (int index = 0; index < 10; index++) {
+                solver.getPath(startX, startY, endX, endY);
+
+                // Run the garbage collector to get usd memory
+                runtime.gc();
+
+                // Calculate the used memory
+                long memory = runtime.totalMemory() - runtime.freeMemory();
+                sum += memory;
+            }
+
+            sum /= 10;
+            System.out.println(result.get(0).getDistanceToStart() + " - " + (sum / (1024L * 1024L)) + " MB");
         }
-
-        DataList<Chell> result = solver.getPath(startX, startY, endX, endY);
-
-        // Get the Java runtime
-        Runtime runtime = Runtime.getRuntime();
-
-        // Run the garbage collector
-        runtime.gc();
-
-        // Calculate the used memory
-        long memory = runtime.totalMemory() - runtime.freeMemory();
-        System.out.println("Used memory in bytes: " + memory);
-        System.out.println("Used memory in megabytes: " +  ((double) memory / (1024L * 1024L)));
     }
 }

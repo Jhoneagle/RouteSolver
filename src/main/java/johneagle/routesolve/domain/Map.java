@@ -1,5 +1,7 @@
 package johneagle.routesolve.domain;
 
+import johneagle.routesolve.interfaces.Grid;
+
 /**
  * Object to handle ascii map and any straightly related actions.
  * Uses configurations given to it to know about ascii types purposes.
@@ -7,7 +9,7 @@ package johneagle.routesolve.domain;
  *
  * @author Johneagle
  */
-public class Map {
+public class Map implements Grid {
     private boolean[][] map;
 
     public Map() {
@@ -58,6 +60,7 @@ public class Map {
      *
      * @return {@code true} if coordinates are inside the map
      */
+    @Override
     public boolean isInsideMap(int x, int y) {
         int mapHeight = getMapHeight();
         int mapWeight = getMapWeight();
@@ -81,6 +84,7 @@ public class Map {
      *
      * @return {@code true} if place is walkable
      */
+    @Override
     public boolean isWalkable(int x, int y) {
         return map[y][x];
     }
@@ -96,6 +100,7 @@ public class Map {
      *
      * @return Integer
      */
+    @Override
     public double getValueForMovement(int fromX, int fromY, int whereX, int whereY) {
         int dx = fromX - whereX;
         int dy = fromY - whereY;
@@ -128,6 +133,7 @@ public class Map {
      *
      * @return Double
      */
+    @Override
     public double getAproxDistance(int fristX, int secondX, int fristY, int secondY) {
         int diffirentX = Math.abs(fristX - secondX);
         int diffirentY = Math.abs(fristY - secondY);

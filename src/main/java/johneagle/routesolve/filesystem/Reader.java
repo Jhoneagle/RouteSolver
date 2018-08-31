@@ -1,5 +1,6 @@
 package johneagle.routesolve.filesystem;
 
+import johneagle.routesolve.interfaces.Filehandle;
 import johneagle.routesolve.library.DataList;
 
 import java.io.FileInputStream;
@@ -14,7 +15,7 @@ import java.util.Properties;
  *
  * @author Johneagle
  */
-public class Reader {
+public class Reader implements Filehandle {
 
     private char[] walkable;
     private char[] unwalkable;
@@ -33,7 +34,8 @@ public class Reader {
      *
      * @return List of String/text lines
      */
-    private DataList<String> readAll(String fileName) {
+    @Override
+    public DataList<String> readAll(String fileName) {
         DataList<String> lines = new DataList<>();
 
         try {
@@ -116,6 +118,7 @@ public class Reader {
      *
      * @param configFileName    Name of the configuration/properties file.
      */
+    @Override
     public void getConfigs(String configFileName) {
         Properties properties = new Properties();
 

@@ -39,5 +39,7 @@
 24.8 | 1 | raportti
 25.8 | 5 | refaktorointia katselmointi paulautteen perusteella
 25.8 | 1 | suorituskyky testailun materiaalin valinta
-total | 110
+30.8 | 6 | suorituskykytestauksen käytännön lopullinen valinta
+31.8 | 8 | viikkoraportti 6 ja suorituskykytestauksen tulosten luonti
+total | 124
 

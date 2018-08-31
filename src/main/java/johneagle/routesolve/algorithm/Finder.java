@@ -2,6 +2,7 @@ package johneagle.routesolve.algorithm;
 
 import johneagle.routesolve.domain.Chell;
 import johneagle.routesolve.domain.Map;
+import johneagle.routesolve.interfaces.Pathfinding;
 import johneagle.routesolve.library.DataList;
 import johneagle.routesolve.library.MinHeap;
 
@@ -13,7 +14,7 @@ import johneagle.routesolve.library.MinHeap;
  *
  * @author Johneagle
  */
-public abstract class Finder {
+public abstract class Finder implements Pathfinding {
 
     protected Map map;
     protected Chell[] path;
@@ -25,7 +26,7 @@ public abstract class Finder {
     }
 
     /**
-     * Method that for pathfinding algorithm.
+     * Method for pathfinding algorithm to solve the shortest path.
      *
      * @param startX    Begging x-coordinate.
      * @param startY    Begging y-coordinate.
@@ -34,6 +35,7 @@ public abstract class Finder {
      *
      * @return path as list of Chell objects.
      */
+    @Override
     public abstract DataList<Chell> getPath(int startX, int startY, int endX, int endY);
 
     /**
@@ -46,7 +48,8 @@ public abstract class Finder {
      *
      * @return Goal point as Chell object.
      */
-    protected Chell prepare(int startX, int startY, int endX, int endY) {
+    @Override
+    public Chell prepare(int startX, int startY, int endX, int endY) {
         if (map.getMap() == null) {
             return null;
         }

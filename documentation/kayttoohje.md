@@ -10,27 +10,23 @@ Suoritettavan jaarin saa luotua kahdella tavalla. joko kirjoittamalla projektin 
 
 Jotta ohjelma toimisi ja viellä halutulla tavalla, niin se tarvitsee kaksi asiaa. Nämä ovat konfiguratio-tiedosto ja itse kartta tiedosto. Näitä varteen tarvitaan aluksi kaksi kansiota, joiden nimet tulee olla _config_ ja _mapFiles_. Niiden tulee sijaita samassa paikassa, kuin suoritettava jar.
 
-#### konfiguraatio
+#### Konfiguraatio
 
 _config_ kansioon luodaan tiedosto _config.properties_, jonka sisällöksi asetetaan seuraava
 
 ```
-x=
-y=
 bassable=
 unbassable=
 ```
 
-Ensimmäisiin kahteen riviin asetetaan heti yhtäsuuruusmerkin jälkeen ohjelmalle annettujen karttojen yleisen leveyden ja korkeuden. Ohjelma käyttää tätä tietoa estääkseen liian suurien karttojen antamisen ohjelmalle.
-
-Taas kahteen seuraavaan annetaan tieto siitä mitkä ascii-merkit edustavat kuljettavaa ja mitkä ei kuljettavaa aluetta. Esimerkiksi, jos merkit johon algoritmi ei saa mennä ovat _@_, _0_, _._ ja _E_. Kuljettavia alueita olisivat sen sijaan vain _1_. Tällöin rivit olisivat seuraavanlaiset
+Näihin kahteen riviin annetaan tieto siitä mitkä ascii-merkit edustavat kuljettavaa ja mitkä ei kuljettavaa aluetta. Esimerkiksi, jos merkit johon algoritmi ei saa mennä ovat _@_, _0_, _._ ja _E_. Kuljettavia alueita olisivat sen sijaan vain _1_. Tällöin rivit olisivat seuraavanlaiset
 
 ```
 bassable=1
 unbassable=@,0,.,E
 ```
 
-#### kartta
+#### Kartta
 
 Karttojen tiedosto muodolla ei itsessään ole väliä kunhan tiedosto on tyylitön tekstitiedosto. Hyviä muotoja on esimerkiksi _.map_, _.txt_ ja _.md_. Sisällöksi tiedostolle asetetaan pelkästään ascii-merkiestä luotu matriisi, joka vastaa kooltaan konfiguraation koko tietoja.
 
