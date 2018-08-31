@@ -84,9 +84,97 @@ Alussa pitää olla neljä vapaa valintaista 'sanaa/numeroa' ja välilyöntien t
 
 Suorituskyky testaus muistin ja suoritusajan osalta A* ja JPS tehtiin viiden kartan kohdalla lukuisilla reiteillä. Kartat löytyvät [täältä](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/performanceMaps) ja scenaariot eli reitit löytyvät niihin [täältä](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/performanceRoutes). 
 
-Kuvaajia varten dataa jouduttiin kuitenkin supistamaan ennen piirtoa. Aluksi kaikki järjestettiin reitin pituuden mukaan pienimmästä suurinpaan. Tämän jälkeen kahdessa pienemmässä kartassa: aina kuuden peräkäisen ajan keston/käytetyn muistin sekä reitin pituuden arvoista laskettiin keskiarvo. Taas y512x512 tehtiin samoin, mutta aina kymmenen peräkäisen kohdalla ja kahdessa viimeisessä sen sijaan 20 välein. Näin saatiin klusteroitua läheisten pituuksien suorituskyky tuloksia yhteen ja samalla tasoitettua merkittävimpiä poikeamia pois. Kuvaajissa y-akselina on joko suoritusaika tai käytetty muisti ja x-akseli on polun pituus. y-akselin yksikkö on suoritusajassa _millisekuntteina_ ja _megatavuina_ muistin käytössä. 
+Kuvaajia varten dataa jouduttiin kuitenkin supistamaan ennen piirtoa. Aluksi kaikki järjestettiin reitin pituuden mukaan pienimmästä suurinpaan. Tämän jälkeen kahdessa pienemmässä kartassa: aina kuuden peräkäisen ajan keston/käytetyn muistin sekä reitin pituuden arvoista laskettiin keskiarvo. Taas y512x512 tehtiin samoin, mutta aina kymmenen peräkäisen kohdalla ja kahdessa viimeisessä sen sijaan 20 välein. Näin saatiin klusteroitua läheisten pituuksien suorituskyky tuloksia yhteen ja samalla tasoitettua merkittävimpiä poikeamia pois. Kuvaajissa y-akselina on joko suoritusaika tai käytetty muisti ja x-akseli on polun pituus. y-akselin yksikkö on suoritusajassa _millisekunteina_ ja _megatavuina_ muistin käytössä. 
 
 ### Tulokset
 
+#### y141x162.map
 
+Suoritus ajat eri polunpituuksilla, kun Jump point search eli JPS.
+
+![JPS suoritusajat](images/y141x162-timeJPS.jpg)
+
+Suoritus ajat eri polunpituuksilla, kun käytössä sen sijaan A*.
+
+![A* suoritusajat](images/y141x162-timeASTAR.jpg)
+
+Algoritmin käyttämä muisti eri polunpituuksilla, kun Jump point search eli JPS.
+
+![JPS käyttämä muisti](images/y141x162-memoryJPS.jpg)
+
+Algoritmin käyttämä muisti eri polunpituuksilla, kun käytössä sen sijaan A*.
+
+![A* käyttämä muisti](images/y141x162-memoryASTAR.jpg)
+
+#### y261x314.map
+
+Suoritus ajat eri polunpituuksilla, kun Jump point search eli JPS.
+
+![JPS suoritusajat](images/y261x314-timeJPS.jpg)
+
+Suoritus ajat eri polunpituuksilla, kun käytössä sen sijaan A*.
+
+![A* suoritusajat](images/y261x314-timeASTAR.jpg)
+
+Algoritmin käyttämä muisti eri polunpituuksilla, kun Jump point search eli JPS.
+
+![JPS käyttämä muisti](images/y261x314-memoryJPS.jpg)
+
+Algoritmin käyttämä muisti eri polunpituuksilla, kun käytössä sen sijaan A*.
+
+![A* käyttämä muisti](images/y261x314-memoryASTAR.jpg)
+
+#### y512x512.map
+
+Suoritus ajat eri polunpituuksilla, kun Jump point search eli JPS.
+
+![JPS suoritusajat](images/y512x512-timeJPS.jpg)
+
+Suoritus ajat eri polunpituuksilla, kun käytössä sen sijaan A*.
+
+![A* suoritusajat](images/y512x512-timeASTAR.jpg)
+
+Algoritmin käyttämä muisti eri polunpituuksilla, kun Jump point search eli JPS.
+
+![JPS käyttämä muisti](images/y512x512-memoryJPS.jpg)
+
+Algoritmin käyttämä muisti eri polunpituuksilla, kun käytössä sen sijaan A*.
+
+![A* käyttämä muisti](images/y512x512-memoryASTAR.jpg)
+
+#### y768x768.map
+
+Suoritus ajat eri polunpituuksilla, kun Jump point search eli JPS.
+
+![JPS suoritusajat](images/y768x768-timeJPS.jpg)
+
+Suoritus ajat eri polunpituuksilla, kun käytössä sen sijaan A*.
+
+![A* suoritusajat](images/y768x768-timeASTAR.jpg)
+
+Algoritmin käyttämä muisti eri polunpituuksilla, kun Jump point search eli JPS.
+
+![JPS käyttämä muisti](images/y768x768-memoryJPS.jpg)
+
+Algoritmin käyttämä muisti eri polunpituuksilla, kun käytössä sen sijaan A*.
+
+![A* käyttämä muisti](images/y768x768-memoryASTAR.jpg)
+
+#### y1024x1024.map
+
+Suoritus ajat eri polunpituuksilla, kun Jump point search eli JPS.
+
+![JPS suoritusajat](images/y1024x1024-timeJPS.jpg)
+
+Suoritus ajat eri polunpituuksilla, kun käytössä sen sijaan A*.
+
+![A* suoritusajat](images/y1024x1024-timeASTAR.jpg)
+
+Algoritmin käyttämä muisti eri polunpituuksilla, kun Jump point search eli JPS.
+
+![JPS käyttämä muisti](images/y1024x1024-memoryJPS.jpg)
+
+Algoritmin käyttämä muisti eri polunpituuksilla, kun käytössä sen sijaan A*.
+
+![A* käyttämä muisti](images/y1024x1024-memoryASTAR.jpg)
 
