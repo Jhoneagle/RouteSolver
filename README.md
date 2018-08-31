@@ -2,7 +2,7 @@
 
 Lyhimmän reitin ascii-kartalla etsivä ohjelma, joka käyttää sekä A*, että Jump point searchiä (JPS).
 
-## dokumentaatio
+## Dokumentaatio
 
 [Työaikakirjanpito](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/tuntikirjanpito.md) 
 
