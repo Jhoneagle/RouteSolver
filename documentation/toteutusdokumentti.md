@@ -56,9 +56,15 @@ Eli siinä missä A* käyttää lähes lineaarisen määrän aikaa reitinhakuun 
 
 Reitinhaussa A* ja JPS ovat selvästi hyvin erilaiset ja eritasoiset eri asioissa. Näiden implementaatioiden suoraan järjestely parhaimmuuteen ei onnistu tulosten vuoksi. 
 
-Jos reitinhaun tarvitsee olla hyvin nopeaa eikä musitin käytöllä ole, niin väliä. Tällöin A* on näistä ylivoimaisesti parempi. Se kykenee ratkaisemaan inhimillisessä ajassa (alle 200ms) suurissakin kartoissa äärimmäisiä reittejä. A* implementaatio olisi siis hyvä esimerkiksi peleissä tietokoneen liikkumisen suunnitteluun.
+Jos reitinhaun tarvitsee olla hyvin nopeaa eikä musitin käytöllä ole niin väliä. Tällöin A* on näistä ylivoimaisesti parempi. Se kykenee ratkaisemaan inhimillisessä ajassa (alle 200ms) suurissakin kartoissa äärimmäisiä reittejä. A* implementaatio olisi siis hyvä esimerkiksi peleissä tietokoneen liikkumisen suunnitteluun.
 
-Se sijaan, jos muistia on rajallisesti käytössä eikä suoritusajalla ole, niin merkitystä. Tällöin JPS on oikea ratkaisu, koska sen muistin käyttö on täysin hillitty eikä pyydä merkittävästi enempää huolimatta minkä pituinen reitti on kyseessä, kunhan kartan koon vaatima muisti tarve täytyy. Sen suoritusaika kuitenkin on hidas pitkää reittiä etsiessä. Jolloin se on kätevä muun muassa etsiessä optimaallista reittiä erittäin suurissa kartoissa. 
+Sen sijaan, jos muistia on rajallisesti käytössä eikä suoritusajalla ole, niin merkitystä. Tällöin JPS on oikea ratkaisu, koska sen muistin käyttö on täysin hillitty eikä pyydä merkittävästi enempää huolimatta minkä pituinen reitti on kyseessä, kunhan kartan koon vaatima muisti tarve täytyy. Sen suoritusaika kuitenkin on hidas pitkää reittiä etsiessä. Jolloin se on kätevä muun muassa etsiessä optimaallista reittiä erittäin suurissa kartoissa. 
 
 ## Parannettavaa
+
+Vaikka reitinhaku algoritmit toimivat suhteellisen hyvin. A* on oikeassa aikavaativuus luokassa, kun taas JPS:n tilavaativuus on hyvänlainen. Niillä on kuitenkin melko paljon kehitettävää viellä vastakaisissa vaativuuksissa. Kiintoisa ero on tosin siinä, että O-analyysi viitaisi kummankin olevan lähellä optimaalista aika- ja tilavaativuus luokaa mihin reitinhaku algoritmi voisi päästä. Empiirisesti testattuna tämä ei kuitenkaan aivan näy. 
+
+A*:n implementaation muistin käyttöä voisi pyrkiä kehittämään niin, että se edes puolittuisi siitä mitä se nyt on. Tämän voisi saada aikaan parantelemalla sitä mitä vaihtoehtoja edes käydään läpi ja mitä ei. Vaihtoehtoisesti muistia saattaisi pystyä säästämään suorituksen aikana poistamalla tietueita, joissa ei mitenkään voida enää käydä. Kaikista muista paikoista, kuin _path_-taulusta, jota käytetään reitin kokoamiseen lopusta alkuun. 
+
+Taas JPS:n suoritusaikaa voisi ehdottomasti vielä hioa tekemällä jokaisesta kierroksesta sutjakkaamman. Esimerkiksi nopeuttamalla hyppy pisteiden etsintää entuudestaan tai luomalla jonkinlaista reitin spekulointia parhaan ehdokkaan valintaan. 
 

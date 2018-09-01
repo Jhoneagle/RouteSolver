@@ -27,8 +27,8 @@
 13.8 | 1 | debugging
 14.8 | 3,5 | JPS suunnittelua ja koodausta
 14.8 | 4 | debuggausta
-15.8 | 2 | lisää debuggausta JPSn kanssa
-15.8 | 4 | töitä JPSn parissa
+15.8 | 2 | lisää debuggausta JPS:n kanssa
+15.8 | 4 | töitä JPS:n parissa
 16.8 | 3,5 | JPS ja A* refactorointia
 16.8 | 1,5 | dokumentaatiota
 17.8 | 2,5 | dokumentaatiota
@@ -41,6 +41,7 @@
 25.8 | 1 | suorituskyky testailun materiaalin valinta
 30.8 | 6 | suorituskykytestauksen käytännön lopullinen valinta
 31.8 | 8 | viikkoraportti 6 ja suorituskykytestauksen tulosten luonti
-1.9 | 3 | testejä ja documentaatiota
-total | 127
+1.9 | 3 | testejä ja dokumentaatiota
+1.9 | 3 | javadocin lisäys repoon ja dokumentaatiota lisää
+total | 130
 
