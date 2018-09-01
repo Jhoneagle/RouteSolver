@@ -34,7 +34,31 @@ Keskiverto ja parhaimmassa tapauksessa A*:lla ja JPS:llä kuitenkin ero muuttuu 
 
 Toteutusten varsinaisen suorituskyky testailun tulokset löytyvät [täältä](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/testausdokumentti.md#suorituskyky-testaus).
 
-Tuloksista näkee 
+Tuloksista näkee, että nopeuden puolesta A* on varsinkin pitkillä reiteillä reilusti nopeampi. Sen sijaan muistin käytöllisesti A* häviää Jump point searchille sitä voimakkaammin mitä suurempi reitti. 
+
+#### Muisti
+
+JPS:n käyttämä muisti pysyy neljäsä viidestä kuvaajasta lähes vakiona. Mistä voisi päätellä, että yleisesti ottaen se pystyy ratkaisemaan lyhimmän reitin pituudestaan huolimatta lähes vakio muistilla. Se ylittää 1,5MB heiton vasta kartan koon saapuessa lähemmäs _700x700_ ja tämänkin jälkeen se on parhaimmillaan _768x768_ kartasssa. Missä se nousee pienimmän ja suurimman muistin tarpeen välillä melkein 5MB.
+
+Taas A*:n muistin tarve reitin ratkaisussa kasvaa reipaampaa tahtia reitinpituuden kanssa. Se näyttäisi jopa kiihtyvän sitä myötä mitä suuremmasta matkasta kyse, koska sitä useampia mahdollisia reittejä se käy läpi ja turhia välejä tutkii. 
+
+JPS:n muistin tarpeen pääasiallinen vaikuttaja on siis kartan koko, mutta senkin vaikutus on suhteellisen matala, koska kartan koolla _1024x1024_ huippu ylettää juuri ja juuri samoihin lukemiin, josta A* joutuu aloittamaan aina. Jolloin A*:n muisin tarpeeseen vaikuttaa paljon voimakaammin reitin pituus, mutta pienimpiin arvoihin myös kartan koko.
+
+#### SuoritusAika
+
+A*:n ajan käyttö tuloksen löytämiseen on hyvin vakaa. Se nousee hyvin rauhallisesti polun pituuden kasvaessa, kunnes reitti lähestyy 800 rajaa. Tämän jälkeen se alkaakin jo sitten kasvaa nopeampaa tahtia. Yleisesti sen suoritusaika on kuitenin hyvin maltillinen, koska reitinpituuden olessa 1500 tuntumassa käyttää A* vajaa 200ms sen löytämiseen kuitenkin.
+
+Sen sijaan JPS ei ole todellakaan kovin tehokas reitinhaku algoritmi mitä tulee suoritusaikaan. Sen ajan käyttö nousee melkein exponentiaalisesti polun pituuteen nähden. Tähän kuitenkin todennäköisesti vaikuttaa myös jonkin verran kartan kasvu. Se ylittää sekunnin jo kun reitin pituus on vasta vajaa 1000. 
+
+Eli siinä missä A* käyttää lähes lineaarisen määrän aikaa reitinhakuun polun pituuden suhteen, niin JPS muuttuu tehottomaksi jo hyvin nopeasti lähes exponentiaalisen kasvun vuoksi. Se kykenee lähinnä vastaamaan A* nopeudessa, jos reitti on aivan suora eikä pituudeltaan kovin pitkä.
+
+#### Yhteenveto
+
+Reitinhaussa A* ja JPS ovat selvästi hyvin erilaiset ja eritasoiset eri asioissa. Näiden implementaatioiden suoraan järjestely parhaimmuuteen ei onnistu tulosten vuoksi. 
+
+Jos reitinhaun tarvitsee olla hyvin nopeaa eikä musitin käytöllä ole, niin väliä. Tällöin A* on näistä ylivoimaisesti parempi. Se kykenee ratkaisemaan inhimillisessä ajassa (alle 200ms) suurissakin kartoissa äärimmäisiä reittejä. A* implementaatio olisi siis hyvä esimerkiksi peleissä tietokoneen liikkumisen suunnitteluun.
+
+Se sijaan, jos muistia on rajallisesti käytössä eikä suoritusajalla ole, niin merkitystä. Tällöin JPS on oikea ratkaisu, koska sen muistin käyttö on täysin hillitty eikä pyydä merkittävästi enempää huolimatta minkä pituinen reitti on kyseessä, kunhan kartan koon vaatima muisti tarve täytyy. Sen suoritusaika kuitenkin on hidas pitkää reittiä etsiessä. Jolloin se on kätevä muun muassa etsiessä optimaallista reittiä erittäin suurissa kartoissa. 
 
 ## Parannettavaa
 
