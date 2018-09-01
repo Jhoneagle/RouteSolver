@@ -114,4 +114,37 @@ public class AStarTest extends TempFile {
         DataList<Chell> resultAllStar = this.solver.getPath(15,10,15,9);
         Assert.assertEquals(1, resultAllStar.size() - 1);  // size - 1 equals the amount of points in the grid that has been visited before goal.
     }
+
+    @Test
+    public void nullMap() {
+        AStar aStar = new AStar(new Map());
+        Assert.assertNull(aStar.getPath(1, 1, 1 ,1));
+    }
+
+    @Test
+    public void noResult() {
+        Map map = new Map();
+        boolean[][] grid = new boolean[20][20];
+
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                grid[i][j] = true;
+            }
+        }
+
+        grid[7][8] = false;
+        grid[7][6] = false;
+        grid[6][6] = false;
+        grid[6][7] = false;
+        grid[6][8] = false;
+        grid[8][6] = false;
+        grid[8][7] = false;
+        grid[8][8] = false;
+
+        map.setMap(grid);
+        AStar aStar = new AStar(map);
+
+        // Only goal in the list.
+        Assert.assertEquals(1, aStar.getPath(17,17,7,7).size());
+    }
 }

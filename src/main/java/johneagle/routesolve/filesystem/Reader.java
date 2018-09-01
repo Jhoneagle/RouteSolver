@@ -56,7 +56,7 @@ public class Reader implements Filehandle {
      *
      * @param mapfile   Map that needs to be formulated to ascii grid.
      *
-     * @return boolean matrix
+     * @return Boolean matrix
      */
     public boolean[][] getMap(String mapfile) {
         DataList<String> lines = readAll(mapfile);
@@ -119,7 +119,7 @@ public class Reader implements Filehandle {
      * @param configFileName    Name of the configuration/properties file.
      */
     @Override
-    public void getConfigs(String configFileName) {
+    public boolean getConfigs(String configFileName) {
         Properties properties = new Properties();
 
         try {
@@ -138,8 +138,10 @@ public class Reader implements Filehandle {
             for (int i = 0; i < unwalk.length; i++) {
                 unwalkable[i] = unwalk[i].charAt(0);
             }
+
+            return true;
         } catch (Exception e) {
-            System.out.println("väärin määritelty config file!");
+            return false;
         }
     }
 }

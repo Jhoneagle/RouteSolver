@@ -33,7 +33,7 @@ public abstract class Finder implements Pathfinding {
      * @param endX      Destination x-coordinate.
      * @param endY      Destination y-coordinate.
      *
-     * @return path as list of Chell objects.
+     * @return Path as list of Chell objects.
      */
     @Override
     public abstract DataList<Chell> getPath(int startX, int startY, int endX, int endY);

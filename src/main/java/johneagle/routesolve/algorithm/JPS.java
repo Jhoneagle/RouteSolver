@@ -50,6 +50,10 @@ public class JPS extends Finder {
     public DataList<Chell> getPath(int startX, int startY, int endX, int endY) {
         Chell goal = prepare(startX, startY, endX, endY);
 
+        if (goal == null) {
+            return null;
+        }
+
         // Starts from the beginning coordinate and continues until destination coordinate is met or there is no more options to go to.
 
         while (!queue.isEmpty()) {

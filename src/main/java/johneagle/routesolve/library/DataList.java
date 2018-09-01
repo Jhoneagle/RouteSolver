@@ -40,7 +40,7 @@ public class DataList<E> {
     /**
      * Returns the number of elements in this list.
      *
-     * @return the number of elements in this list
+     * @return The number of elements in this list
      */
     public int size() {
         return actualSize;
@@ -72,7 +72,7 @@ public class DataList<E> {
      * Returns an array containing all of the elements in this list in proper
      * sequence (from first to last element).
      *
-     * @return an array containing all of the elements in this list in proper
+     * @return An array containing all of the elements in this list in proper
      * sequence
      */
     public Object[] toArray() {
@@ -108,7 +108,7 @@ public class DataList<E> {
      *
      * @param index     The point in array where element needs to be removed.
      *
-     * @return element that was just removed.
+     * @return Element that was just removed.
      */
     public E remove(int index) {
         if (actualSize < (maxSize / 3)) {
@@ -134,7 +134,7 @@ public class DataList<E> {
 
     /**
      * Removes the first occurrence of the specified element from this list,
-     * if it is present (optional operation).  If this list does not contain
+     * if it is present.  If this list does not contain
      * the element, it is unchanged.  More formally, removes the element with
      * the lowest index {@code i} such that
      * {@code Objects.equals(o, get(i))}
@@ -176,7 +176,7 @@ public class DataList<E> {
      * Returns the element at the specified position in this list.
      *
      * @param index index of the element to return
-     * @return the element at the specified position in this list
+     * @return The element at the specified position in this list
      */
     public E get(int index) {
         if (index >= 0 && index < actualSize) {
@@ -192,7 +192,7 @@ public class DataList<E> {
      *
      * @param index   index of the element to replace
      * @param element element to be stored at the specified position
-     * @return the element previously at the specified position
+     * @return The element previously at the specified position
      */
     public E set(int index, E element) {
         if (index >= 0 && index < actualSize) {
@@ -213,7 +213,7 @@ public class DataList<E> {
      * or -1 if there is no such index.
      *
      * @param o element to search for
-     * @return the index of the first occurrence of the specified element in
+     * @return The index of the first occurrence of the specified element in
      * this list, or -1 if this list does not contain the element
      */
 
@@ -235,12 +235,12 @@ public class DataList<E> {
     }
 
     /**
-     * removes the top/last element if there is any and returns that.
+     * Removes the top/last element if there is any and returns that.
      *
      * @see DataList#peek()
      * @see DataList#remove(int)
      *
-     * @return gives the top element so last added one or null if empty.
+     * @return Gives the top element so last added one or null if empty.
      */
     public E pop() {
         E result = peek();
@@ -254,7 +254,7 @@ public class DataList<E> {
     /**
      * Looks the top/last element if not empty.
      *
-     * @return gives the top element so last added one or null if empty.
+     * @return Gives the top element so last added one or null if empty.
      */
     public E peek() {
         if (actualSize > 0) {

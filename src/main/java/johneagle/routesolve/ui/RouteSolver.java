@@ -1,4 +1,4 @@
-﻿package johneagle.routesolve.ui;
+package johneagle.routesolve.ui;
 
 import johneagle.routesolve.algorithm.AStar;
 import johneagle.routesolve.algorithm.Finder;
@@ -28,7 +28,11 @@ public class RouteSolver {
 
         asciiMap = new Map();
         Reader fileReader = new Reader();
-        fileReader.getConfigs("config/config.properties");
+        boolean configs = fileReader.getConfigs("config/config.properties");
+
+        if (!configs) {
+            System.out.println("väärin määritelty config file!");
+        }
 
 	// if want performance testing
         if (args.length >= 4) {

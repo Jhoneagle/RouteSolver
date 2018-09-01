@@ -114,4 +114,37 @@ public class JPSTest extends TempFile {
         DataList<Chell> resultJPS = this.solver.getPath(15,10,15,9);
         Assert.assertEquals(0, resultJPS.size() - 1); // size - 1 equals the amount of jumps needed to achieve goal.
     }
+
+    @Test
+    public void nullMap() {
+        JPS jps = new JPS(new Map());
+        Assert.assertNull(jps.getPath(1, 1, 1 ,1));
+    }
+
+    @Test
+    public void noResult() {
+        Map map = new Map();
+        boolean[][] grid = new boolean[11][11];
+
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                grid[i][j] = true;
+            }
+        }
+
+        grid[7][8] = false;
+        grid[7][6] = false;
+        grid[6][6] = false;
+        grid[6][7] = false;
+        grid[6][8] = false;
+        grid[8][6] = false;
+        grid[8][7] = false;
+        grid[8][8] = false;
+
+        map.setMap(grid);
+        JPS jps = new JPS(map);
+
+        // Only goal in the list.
+        Assert.assertEquals(1, jps.getPath(1,1,7,7).size());
+    }
 }

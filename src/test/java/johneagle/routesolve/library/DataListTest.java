@@ -166,4 +166,27 @@ public class DataListTest {
         Assert.assertEquals(5, (long) poped2);
         Assert.assertNull(poped3);
     }
+
+    @Test
+    public void nuller() {
+        DataList<String> list = new DataList<>();
+        list.add("1");
+        list.add("uusi");
+
+        Assert.assertFalse(list.remove("ei ole"));
+        Assert.assertEquals(-1, list.indexOf(null));
+    }
+
+    @Test
+    public void illegalIndex() {
+        DataList<String> list = new DataList<>();
+        list.add("1");
+        list.add("uusi");
+
+        Assert.assertNull(list.get(-1));
+        Assert.assertNull(list.set(-1, "illegal one"));
+
+        Assert.assertNull(list.remove(-1));
+        Assert.assertNull(list.remove(6));
+    }
 }

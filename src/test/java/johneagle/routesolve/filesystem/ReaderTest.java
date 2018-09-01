@@ -45,6 +45,11 @@ public class ReaderTest extends TempFile {
     }
 
     @Test
+    public void wrongConfig() {
+        Assert.assertFalse(this.reader.getConfigs("fail.properties"));
+    }
+
+    @Test
     public void getData() {
         this.tempMapFile.setWritable(true);
         String map = "00000" + "\n" +

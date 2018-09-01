@@ -10,5 +10,5 @@ import johneagle.routesolve.library.DataList;
 public interface Filehandle {
     DataList<String> readAll(String fileName);
 
-    void getConfigs(String configFileName);
+    boolean getConfigs(String configFileName);
 }

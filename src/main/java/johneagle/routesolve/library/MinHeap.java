@@ -37,7 +37,7 @@ public class MinHeap<E>  {
     /**
      * Returns the number of elements in this queue.
      *
-     * @return the number of elements in this queue.
+     * @return The number of elements in this queue.
      */
     public int size() {
         return actualSize;
@@ -176,7 +176,7 @@ public class MinHeap<E>  {
      * Returns an array containing all of the elements in this list in proper
      * sequence (from first to last element).
      *
-     * @return an array containing all of the elements in this list in proper
+     * @return An array containing all of the elements in this list in proper
      * sequence
      */
     public Object[] toArray() {
@@ -193,7 +193,7 @@ public class MinHeap<E>  {
      * Retrieves and removes the head of this queue,
      * or returns {@code null} if this queue is empty.
      *
-     * @return the head of this queue, or {@code null} if this queue is empty
+     * @return The head of this queue, or {@code null} if this queue is empty
      */
     public E poll() {
         E result = peek();
@@ -216,7 +216,7 @@ public class MinHeap<E>  {
      * Retrieves, but does not remove, the head of this queue,
      * or returns {@code null} if this queue is empty.
      *
-     * @return the head of this queue, or {@code null} if this queue is empty
+     * @return The head of this queue, or {@code null} if this queue is empty
      */
     public E peek() {
         if (actualSize > 0) {

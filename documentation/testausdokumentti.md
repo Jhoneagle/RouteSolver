@@ -2,13 +2,13 @@
 
 ## Yksikkö testaus
 
-Projektin testien rivikattavuus on 97% ja haarautumakattavuus on 87%. 
+Projektin testien rivikattavuus on 98% ja haarautumakattavuus on 95%. 
 
 ![testikattavuus](images/testikattavuus.jpg)
 
-Haarautumakattavuuden osalta domain on heikoin alue projektista 78%. Monet haarautumista joita testeissä ei käydä läpi on hankala testata. Monesti ne ovat vain jokin erikoistapaus tai vähän käytetty toiminto. Näiden testaaminen kuitenkin voisi tulla oleelliseksi siinä tapauksessa, että niiden merkitys kasvaa. Sillä yleisesti ottaen haarautumakattavuus on kuitenkin hyvä olennaisissa osissa.
+Haarautumakattavuuden osalta domain on heikoin alue projektista 83%:lla. Monet haarautumista joita testeissä ei käydä läpi on hankala testata. Monesti ne ovat vain jokin erikoistapaus tai vähän käytetty toiminto. Näiden testaaminen kuitenkin voisi tulla oleelliseksi siinä tapauksessa, että niiden merkitys kasvaa. Sillä yleisesti ottaen haarautumakattavuus on kuitenkin hyvä olennaisissa osissa.
 
-Yksikkötesteillä suoraan testattuja luokkia ovat luokat, joissa metodit tekevät jotakin yksinkertaisuudesta poikeavaa. Kaikki testit ovat toteutettu Junitilla, jolloin näiden toistaminen tapahtuu helposti mavenin avulla suorittamalla: _mvn test_.
+Yksikkötesteillä suoraan testattuja luokkia ovat luokat, joissa metodit tekevät jotakin yksinkertaisuudesta poikeavaa. Kaikki n. 58 testiä on toteutettu Junitilla, jolloin näiden toistaminen tapahtuu helposti mavenin avulla suorittamalla: _mvn test_.
 
 ### DataListTest ja MinHeapTest
 

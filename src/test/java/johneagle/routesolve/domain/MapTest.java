@@ -52,6 +52,16 @@ public class MapTest extends TempFile {
     }
 
     @Test
+    public void dataNotOk() {
+        Map empty = new Map();
+
+        Assert.assertNull(empty.getMap());
+
+        Assert.assertEquals(0, empty.getMapHeight());
+        Assert.assertEquals(0, empty.getMapWeight());
+    }
+
+    @Test
     public void hashTableToLine() {
         Assert.assertEquals(0, this.asciiMap.hash(0, 0));
         Assert.assertEquals(24, this.asciiMap.hash(4, 4));
