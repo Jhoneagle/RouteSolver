@@ -41,5 +41,6 @@
 25.8 | 1 | suorituskyky testailun materiaalin valinta
 30.8 | 6 | suorituskykytestauksen käytännön lopullinen valinta
 31.8 | 8 | viikkoraportti 6 ja suorituskykytestauksen tulosten luonti
-total | 124
+1.9 | 3 | testejä ja documentaatiota
+total | 127
 
