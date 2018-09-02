@@ -4,6 +4,10 @@ Projekti koostuu käyttöliittymästä, kahdesta reitinhaku algoritmista, tiedos
 
 Molemmat reitinhaku algoritmit käyttävät yhteistä tekstuaalista käyttöliittymää. Mikä mahdollistaa niiden käytön lyhimmän reitin etsimiseen. Taas tiedoston lukua käytetään konfiguraatioiden ja karttojen hakemiseen ohjelman ulkopuolelta. 
 
+Projektin luokkakaavio on seuraavanlainen
+
+![luokkakaavio](images/luokkakaavio.png)
+
 ## Reitinhaku
 
 ### Yleisrakenne

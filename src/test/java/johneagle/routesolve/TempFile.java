@@ -13,6 +13,8 @@ import java.util.logging.Logger;
 /**
  * Only Super class for actual junit test classes.
  * Gives them same support for to do preparations and end work without repeating it in every one of them.
+ *
+ * @author Johneagle
  */
 public class TempFile {
 

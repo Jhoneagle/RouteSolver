@@ -137,6 +137,21 @@ public class DataListTest {
     }
 
     @Test
+    public void push() {
+        DataList<String> list = new DataList<>();
+
+        for (int i = 0; i <= 20; i++) {
+            String number = "" + i;
+            Assert.assertTrue(list.push(number).contains(number));
+        }
+
+        for (int i = 20; i >= 0; i--) {
+            String number = "" + i;
+            Assert.assertTrue(list.pop().contains(number));
+        }
+    }
+
+    @Test
     public void popOne() {
         DataList<Integer> list = new DataList<>();
 

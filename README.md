@@ -2,6 +2,10 @@
 
 Lyhimmän reitin ascii-kartalla etsivä ohjelma, joka käyttää sekä A*, että Jump point searchiä (JPS).
 
+## Release
+
+Suoritettavan jarin löytää [täältä](https://github.com/Jhoneagle/RouteSolver/releases).
+
 ## Dokumentaatio
 
 [Työaikakirjanpito](https://github.com/Jhoneagle/RouteSolver/blob/master/documentation/tuntikirjanpito.md) 

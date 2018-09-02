@@ -43,5 +43,6 @@
 31.8 | 8 | viikkoraportti 6 ja suorituskykytestauksen tulosten luonti
 1.9 | 3 | testejä ja dokumentaatiota
 1.9 | 3 | javadocin lisäys repoon ja dokumentaatiota lisää
+2.9 | 2 | loppu silausta
 total | 130
 

@@ -1,5 +1,8 @@
 package johneagle.routesolve.library;
 
+import johneagle.routesolve.interfaces.List;
+import johneagle.routesolve.interfaces.Pile;
+
 /**
  * Class that works just like any ArrayList or Stack object. Implements most of basic methods needed for normal use.
  *
@@ -7,7 +10,7 @@ package johneagle.routesolve.library;
  *
  * @author Johneagle
  */
-public class DataList<E> {
+public class DataList<E> implements List<E>, Pile<E> {
 
     private Object[] elementData;
     private int maxSize;
@@ -42,6 +45,7 @@ public class DataList<E> {
      *
      * @return The number of elements in this list
      */
+    @Override
     public int size() {
         return actualSize;
     }
@@ -51,6 +55,7 @@ public class DataList<E> {
      *
      * @return {@code true} if this list contains no elements
      */
+    @Override
     public boolean isEmpty() {
         return actualSize == 0;
     }
@@ -64,6 +69,7 @@ public class DataList<E> {
      * @param o element whose presence in this list is to be tested
      * @return {@code true} if this list contains the specified element
      */
+    @Override
     public boolean contains(Object o) {
         return indexOf(o) >= 0;
     }
@@ -92,6 +98,7 @@ public class DataList<E> {
      * @param e element to be appended to this list
      * @return {@code true}
      */
+    @Override
     public boolean add(E e) {
         if (actualSize >= maxSize) {
             grow(2);
@@ -110,6 +117,7 @@ public class DataList<E> {
      *
      * @return Element that was just removed.
      */
+    @Override
     public E remove(int index) {
         if (actualSize < (maxSize / 3)) {
             double half = 1.0 / 2.0;
@@ -178,6 +186,7 @@ public class DataList<E> {
      * @param index index of the element to return
      * @return The element at the specified position in this list
      */
+    @Override
     public E get(int index) {
         if (index >= 0 && index < actualSize) {
             return (E) elementData[index];
@@ -194,6 +203,7 @@ public class DataList<E> {
      * @param element element to be stored at the specified position
      * @return The element previously at the specified position
      */
+    @Override
     public E set(int index, E element) {
         if (index >= 0 && index < actualSize) {
             E result = (E) elementData[index];
@@ -216,7 +226,7 @@ public class DataList<E> {
      * @return The index of the first occurrence of the specified element in
      * this list, or -1 if this list does not contain the element
      */
-
+    @Override
     public int indexOf(Object o) {
         if (o == null) {
             for (int i = 0; i < actualSize; i++) {
@@ -235,6 +245,23 @@ public class DataList<E> {
     }
 
     /**
+     * Adds the element top of the list and returns the new element back.
+     *
+     * @param e  Element wanted to add on the head of list.
+     *
+     * @return Element added or null if failed to add.
+     */
+    @Override
+    public E push(E e) {
+        try {
+            add(e);
+            return e;
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    /**
      * Removes the top/last element if there is any and returns that.
      *
      * @see DataList#peek()
@@ -242,6 +269,7 @@ public class DataList<E> {
      *
      * @return Gives the top element so last added one or null if empty.
      */
+    @Override
     public E pop() {
         E result = peek();
         if (result != null) {
@@ -256,6 +284,7 @@ public class DataList<E> {
      *
      * @return Gives the top element so last added one or null if empty.
      */
+    @Override
     public E peek() {
         if (actualSize > 0) {
             return (E) elementData[actualSize - 1];

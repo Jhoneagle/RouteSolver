@@ -1,5 +1,7 @@
 package johneagle.routesolve.library;
 
+import johneagle.routesolve.interfaces.Queue;
+
 /**
  * Class that works just like Javas ready made PriorityQueue would work in the algorithm.
  *
@@ -7,7 +9,7 @@ package johneagle.routesolve.library;
  *
  * @author Johneagle
  */
-public class MinHeap<E>  {
+public class MinHeap<E>  implements Queue<E> {
 
     private Object[] elementData;
     private int actualSize;
@@ -61,11 +63,11 @@ public class MinHeap<E>  {
      * @param e the element to add
      * @return {@code true}
      */
+    @Override
     public boolean add(E e) {
         if (actualSize == 0) {
             elementData[1] = e;
             actualSize++;
-            return true;
         } else {
             actualSize++;
             int index = actualSize;
@@ -142,6 +144,7 @@ public class MinHeap<E>  {
      * @param o element whose presence in this queue is to be tested
      * @return {@code true} if this queue contains the specified element
      */
+    @Override
     public boolean contains(Object o) {
         return find(1, (E) o);
     }
@@ -195,6 +198,7 @@ public class MinHeap<E>  {
      *
      * @return The head of this queue, or {@code null} if this queue is empty
      */
+    @Override
     public E poll() {
         E result = peek();
 
@@ -218,11 +222,28 @@ public class MinHeap<E>  {
      *
      * @return The head of this queue, or {@code null} if this queue is empty
      */
+    @Override
     public E peek() {
         if (actualSize > 0) {
             return (E) elementData[1];
         } else {
             return null;
+        }
+    }
+
+    /**
+     * Inserts the specified element into this queue if it is possible to do
+     * so immediately without violating capacity restrictions.
+     *
+     * @param e     the element to add
+     * @return {@code true} if the element was added to this queue, else {@code false}
+     */
+    @Override
+    public boolean offer(E e) {
+        try {
+            return add(e);
+        } catch (Exception ex) {
+            return false;
         }
     }
 }

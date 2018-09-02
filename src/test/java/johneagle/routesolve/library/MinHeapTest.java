@@ -174,4 +174,19 @@ public class MinHeapTest {
 
         Assert.assertEquals(expected, result);
     }
+
+    @Test
+    public void offering() {
+        MinHeap<Double> test = new MinHeap<>();
+
+        for (int i = 1; i <= 10; i++) {
+            double d = 1.0 / i;
+            Assert.assertTrue(test.offer(d));
+        }
+
+        for (int i = 10; i >= 1; i--) {
+            double d = 1.0 / i;
+            Assert.assertEquals(d, test.poll(), 0.001);
+        }
+    }
 }
